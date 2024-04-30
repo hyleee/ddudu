@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Calendar</title>
+
+  <link rel="stylesheet" href="style.css">
+  <script src="app.js"></script>
+</head>
+<body>
+
+  <div class="wrap col-flex jcc aic">
+
+    <div class="flex aic">
+      <h1 class="cur-date">2022. 7.</h1>
+    </div>
+
+    <div class="calendar">
+      <div class="calendar-top">SUN</div>
+      <div class="calendar-top">MON</div>
+      <div class="calendar-top">TUE</div>
+      <div class="calendar-top">WED</div>
+      <div class="calendar-top">THR</div>
+      <div class="calendar-top">FRI</div>
+      <div class="calendar-top">SAT</div>
+    </div>
+
+  </div>
+
+  <!-- Modal -->
+  <div class="modal schedule">
+    <div class="modal-bg">
+
+      <div class="modal-form">
+
+        <div class="modal-top fles aifs jcsb">
+          <h1 class="modal-title"></h1>
+          <button onclick="document.querySelector('.modal.schedule').classList.remove('show')">※</button>
+        </div>
+
+        <div class="modal-content">
+
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+
+  <script>
+    Calendar.$calendar = document.querySelector(".calendar");
+    Calendar.init();
+  </script>
+
+
+</body>
+
+</html>
