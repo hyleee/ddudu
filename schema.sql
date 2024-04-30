@@ -1,7 +1,8 @@
--- DROP DATABASE ssafydb;
+DROP DATABASE ssafydb;
 
 create database ssafydb;
 USE ssafydb;
+
 -- 사용자 테이블
 CREATE TABLE User (
     user_id VARCHAR(100) NOT NULL,
@@ -20,30 +21,21 @@ CREATE TABLE exercise_diary (
     diary_content VARCHAR(100),
     today_weight INT,
     diary_photo BLOB,
-    exercise_date DATETIME,
+    exercise_date DATETIME DEFAULT CURRENT_TIMESTAMP,
+    PRIMARY KEY (user_id),
     FOREIGN KEY (user_id) REFERENCES User(user_id)
 );
 
--- 게시판 테이블
-CREATE TABLE board (
-    article_id INT NOT NULL,
-    user_id VARCHAR(100),
-    user_area VARCHAR(100),
-    category VARCHAR(100),
-    PRIMARY KEY (article_id),
-    FOREIGN KEY (user_id) REFERENCES User(user_id)
-);
 
 -- 게시글 테이블
 CREATE TABLE article (
-    article_id INT,
+    article_id INT AUTO_INCREMENT,
     user_id VARCHAR(100),
-    user_area VARCHAR(100),
-    category VARCHAR(100),
     article_title VARCHAR(100),
     article_content VARCHAR(100),
-    article_created DATETIME,
-    FOREIGN KEY (article_id) REFERENCES board(article_id),
+    article_created  DATETIME DEFAULT CURRENT_TIMESTAMP,
+    category VARCHAR(100),
+    PRIMARY KEY (article_id, user_id),
     FOREIGN KEY (user_id) REFERENCES User(user_id)
 );
 
@@ -51,18 +43,19 @@ CREATE TABLE article (
 CREATE TABLE article_like (
     article_id INT,
     user_id VARCHAR(100),
+     -- 한 사용자가 각 게시물에 대해 단 한 번만 좋아요를 할 수 있도록 하며, 각 좋아요를 고유하게 식별하도록 복합키 사용
+    PRIMARY KEY (article_id, user_id),
     FOREIGN KEY (article_id) REFERENCES article(article_id),
     FOREIGN KEY (user_id) REFERENCES User(user_id)
 );
 
 -- 댓글 테이블
 CREATE TABLE comment (
-    comment_id INT NOT NULL,
-    comment_created DATETIME,
+    comment_id INT AUTO_INCREMENT,
+    comment_created  DATETIME DEFAULT CURRENT_TIMESTAMP,
     comment_content VARCHAR(100),
     user_id VARCHAR(100),
     article_id INT,
-    user_area VARCHAR(100),
     PRIMARY KEY (comment_id),
     FOREIGN KEY (user_id) REFERENCES User(user_id),
     FOREIGN KEY (article_id) REFERENCES article(article_id)
@@ -72,18 +65,19 @@ CREATE TABLE comment (
 CREATE TABLE comment_like (
     comment_id INT,
     user_id VARCHAR(100),
+     -- 한 사용자가 각 댓글에 대해 단 한 번만 좋아요를 할 수 있도록 하며, 각 좋아요를 고유하게 식별하도록 복합키 사용
+     PRIMARY KEY (comment_id, user_id),
     FOREIGN KEY (comment_id) REFERENCES comment(comment_id),
     FOREIGN KEY (user_id) REFERENCES User(user_id)
 );
 
 -- 답글 테이블
 CREATE TABLE reply (
-    reply_id INT NOT NULL,
+    reply_id INT AUTO_INCREMENT,
     user_id VARCHAR(100),
     reply_content VARCHAR(100),
-    reply_created DATETIME,
+    reply_created  DATETIME DEFAULT CURRENT_TIMESTAMP,
     comment_id INT,
-    user_area VARCHAR(100),
     PRIMARY KEY (reply_id),
     FOREIGN KEY (user_id) REFERENCES User(user_id),
     FOREIGN KEY (comment_id) REFERENCES comment(comment_id)
@@ -93,24 +87,28 @@ CREATE TABLE reply (
 CREATE TABLE reply_like (
     reply_id INT,
     user_id VARCHAR(100),
+     -- 한 사용자가 각 답글에 대해 단 한 번만 좋아요를 할 수 있도록 하며, 각 좋아요를 고유하게 식별하도록 복합키 사용
+    PRIMARY KEY (reply_id, user_id),
     FOREIGN KEY (reply_id) REFERENCES reply(reply_id),
     FOREIGN KEY (user_id) REFERENCES User(user_id)
 );
 
 -- 운동계획 테이블
-CREATE TABLE plan (
-    exercise_date DATETIME,
+CREATE TABLE daily_plan (
+    exercise_date DATETIME DEFAULT CURRENT_TIMESTAMP,
     user_id VARCHAR(100),
     body_part VARCHAR(100),
     exercise_name VARCHAR(100),
     exercise_kg INT,
     exercise_count INT,
+    -- 각 사용자가 각 날짜에 대해 여러 개의 운동 계획을 가질 수 있도록 복합키 사용
+    PRIMARY KEY (exercise_date, user_id),
     FOREIGN KEY (user_id) REFERENCES User(user_id)
 );
 
 -- 부위별 운동량 테이블
 CREATE TABLE exercise_per_part_sum (
-    exercise_date DATETIME,
+    exercise_date DATETIME DEFAULT CURRENT_TIMESTAMP,
     user_id VARCHAR(100),
     chest_kg INT,
     back_kg INT,
@@ -118,5 +116,25 @@ CREATE TABLE exercise_per_part_sum (
     leg_kg INT,
     abs_kg INT,
     arm_kg INT,
+    -- 각 사용자가 각 날짜에 대해 하루에 하나씩 부위별 운동량 가질 수 있다.
+    PRIMARY KEY (exercise_date, user_id),
     FOREIGN KEY (user_id) REFERENCES User(user_id)
+);
+
+CREATE TABLE video(
+	video_id INT AUTO_INCREMENT PRIMARY KEY,
+    video_title VARCHAR(100),
+    body_part VARCHAR(100),
+    youtube_id VARCHAR(100),
+    channel_name VARCHAR(100),
+    view_count INT
+);
+
+CREATE TABLE Follow (
+    follower_id VARCHAR(100) NOT NULL, -- 팔로우 당하는 놈
+    following_id VARCHAR(100) NOT NULL, -- 팔로우 신청한 놈
+    FOREIGN KEY (follower_id) REFERENCES User(user_id),
+    FOREIGN KEY (following_id) REFERENCES User(user_id),
+    -- 같은 사용자에 대한 중복된 팔로우를 방지하기 위해 follower_id 및 following_id 열의 조합이 고유해야 한다.
+    CONSTRAINT unique_follow UNIQUE (follower_id, following_id)
 );
