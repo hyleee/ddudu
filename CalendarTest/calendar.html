@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -9,12 +10,15 @@
   <link rel="stylesheet" href="style.css">
   <script src="app.js"></script>
 </head>
+
 <body>
 
   <div class="wrap col-flex jcc aic">
 
-    <div class="flex aic">
-      <h1 class="cur-date">2022. 7.</h1>
+    <div class="flex aic" style="gap: 40px;">
+      <button onclick="Calendar.addMonth(-1)">◀</button>
+      <h1 class="cur-date">2024. 5.</h1>
+      <button onclick="Calendar.addMonth(1)">▶</button>
     </div>
 
     <div class="calendar">
@@ -22,7 +26,7 @@
       <div class="calendar-top">MON</div>
       <div class="calendar-top">TUE</div>
       <div class="calendar-top">WED</div>
-      <div class="calendar-top">THR</div>
+      <div class="calendar-top">THU</div>
       <div class="calendar-top">FRI</div>
       <div class="calendar-top">SAT</div>
     </div>
@@ -35,13 +39,22 @@
 
       <div class="modal-form">
 
-        <div class="modal-top fles aifs jcsb">
+        <div class="modal-top flex aifs jcsb">
           <h1 class="modal-title"></h1>
           <button onclick="document.querySelector('.modal.schedule').classList.remove('show')">※</button>
         </div>
 
         <div class="modal-content">
+          <div class="schedule-list">
 
+            <div class="flex aic jcc" style="width: 100%; height: 100%;">
+              There is no schedules.. :(
+            </div>
+          </div>
+
+          <div class="form-inf">
+            <button onclick="ScheduleManager.addSchedule()">Add Schedule...</button>
+          </div>
         </div>
       </div>
     </div>
@@ -51,7 +64,13 @@
 
   <script>
     Calendar.$calendar = document.querySelector(".calendar");
-    Calendar.init();
+    Calendar.$date = document.querySelector(".calendar-date");
+
+    document.addEventListener("DOMContentLoaded", function() {
+            Calendar.init();
+        });
+
+    // Calendar.init();
   </script>
 
 
