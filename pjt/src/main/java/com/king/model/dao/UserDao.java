@@ -9,6 +9,6 @@ public interface UserDao {
     int insert(User user);
 
 
-    User findByUsername(String username);
+    User findByUserId(String userId);
 
 }

@@ -5,11 +5,11 @@
 <mapper namespace="com.king.model.dao.UserDao">
 
 <insert id="insert">
-	INSERT INTO Users (user_id, password, user_name, email, user_age)
-	VALUES (#{userId}, #{password}, #{userName}, #{email}, #{age})
+	INSERT INTO Users (id, password, name, email, age)
+	VALUES (#{id}, #{password}, #{name}, #{email}, #{age})
 </insert>
 
-<select id="findByUserId" resultType="User">
+<select id="findByUsername" resultType="User">
 	SELECT * FROM Users WHERE id = #{id}
 </select>
 

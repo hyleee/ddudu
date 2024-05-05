@@ -15,14 +15,14 @@ import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 
 @RestController
-@RequestMapping("/")
+@RequestMapping("/user")
 public class UserController {
 	
 	@Autowired
 	private UserService userService;
 	
 	@Operation(summary="사용자 등록", description="사용자 회원가입")
-	@PostMapping("")
+	@PostMapping("/regist")
 	public ResponseEntity<?> insert(@RequestBody @Parameter(description="사용자 등록", required=true) User user) {
 		int result = userService.insert(user);
 		return new ResponseEntity<>(result, result == 1 ? HttpStatus.OK : HttpStatus.BAD_REQUEST);
@@ -31,10 +31,10 @@ public class UserController {
 	@Operation(summary="로그인", description="사용자 로그인")
 	@PostMapping("/login")
 	public ResponseEntity<String> login(
-			@Parameter(description = "사용자명", required = true) @RequestParam String username,
+			@Parameter(description = "사용자명", required = true) @RequestParam String userId,
 			@Parameter(description = "비밀번호", required = true) @RequestParam String password) {
 		
-		boolean isAuthenticated = userService.login(username, password);
+		boolean isAuthenticated = userService.login(userId, password);
 		if(isAuthenticated) {
 			return new ResponseEntity<>("Login successful", HttpStatus.OK);
 		}

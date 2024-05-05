@@ -1,6 +1,4 @@
--- DROP DATABASE ssafydb;
--- SELECT * FROM User;
-
+DROP DATABASE ssafydb;
 
 create database ssafydb;
 USE ssafydb;
@@ -9,16 +7,13 @@ USE ssafydb;
 CREATE TABLE User (
     user_id VARCHAR(100) NOT NULL,
     password VARCHAR(100) NOT NULL,
-    user_name VARCHAR(100) NOT NULL,
     email VARCHAR(100),
-    user_age INT,
     user_height INT,
     user_weight INT,
     user_area VARCHAR(100),
     profile LONGBLOB,
     PRIMARY KEY (user_id)
 );
-
 
 -- 운동 일지 테이블
 CREATE TABLE exercise_diary (
