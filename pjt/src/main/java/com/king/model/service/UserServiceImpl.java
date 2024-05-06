@@ -4,7 +4,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import com.king.model.dao.UserDao;
 import com.king.model.dto.User;
+import org.springframework.stereotype.Service;
 
+@Service
 public class UserServiceImpl implements UserService {
 
 	@Autowired
