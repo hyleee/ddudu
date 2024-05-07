@@ -6,20 +6,20 @@ public class User {
 	private String password;
 	private String userName;
 	private String email;
-	private int age;
+	private int userAge;
 	private int userHeight;
 	private int userWeight;
 	private String userArea;
 	private byte[] profile;
 
-	public User(String userId, String password, String userName, String email, int age, int userHeight, int userWeight,
+	public User(String userId, String password, String userName, String email, int userAge, int userHeight, int userWeight,
 			String userArea, byte[] profile) {
 		super();
 		this.userId = userId;
 		this.password = password;
 		this.userName = userName;
 		this.email = email;
-		this.age = age;
+		this.userAge = userAge;
 		this.userHeight = userHeight;
 		this.userWeight = userWeight;
 		this.userArea = userArea;
@@ -59,11 +59,11 @@ public class User {
 	}
 
 	public int getAge() {
-		return age;
+		return userAge;
 	}
 
-	public void setAge(int age) {
-		this.age = age;
+	public void setAge(int userAge) {
+		this.userAge = userAge;
 	}
 
 	public int getUserHeight() {
