@@ -1,8 +1,10 @@
+drop database ssafydb;
+create database ssafydb;
+use ssafydb;
+
 -- DROP DATABASE ssafydb;
 -- SELECT * FROM User;
 
-
-create database ssafydb;
 USE ssafydb;
 
 -- 사용자 테이블
@@ -100,15 +102,25 @@ CREATE TABLE reply_like (
 
 -- 운동계획 테이블
 CREATE TABLE daily_plan (
+	plan_id INT AUTO_INCREMENT,
     exercise_date DATETIME DEFAULT CURRENT_TIMESTAMP,
     user_id VARCHAR(100),
     body_part VARCHAR(100),
     exercise_name VARCHAR(100),
-    exercise_kg INT,
-    exercise_count INT,
-    -- 각 사용자가 각 날짜에 대해 여러 개의 운동 계획을 가질 수 있도록 복합키 사용
-    PRIMARY KEY (exercise_date, user_id),
+    
+    
+    PRIMARY KEY (plan_id),
     FOREIGN KEY (user_id) REFERENCES User(user_id)
+);
+
+CREATE TABLE daily_plan_detail (
+	detail_id INT AUTO_INCREMENT,
+	exercise_kg INT,
+    exercise_count INT,
+    plan_id INT,
+    
+    PRIMARY KEY (detail_id),
+    FOREIGN KEY(plan_id) REFERENCES USER(daily_plan)
 );
 
 -- 부위별 운동량 테이블
