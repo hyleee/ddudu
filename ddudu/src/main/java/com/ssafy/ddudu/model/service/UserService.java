@@ -10,4 +10,10 @@ public interface UserService {
 	int insert(User user);
 
 	boolean login(String userName, String userPassword);
+
+	int update(User user);
+
+	User getUserById(String userId);
+
+	int delete(String userId);
 }

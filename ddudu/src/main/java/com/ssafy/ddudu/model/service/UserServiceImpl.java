@@ -21,7 +21,7 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public int insert(User user) {
-		return userDao.insert(user);
+		return userDao.insertUser(user);
 	}
 
 	@Override
@@ -31,6 +31,21 @@ public class UserServiceImpl implements UserService {
 			return userPassword.equals(user.getUserPassword());
 		}
 		return false;
+	}
+
+	@Override
+	public int update(User user) {
+		return userDao.updateUser(user);
+	}
+
+	@Override
+	public User getUserById(String userId) {
+		return userDao.selectOne(userId);
+	}
+
+	@Override
+	public int delete(String userId) {
+		return userDao.deleteUser(userId);
 	}
 
 }
