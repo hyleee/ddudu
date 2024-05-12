@@ -18,7 +18,8 @@
 	</insert>
 
 	<select id="findByUserId" resultType="User">
-		SELECT * FROM User WHERE
+		SELECT * FROM user
+		WHERE
 		user_id = #{userId}
 	</select>
 
@@ -32,11 +33,6 @@
 		WHERE user_id =
 		#{userId}
 	</update>
-
-	<select id="selectOne">
-		SELECT * FROM user
-		WHERE user_id=#{userId}
-	</select>
 
 	<delete id="deleteUser">
 		DELETE FROM user

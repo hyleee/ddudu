@@ -40,7 +40,7 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public User getUserById(String userId) {
-		return userDao.selectOne(userId);
+		return userDao.findByUserId(userId);
 	}
 
 	@Override
