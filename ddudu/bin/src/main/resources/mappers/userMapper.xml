@@ -8,11 +8,11 @@
 	</select>
 
 
-	<insert id="insert"> INSERT INTO User (user_id, user_password, user_name,
-		user_email, user_age, user_height, user_weight, user_area, user_profile) VALUES
+	<insert id="insert"> INSERT INTO User (user_id, password, user_name,
+		email, user_age, user_height, user_weight, user_area, profile) VALUES
 		(#{userId},
-		#{userPassword}, #{userName}, #{userEmail}, #{userAge}, #{userHeight}, #{userWeight},
-		#{userArea}, #{userProfile})
+		#{password}, #{userName}, #{email}, #{userAge}, #{userHeight}, #{userWeight},
+		#{userArea}, #{profile})
 	</insert>
 
 	<select id="findByUserId" resultType="User">

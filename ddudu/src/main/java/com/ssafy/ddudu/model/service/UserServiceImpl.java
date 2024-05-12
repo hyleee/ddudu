@@ -25,10 +25,10 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public boolean login(String userId, String password) {
+	public boolean login(String userId, String userPassword) {
 		User user = userDao.findByUserId(userId);
 		if (user != null) {
-			return password.equals(user.getPassword());
+			return userPassword.equals(user.getUserPassword());
 		}
 		return false;
 	}

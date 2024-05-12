@@ -51,7 +51,7 @@ public class UserController {
 	        if (!uploadDir.exists()) uploadDir.mkdirs();
 
 	        String filename = System.currentTimeMillis() + "_" + file.getOriginalFilename();
-	        user.setProfile(filename);  // 파일 이름을 img 필드에 설정
+	        user.setUserProfile(filename);  // 파일 이름을 img 필드에 설정
 
 	        file.transferTo(new File(uploadDir, filename));
 	    }

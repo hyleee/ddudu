@@ -9,5 +9,5 @@ public interface UserService {
 
 	int insert(User user);
 
-	boolean login(String userName, String password);
+	boolean login(String userName, String userPassword);
 }

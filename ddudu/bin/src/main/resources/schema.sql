@@ -10,14 +10,14 @@ USE ssafydb;
 -- 사용자 테이블
 CREATE TABLE User (
     user_id VARCHAR(100) NOT NULL,
-    user_password VARCHAR(100) NOT NULL,
+    password VARCHAR(100) NOT NULL,
     user_name VARCHAR(100) NOT NULL,
-    user_email VARCHAR(100),
+    email VARCHAR(100),
     user_age INT,
     user_height INT,
     user_weight INT,
     user_area VARCHAR(100),
-    user_profile LONGBLOB,
+    profile LONGBLOB,
     PRIMARY KEY (user_id)
 );
 
@@ -120,7 +120,7 @@ CREATE TABLE daily_plan_detail (
     plan_id INT,
     
     PRIMARY KEY (detail_id),
-    FOREIGN KEY(plan_id) REFERENCES daily_plan(plan_id)
+    FOREIGN KEY(plan_id) REFERENCES USER(daily_plan)
 );
 
 -- 부위별 운동량 테이블

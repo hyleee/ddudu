@@ -1,33 +1,31 @@
 package com.ssafy.ddudu.model.dto;
 
-import java.util.Arrays;
-
 public class User {
 
 	private String userId;
-	private String password;
+	private String userPassword;
 	private String userName;
-	private String email;
+	private String userEmail;
 	private int userAge;
 	private int userHeight;
 	private int userWeight;
 	private String userArea;
-	private String profile;
+	private String userProfile;
 	public User() {
 		super();
 	}
-	public User(String userId, String password, String userName, String email, int userAge, int userHeight,
-			int userWeight, String userArea, String profile) {
+	public User(String userId, String userPassword, String userName, String userEmail, int userAge, int userHeight,
+			int userWeight, String userArea, String userProfile) {
 		super();
 		this.userId = userId;
-		this.password = password;
+		this.userPassword = userPassword;
 		this.userName = userName;
-		this.email = email;
+		this.userEmail = userEmail;
 		this.userAge = userAge;
 		this.userHeight = userHeight;
 		this.userWeight = userWeight;
 		this.userArea = userArea;
-		this.profile = profile;
+		this.userProfile = userProfile;
 	}
 	public String getUserId() {
 		return userId;
@@ -35,11 +33,11 @@ public class User {
 	public void setUserId(String userId) {
 		this.userId = userId;
 	}
-	public String getPassword() {
-		return password;
+	public String getUserPassword() {
+		return userPassword;
 	}
-	public void setPassword(String password) {
-		this.password = password;
+	public void setUserPassword(String userPassword) {
+		this.userPassword = userPassword;
 	}
 	public String getUserName() {
 		return userName;
@@ -47,11 +45,11 @@ public class User {
 	public void setUserName(String userName) {
 		this.userName = userName;
 	}
-	public String getEmail() {
-		return email;
+	public String getUserEmail() {
+		return userEmail;
 	}
-	public void setEmail(String email) {
-		this.email = email;
+	public void setUserEmail(String userEmail) {
+		this.userEmail = userEmail;
 	}
 	public int getUserAge() {
 		return userAge;
@@ -77,19 +75,19 @@ public class User {
 	public void setUserArea(String userArea) {
 		this.userArea = userArea;
 	}
-	public String getProfile() {
-		return profile;
+	public String getUserProfile() {
+		return userProfile;
 	}
-	public void setProfile(String profile) {
-		this.profile = profile;
+	public void setUserProfile(String userProfile) {
+		this.userProfile = userProfile;
 	}
 	@Override
 	public String toString() {
-		return "User [userId=" + userId + ", password=" + password + ", userName=" + userName + ", email=" + email
-				+ ", userAge=" + userAge + ", userHeight=" + userHeight + ", userWeight=" + userWeight + ", userArea="
-				+ userArea + ", profile=" + profile + "]";
+		return "User [userId=" + userId + ", userPassword=" + userPassword + ", userName=" + userName + ", userEmail="
+				+ userEmail + ", userAge=" + userAge + ", userHeight=" + userHeight + ", userWeight=" + userWeight
+				+ ", userArea=" + userArea + ", userProfile=" + userProfile + "]";
 	}
-
+	
 	
 
 }
