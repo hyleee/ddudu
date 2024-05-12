@@ -1,9 +1,15 @@
-drop database ssafydb;
-create database ssafydb;
+-- drop database ssafydb;
+-- create database ssafydb;
 use ssafydb;
+
+select * from article;
 
 -- DROP DATABASE ssafydb;
 -- SELECT * FROM User;
+-- INSERT INTO USER 
+-- ( user_id, user_password, user_name, user_email, user_age, user_height, user_weight, user_area)
+-- VALUES ( 'a', 'a', 'a', 'a@a.com', 1, 1, 1, 'area');
+select * FROM article;
 
 USE ssafydb;
 
