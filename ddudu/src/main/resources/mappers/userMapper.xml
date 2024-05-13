@@ -30,8 +30,7 @@
 		user_email=#{userEmail}, user_age=#{userAge},
 		user_height=#{userHeight}, user_weight=#{userWeight},
 		user_area=#{userArea}, user_profile=#{userProfile}
-		WHERE user_id =
-		#{userId}
+		WHERE user_id = #{userId}
 	</update>
 
 	<delete id="deleteUser">
