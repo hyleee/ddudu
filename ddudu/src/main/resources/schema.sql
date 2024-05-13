@@ -112,10 +112,13 @@ CREATE TABLE daily_plan (
     body_part VARCHAR(100),
     exercise_name VARCHAR(100),
     
-    
     PRIMARY KEY (plan_id),
     FOREIGN KEY (user_id) REFERENCES User(user_id)
 );
+
+select * from daily_plan;
+SELECT * FROM daily_plan
+		WHERE DATE_FORMAT(exercise_date, '%Y-%m-%d') = '2024-05-13' AND user_id = "33";
 
 CREATE TABLE daily_plan_detail (
 	detail_id INT AUTO_INCREMENT,
