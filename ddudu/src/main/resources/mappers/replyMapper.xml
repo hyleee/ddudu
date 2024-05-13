@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ssafy.ddudu.model.dao.ReplyDao">
+
+    <select id="findRepliesByCommentId" parameterType="int" resultType="Reply">
+        SELECT * FROM reply WHERE comment_id = #{commentId}
+    </select>
+
+    <insert id="insertReply" parameterType="Reply">
+        INSERT INTO reply (user_id, reply_content, comment_id)
+        VALUES (#{userId}, #{replyContent}, #{commentId})
+    </insert>
+
+    <update id="updateReply" parameterType="Reply">
+        UPDATE reply
+        SET reply_content = #{replyContent}
+        WHERE reply_id = #{replyId}
+    </update>
+
+    <delete id="deleteReply" parameterType="int">
+        DELETE FROM reply WHERE reply_id = #{replyId}
+    </delete>
+
+</mapper>
