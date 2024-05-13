@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ssafy.ddudu.model.dao.BoardDao">
+
+	<select id="findArticlesByUserArea" parameterType="string"
+		resultType="Article">
+		SELECT * FROM article
+		JOIN user ON article.user_id = user.user_id
+		WHERE user.user_area =
+		#{userArea}
+	</select>
+
+	<select id="findArticlesByUserAreaAndCategory"
+		parameterType="map" resultType="Article">
+		SELECT * FROM article 
+		JOIN user ON article.user_id = user.user_id
+		WHERE user.user_area = #{userArea} AND article.category = #{category}
+	</select>
+
+</mapper>
