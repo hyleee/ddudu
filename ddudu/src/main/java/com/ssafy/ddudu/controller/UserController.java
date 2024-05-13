@@ -2,9 +2,13 @@ package com.ssafy.ddudu.controller;
 
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.ResourceLoader;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -35,6 +39,9 @@ public class UserController {
 	@Autowired
 	private UserService userService;
 
+	@Autowired
+	ResourceLoader resLoader;
+
 	@Operation(summary = "사용자 조회", description = "사용자 정보를 조회합니다.")
 	@GetMapping("/{id}")
 	public ResponseEntity<?> userDetail(@PathVariable("id") String id) {
@@ -47,18 +54,16 @@ public class UserController {
 			@RequestPart(value = "file", required = false) MultipartFile file, HttpSession session)
 			throws IllegalStateException, IOException {
 		System.out.println(user);
-		System.out.println(file.getName());
-
 		if (file != null && !file.isEmpty()) {
-			String uploadDirPath = session.getServletContext().getRealPath("/resources");
-			File uploadDir = new File(uploadDirPath);
-			if (!uploadDir.exists())
-				uploadDir.mkdirs();
-
+			String userHome = System.getProperty("user.home");
+			String uploadDirPath = userHome + "/Desktop/test";
+			Path uploadPath = Paths.get(uploadDirPath);
+			if (!Files.exists(uploadPath)) {
+				Files.createDirectories(uploadPath);
+			}
 			String filename = System.currentTimeMillis() + "_" + file.getOriginalFilename();
+			file.transferTo(new File(uploadDirPath, filename));
 			user.setUserProfile(filename); // 파일 이름을 img 필드에 설정
-
-			file.transferTo(new File(uploadDir, filename));
 		}
 
 		int result = userService.insert(user);
