@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- name space는 UserRepo의 fully qualified name으로 설정한다. -->
+<mapper namespace="com.ssafy.ddudu.model.dao.PlanDetailDao">
+
+	<select id="getPlanDetailByPlanId" resultType="PlanDetail">
+		SELECT * FROM daily_plan_detail
+		WHERE plan_id = #{planId}
+	</select>
+
+	<insert id="addPlanDetail">
+	    INSERT INTO daily_plan_detail (exercise_kg, exercise_count, plan_id)
+	    VALUES (#{exerciseKg}, #{exerciseCount}, #{planId})
+	</insert>
+
+	<update id="update">
+		UPDATE daily_plan_detail
+		SET exercise_kg = #{exerciseKg}, exercise_count = #{exerciseCount}, plan_id = #{planId}
+		WHERE plan_id = #{planId} AND detail_id = #{detailId}
+	</update>
+
+	<delete id="delete">
+		DELETE FROM daily_plan_detail
+		WHERE detail_id = #{detailId}
+	</delete>
+
+
+</mapper>

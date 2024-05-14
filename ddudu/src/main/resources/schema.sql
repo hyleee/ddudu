@@ -119,6 +119,8 @@ CREATE TABLE daily_plan (
 select * from daily_plan;
 SELECT * FROM daily_plan
 		WHERE DATE_FORMAT(exercise_date, '%Y-%m-%d') = '2024-05-13' AND user_id = "33";
+select * from daily_plan;
+
 
 CREATE TABLE daily_plan_detail (
 	detail_id INT AUTO_INCREMENT,
@@ -129,6 +131,8 @@ CREATE TABLE daily_plan_detail (
     PRIMARY KEY (detail_id),
     FOREIGN KEY(plan_id) REFERENCES daily_plan(plan_id)
 );
+select * from daily_plan;
+select * from daily_plan_detail;
 
 -- 부위별 운동량 테이블
 CREATE TABLE exercise_per_part_sum (
