@@ -49,4 +49,5 @@ public class ReplyController {
 		replyService.deleteReply(replyId);
 		return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 	}
+	
 }
