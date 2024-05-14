@@ -37,14 +37,14 @@ public class ReplyController {
 		return new ResponseEntity<>(HttpStatus.CREATED);
 	}
 
-	@PutMapping("/{commentId}/{replyId}")
+	@PutMapping("/{replyId}")
 	public ResponseEntity<Void> updateReply(@PathVariable int replyId, @RequestBody Reply reply) {
 		reply.setReplyId(replyId);
 		replyService.updateReply(reply);
 		return new ResponseEntity<>(HttpStatus.OK);
 	}
 
-	@DeleteMapping("/{commentId}/{replyId}")
+	@DeleteMapping("/{replyId}")
 	public ResponseEntity<Void> deleteReply(@PathVariable int replyId) {
 		replyService.deleteReply(replyId);
 		return new ResponseEntity<>(HttpStatus.NO_CONTENT);
