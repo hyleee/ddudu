@@ -1,15 +1,14 @@
--- drop database ssafydb;
--- create database ssafydb;
+drop database ssafydb;
+create database ssafydb;
 use ssafydb;
-
 
 -- DROP DATABASE ssafydb;
 
 -- INSERT INTO USER ( user_id, user_password, user_name, user_email, user_age, user_height, user_weight, user_area)VALUES ( 'a', 'a', 'a', 'a@a.com', 1, 1, 1, 'area');
 -- INSERT INTO comment (comment_content, user_id, article_id) VALUES ("내용", "a", 1);
-select * from user;
-select * FROM article;
-select * from comment;
+-- select * from user;
+-- select * FROM article;
+-- select * from comment;
 
 -- 사용자 테이블
 CREATE TABLE User (
@@ -21,17 +20,16 @@ CREATE TABLE User (
     user_height INT,
     user_weight INT,
     user_area VARCHAR(100),
-    user_profile LONGBLOB,
+    user_profile VARCHAR(100),
     PRIMARY KEY (user_id)
 );
-
 
 -- 운동 일지 테이블
 CREATE TABLE exercise_diary (
     user_id VARCHAR(100),
     diary_content VARCHAR(100),
     today_weight INT,
-    diary_photo BLOB,
+    diary_photo VARCHAR(100),
     exercise_date DATETIME DEFAULT CURRENT_TIMESTAMP,
     PRIMARY KEY (user_id),
     FOREIGN KEY (user_id) REFERENCES User(user_id)
