@@ -1,9 +1,22 @@
 <template>
-  <div>
+  <div class="diary">
     <h2>Diary입니다.</h2>
-    <div class="diary-header">
+    <div class="diary-title-container">
       <div>운동일지</div>
-      <RouterLink to="/diary">화살표</RouterLink>
+      <RouterLink to="/diary"><img src="@/assets/arrow.png" height="30px"></RouterLink>
+    </div>
+    <div class="diary-container">
+      <div class="picture-weight">
+        <div class="picture">
+          사진
+        </div>
+        <div class="weight">
+          체중
+        </div>
+      </div>
+      <div class="textbox">
+        textbox
+      </div>
     </div>
   </div>
 </template>
@@ -13,9 +26,51 @@ import { RouterLink } from 'vue-router'
 </script>
 
 <style scoped>
-.diary-header {
+.diary {
+  width: 100%;
+  height: 300px;
+}
+
+.diary-title-container {
   display: flex;
-  justify-content: space-between;
-  margin: 30px;
+  /* justify-content: space-between; */
+
+  border: 1px solid black;
+  height: 100px;
+}
+
+.diary-container {
+  display: flex;
+  height: 400px;
+  justify-content: space-around;
+  align-items: flex-start;
+  width: 100%;
+  border: 1px solid black;
+}
+
+.picture-weight {
+  border: 1px solid black;
+  display: flex;
+  flex-direction: column;
+  width: 35%;
+}
+
+.picture {
+  border: 1px solid black;
+  width: 100%;
+  height: 300px;
+  margin-bottom: 20px;
+}
+
+.weight {
+  width: 100%;
+  height: 70px;
+  border: 1px solid black;
+}
+
+.textbox {
+  border: 1px solid black;
+  width: 60%;
+  display: flex;
 }
 </style>

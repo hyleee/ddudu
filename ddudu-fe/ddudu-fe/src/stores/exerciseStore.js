@@ -1,32 +1,68 @@
+// import { ref, computed } from 'vue'
+// import { defineStore } from 'pinia'
+// import axios from 'axios'
+
+// const REST_EXERCISE_API = "http://localhost:8080/plan"
+// const REST_API = "http://localhost:8080"
+
+// export const useExerciseStore = defineStore('exercise', () => {
+
+//   const exerciseList = ref([])
+
+//   const exercisePlan = ref({
+//     planId: '',
+//     exerciseDate: '',
+//     userId: '',
+//     bodyPart: '',
+//     exerciseName: '',
+//   })
+
+//   const getExerciseList = function (userId, exerciseDate) {
+//     axios.get(`${REST_EXERCISE_API}/${userId}/${exerciseDate}`)
+//       .then((res) => {
+//         console.log(res)
+//         exerciseList.value = res.data;
+//       })
+//       .catch((error) => {
+//         console.error('Failed to fetch user list:', error);
+//       });
+//   }
+
+
+//   return { useExerciseStore, exercisePlan, getExerciseList, }
+// })
+
+
 import { ref, computed } from 'vue'
 import { defineStore } from 'pinia'
+import axios from 'axios'
 
-const REST_USER_API = "http://localhost:8080/exercise"
+const REST_EXERCISE_API = "http://localhost:8080/plan"
 const REST_API = "http://localhost:8080"
 
-export const useWorkoutStore = defineStore('exercise', () => {
+export const useExerciseStore = defineStore('exercise', () => {
 
   const exerciseList = ref([])
 
-  const exercise = ref({
-    plan_id: '',
-    exercise_date: '',
-    user_id: '',
-    body_part: '',
-    exercise_name: '',
+  const exercisePlan = ref({
+    planId: '',
+    exerciseDate: '',
+    userId: '',
+    bodyPart: '',
+    exerciseName: '',
   })
 
-  const getExerciseList = function () {
-    axios.get(REST_EXERCISE_API)
+  const getExerciseList = function (userId, exerciseDate) {
+    axios.get(`${REST_EXERCISE_API}/${userId}/${exerciseDate}`)
       .then((res) => {
-        console.log(res)
+        // console.log(res)
+        console.log(exerciseList)
         exerciseList.value = res.data;
       })
       .catch((error) => {
-        console.error('Failed to fetch user list:', error);
+        console.error('Failed to fetch exercise list:', error);
       });
   }
 
-
-  return { useExerciseStore, exercise }
+  return { exercisePlan, exerciseList, getExerciseList }
 })

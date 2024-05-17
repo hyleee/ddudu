@@ -22,7 +22,7 @@ const router = createRouter({
       component: SignUp
     },
     {
-      path: '/plan',
+      path: '/plan/:userId/:exerciseDate',
       name: 'plan',
       component: PlanView
     },

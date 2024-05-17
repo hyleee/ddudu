@@ -2,18 +2,16 @@ package com.ssafy.ddudu.model.service;
 
 import java.time.LocalDate;
 import java.util.Date;
+import java.util.List;
 
 import com.ssafy.ddudu.model.dto.Plan;
 
 public interface PlanService {
 
-//	Plan getPlanByDateAndUserId(Date dateWithoutTime);
-
 	int createPlan(Plan newPlan);
 
 	int deletePlan(int planId);
 
-	Plan getPlanByDateAndUserId(LocalDate exerciseDate, String userId);
-
+	List<Plan> getPlanByDateAndUserId(LocalDate exerciseDate, String userId);
 
 }
