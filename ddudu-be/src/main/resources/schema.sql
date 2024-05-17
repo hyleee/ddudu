@@ -6,7 +6,7 @@ use ssafydb;
 
 -- INSERT INTO USER ( user_id, user_password, user_name, user_email, user_age, user_height, user_weight, user_area)VALUES ( 'a', 'a', 'a', 'a@a.com', 1, 1, 1, 'area');
 -- INSERT INTO comment (comment_content, user_id, article_id) VALUES ("내용", "a", 1);
--- select * from user;
+select * from user;
 -- select * FROM article;
 -- select * from comment;
 
@@ -113,6 +113,10 @@ CREATE TABLE daily_plan (
     PRIMARY KEY (plan_id),
     FOREIGN KEY (user_id) REFERENCES User(user_id)
 );
+INSERT INTO daily_plan ( user_id, body_part, exercise_name )VALUES ( 'a', 'arm', 'biceps' );
+INSERT INTO daily_plan ( user_id, body_part, exercise_name )VALUES ( 'a', 'leg', 'legpress' );
+
+# SELECT * FROM daily_plan WHERE DATE_FORMAT(exercise_date, '%Y-%m-%d') = "2024-05-17" AND user_id = 'a';
 
 select * from daily_plan;
 SELECT * FROM daily_plan

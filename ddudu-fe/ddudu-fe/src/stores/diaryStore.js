@@ -1,5 +1,6 @@
 import { ref, computed } from 'vue'
 import { defineStore } from 'pinia'
+import axios from 'axios'
 
 const REST_DIARY_API = "http://localhost:8080/diary"
 

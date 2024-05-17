@@ -2,6 +2,7 @@ package com.ssafy.ddudu.model.service;
 
 import java.time.LocalDate;
 import java.util.Date;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -27,7 +28,7 @@ public class PlanServiceImpl implements PlanService{
 	}
 
 	@Override
-	public Plan getPlanByDateAndUserId(LocalDate exerciseDate, String userId) {
+	public List<Plan> getPlanByDateAndUserId(LocalDate exerciseDate, String userId) {
 		return planDao.findByDateAndUserId(exerciseDate, userId);
 	}
 

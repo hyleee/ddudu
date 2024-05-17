@@ -2,6 +2,7 @@ package com.ssafy.ddudu.model.dao;
 
 import java.time.LocalDate;
 import java.util.Date;
+import java.util.List;
 
 import com.ssafy.ddudu.model.dto.Plan;
 
@@ -13,6 +14,6 @@ public interface PlanDao {
 
 	int delete(int planId);
 
-	Plan findByDateAndUserId(LocalDate exerciseDate, String userId);
+	List<Plan> findByDateAndUserId(LocalDate exerciseDate, String userId);
 
 }

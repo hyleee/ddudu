@@ -2,6 +2,7 @@ package com.ssafy.ddudu.controller;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ssafy.ddudu.model.dto.Plan;
@@ -25,7 +27,8 @@ import java.time.LocalDate;
 import org.springframework.format.annotation.DateTimeFormat;
 @RestController
 @RequestMapping("/plan")
-@CrossOrigin(origins = "*")
+@CrossOrigin(origins = "*", methods = { RequestMethod.GET, RequestMethod.POST, RequestMethod.PUT,
+        RequestMethod.DELETE, RequestMethod.OPTIONS })
 public class PlanController {
 
 	@Autowired
@@ -38,11 +41,11 @@ public class PlanController {
 	        @PathVariable("exerciseDate") @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate exerciseDate, 
 	        @PathVariable("userId") String userId) {
 
-	    Plan plan = planService.getPlanByDateAndUserId(exerciseDate, userId); // Service layer also needs to handle LocalDate
-	    if(plan == null) {
+	    List<Plan> planList = planService.getPlanByDateAndUserId(exerciseDate, userId);
+	    if(planList == null) {
 	        return ResponseEntity.status(HttpStatus.NOT_FOUND).body("No plan found for the given date and user");
 	    }
-	    return new ResponseEntity<>(plan, HttpStatus.OK);
+	    return new ResponseEntity<>(planList, HttpStatus.OK);
 	}
 
 	@Operation(summary = "해당 날짜 운동 계획 작성", description = "해당 날짜 운동 계획을 작성합니다.")
