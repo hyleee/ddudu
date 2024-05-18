@@ -3,6 +3,9 @@
     <p>{{ exercise.bodyPart }}</p>
     <p>{{ exercise.exerciseName }}</p>
   </div>
+  <div class="set-reps-weight">
+
+  </div>
 </template>
 
 <script setup>

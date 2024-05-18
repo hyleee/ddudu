@@ -1,6 +1,6 @@
 <template>
   <div class="diary">
-    <h2>Diary입니다.</h2>
+    <h3>Diary입니다.</h3>
     <div class="diary-title-container">
       <div>운동일지</div>
       <RouterLink to="/diary"><img src="@/assets/arrow.png" height="30px"></RouterLink>
@@ -18,34 +18,37 @@
         textbox
       </div>
     </div>
+    <ExerciseList />
   </div>
 </template>
 
 <script setup>
 import { RouterLink } from 'vue-router'
+import ExerciseList from '@/components/plan/ExerciseList.vue'
 </script>
 
 <style scoped>
 .diary {
   width: 100%;
-  height: 300px;
+  height: auto;
+  /* height: 300px; */
 }
 
 .diary-title-container {
   display: flex;
-  /* justify-content: space-between; */
-
+  justify-content: space-between;
   border: 1px solid black;
   height: 100px;
 }
 
 .diary-container {
   display: flex;
-  height: 400px;
   justify-content: space-around;
   align-items: flex-start;
   width: 100%;
+  /* height: 400px; */
   border: 1px solid black;
+  margin-bottom: 20px;
 }
 
 .picture-weight {
@@ -70,7 +73,8 @@ import { RouterLink } from 'vue-router'
 
 .textbox {
   border: 1px solid black;
-  width: 60%;
+  width: 50%;
+  height: 390px;
   display: flex;
 }
 </style>

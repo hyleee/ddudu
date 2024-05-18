@@ -5,7 +5,7 @@
       <Calender />
     </div>
     <div>
-      <ExerciseList />
+      <!-- <ExerciseList /> -->
     </div>
 
     
