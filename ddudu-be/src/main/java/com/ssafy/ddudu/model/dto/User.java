@@ -11,11 +11,14 @@ public class User {
 	private int userWeight;
 	private String userArea;
 	private String userProfile;
+	private int userPermission;
+	
 	public User() {
 		super();
 	}
+	
 	public User(String userId, String userPassword, String userName, String userEmail, int userAge, int userHeight,
-			int userWeight, String userArea, String userProfile) {
+			int userWeight, String userArea, String userProfile, int userPermission) {
 		super();
 		this.userId = userId;
 		this.userPassword = userPassword;
@@ -26,7 +29,17 @@ public class User {
 		this.userWeight = userWeight;
 		this.userArea = userArea;
 		this.userProfile = userProfile;
+		this.userPermission = userPermission;
 	}
+
+	public int getUserPermission() {
+		return userPermission;
+	}
+
+	public void setUserPermission(int userPermission) {
+		this.userPermission = userPermission;
+	}
+
 	public String getUserId() {
 		return userId;
 	}
@@ -81,13 +94,6 @@ public class User {
 	public void setUserProfile(String userProfile) {
 		this.userProfile = userProfile;
 	}
-	@Override
-	public String toString() {
-		return "User [userId=" + userId + ", userPassword=" + userPassword + ", userName=" + userName + ", userEmail="
-				+ userEmail + ", userAge=" + userAge + ", userHeight=" + userHeight + ", userWeight=" + userWeight
-				+ ", userArea=" + userArea + ", userProfile=" + userProfile + "]";
-	}
-	
-	
+
 
 }
