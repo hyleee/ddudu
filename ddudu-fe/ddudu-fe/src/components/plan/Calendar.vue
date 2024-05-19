@@ -6,11 +6,9 @@
 </template>
 
 <script setup>
-import { RouterLink } from 'vue-router'
-import DiaryDetail from '@/components/plan/DiaryDetail.vue'
-import Diary from '@/components/plan/Diary.vue'
+import { RouterLink } from "vue-router";
+import DiaryDetail from "@/components/plan/DiaryDetail.vue";
+import Diary from "@/components/plan/Diary.vue";
 </script>
 
-<style scoped>
-
-</style>
+<style scoped></style>

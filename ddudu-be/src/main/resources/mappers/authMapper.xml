@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ssafy.ddudu.model.dao.AuthDao">
+
+    <select id="findRefreshToken" resultType="Auth">
+        SELECT user_id, refresh_token
+        FROM auth
+        WHERE user_id = #{userId}
+    </select>
+
+    <insert id="saveRefreshToken">
+        INSERT INTO auth (user_id, refresh_token)
+        VALUES (#{userId}, #{refreshToken})
+        ON DUPLICATE KEY UPDATE refresh_token = #{refreshToken}
+    </insert>
+
+</mapper>

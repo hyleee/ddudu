@@ -1,14 +1,22 @@
-drop database ssafydb;
-create database ssafydb;
+-- drop database ssafydb;
+-- create database ssafydb;
 use ssafydb;
+
 
 -- DROP DATABASE ssafydb;
 
--- INSERT INTO USER ( user_id, user_password, user_name, user_email, user_age, user_height, user_weight, user_area)VALUES ( 'a', 'a', 'a', 'a@a.com', 1, 1, 1, 'area');
+INSERT INTO USER ( user_id, user_password, user_name, user_email, user_age, user_height, user_weight, user_area)VALUES ( 'a', 'a', 'a', 'a@a.com', 1, 1, 1, 'area');
 -- INSERT INTO comment (comment_content, user_id, article_id) VALUES ("내용", "a", 1);
-select * from user;
+-- select * from user;
 -- select * FROM article;
 -- select * from comment;
+
+-- select * from exercise_diary;
+-- INSERT into exercise_diary (  user_id,
+    diary_content,
+    today_weight,
+    diary_photo,
+    exercise_date) VALUES ( 'a', '내용', '100', '','2024-05-19');
 
 -- 사용자 테이블
 CREATE TABLE User (
@@ -20,16 +28,24 @@ CREATE TABLE User (
     user_height INT,
     user_weight INT,
     user_area VARCHAR(100),
-    user_profile VARCHAR(100),
+    user_profile LONGBLOB,
     PRIMARY KEY (user_id)
 );
+
+CREATE TABLE auth (
+    user_id VARCHAR(100) NOT NULL PRIMARY KEY,
+    refresh_token TEXT NOT NULL,
+    FOREIGN KEY (user_id) REFERENCES User(user_id)
+);
+
+
 
 -- 운동 일지 테이블
 CREATE TABLE exercise_diary (
     user_id VARCHAR(100),
     diary_content VARCHAR(100),
     today_weight INT,
-    diary_photo VARCHAR(100),
+    diary_photo BLOB,
     exercise_date DATETIME DEFAULT CURRENT_TIMESTAMP,
     PRIMARY KEY (user_id),
     FOREIGN KEY (user_id) REFERENCES User(user_id)
@@ -110,19 +126,10 @@ CREATE TABLE daily_plan (
     body_part VARCHAR(100),
     exercise_name VARCHAR(100),
     
+    
     PRIMARY KEY (plan_id),
     FOREIGN KEY (user_id) REFERENCES User(user_id)
 );
-INSERT INTO daily_plan ( user_id, body_part, exercise_name )VALUES ( 'a', 'arm', 'biceps' );
-INSERT INTO daily_plan ( user_id, body_part, exercise_name )VALUES ( 'a', 'leg', 'legpress' );
-
-# SELECT * FROM daily_plan WHERE DATE_FORMAT(exercise_date, '%Y-%m-%d') = "2024-05-17" AND user_id = 'a';
-
-select * from daily_plan;
-SELECT * FROM daily_plan
-		WHERE DATE_FORMAT(exercise_date, '%Y-%m-%d') = '2024-05-13' AND user_id = "33";
-select * from daily_plan;
-
 
 CREATE TABLE daily_plan_detail (
 	detail_id INT AUTO_INCREMENT,
@@ -133,8 +140,6 @@ CREATE TABLE daily_plan_detail (
     PRIMARY KEY (detail_id),
     FOREIGN KEY(plan_id) REFERENCES daily_plan(plan_id)
 );
-select * from daily_plan;
-select * from daily_plan_detail;
 
 -- 부위별 운동량 테이블
 CREATE TABLE exercise_per_part_sum (
