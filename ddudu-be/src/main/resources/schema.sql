@@ -13,10 +13,10 @@ INSERT INTO USER ( user_id, user_password, user_name, user_email, user_age, user
 
 -- select * from exercise_diary;
 -- INSERT into exercise_diary (  user_id,
-    diary_content,
-    today_weight,
-    diary_photo,
-    exercise_date) VALUES ( 'a', '내용', '100', '','2024-05-19');
+   --  diary_content,
+--     today_weight,
+--     diary_photo,
+--     exercise_date) VALUES ( 'a', '내용', '100', '','2024-05-19');
 
 -- 사용자 테이블
 CREATE TABLE User (
@@ -130,6 +130,9 @@ CREATE TABLE daily_plan (
     PRIMARY KEY (plan_id),
     FOREIGN KEY (user_id) REFERENCES User(user_id)
 );
+INSERT INTO daily_plan (exercise_date, user_id, body_part, exercise_name)
+VALUES ("2024-05-19", "a", "하체", "스쿼트"); 
+SELECT * FROM daily_plan;
 
 CREATE TABLE daily_plan_detail (
 	detail_id INT AUTO_INCREMENT,
@@ -140,6 +143,10 @@ CREATE TABLE daily_plan_detail (
     PRIMARY KEY (detail_id),
     FOREIGN KEY(plan_id) REFERENCES daily_plan(plan_id)
 );
+INSERT INTO daily_plan_detail (exercise_kg, exercise_count, plan_id) VALUES (10, 10, 1);
+INSERT INTO daily_plan_detail (exercise_kg, exercise_count, plan_id) VALUES (20, 20, 1);
+
+select * FROM daily_plan_detail;
 
 -- 부위별 운동량 테이블
 CREATE TABLE exercise_per_part_sum (

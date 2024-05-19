@@ -5,6 +5,7 @@ import SignUp from "@/components/user/SignUp.vue";
 import PlanView from "@/views/PlanView.vue";
 import DiaryDetailView from "@/views/DiaryDetailView.vue";
 import { useLoginStore } from "@/stores/loginStore";
+import ExerciseDetailView from '@/views/ExerciseDetailView.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -32,14 +33,12 @@ const router = createRouter({
       name: "diary",
       component: DiaryDetailView,
     },
-    // {
-    //   path: "/private",
-    //   name: "private",
-    //   component: PrivateView,
-    //   beforeEnter(to, from) {
-    //     // to.name === 'private'
-    //   },
-    // },
+    {
+      path: "/plan/detail/:planId",
+      name: "exerciseDetail",
+      component: ExerciseDetailView,
+    },
+    
   ],
 });
 
