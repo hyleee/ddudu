@@ -7,20 +7,12 @@
     <div>
       <!-- <ExerciseList /> -->
     </div>
-
-    
-    
-    
   </div>
 </template>
 
 <script setup>
-import Calender from '@/components/plan/Calendar.vue'
-import ExerciseList from '@/components/plan/ExerciseList.vue'
-
-
+import Calender from "@/components/plan/Calendar.vue";
+import ExerciseList from "@/components/plan/ExerciseList.vue";
 </script>
 
-<style scoped>
-
-</style>
+<style scoped></style>

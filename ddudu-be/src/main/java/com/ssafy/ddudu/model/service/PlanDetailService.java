@@ -13,5 +13,7 @@ public interface PlanDetailService {
 	int updatePlanDetail(PlanDetail planDetail);
 
 	int deletePlanDetail(int detailId);
+	
+	int updatePlanDetailList(int planId, List<PlanDetail> planDetails);
 
 }

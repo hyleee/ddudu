@@ -14,4 +14,6 @@ public interface PlanDetailDao {
 
 	int delete(int detailId);
 
+	int updatePlanDetailList( int planId, List<PlanDetail> planDetails);
+
 }
