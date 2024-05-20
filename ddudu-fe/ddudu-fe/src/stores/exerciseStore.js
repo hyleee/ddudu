@@ -105,5 +105,9 @@ export const useExerciseStore = defineStore("exercise", () => {
     toggleSelection,
     clearSelection,
     getExerciseById,
-  };
-});
+  }, 
+    
+},
+
+{ persist: true })
+

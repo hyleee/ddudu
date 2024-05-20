@@ -105,4 +105,5 @@ export const useExerciseDetailStore = defineStore("exerciseDetailStore", () => {
     clearSelection,
     deleteSelectedExercises,
   };
-});
+},
+{ persist: true })
