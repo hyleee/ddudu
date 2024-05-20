@@ -14,16 +14,24 @@
 	    VALUES (#{exerciseKg}, #{exerciseCount}, #{planId})
 	</insert>
 
-	<update id="update">
+	<!-- <update id="update">
 		UPDATE daily_plan_detail
 		SET exercise_kg = #{exerciseKg}, exercise_count = #{exerciseCount}, plan_id = #{planId}
 		WHERE plan_id = #{planId} AND detail_id = #{detailId}
-	</update>
+	</update> -->
 
 	<delete id="delete">
 		DELETE FROM daily_plan_detail
 		WHERE detail_id = #{detailId}
 	</delete>
+	
+	<update id="updatePlanDetailList">
+    <foreach collection="planDetails" item="detail" separator=";">
+      UPDATE daily_plan_detail
+      SET exercise_kg = #{detail.exerciseKg}, exercise_count = #{detail.exerciseCount}
+      WHERE detail_id = #{detail.detailId}
+    </foreach>
+  </update>
 
 
 </mapper>
