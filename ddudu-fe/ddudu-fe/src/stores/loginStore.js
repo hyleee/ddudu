@@ -59,4 +59,6 @@ export const useLoginStore = defineStore("login", () => {
   };
 
   return { accessToken, loginUser, login, logout, getMyPage };
-});
+},
+
+{ persist: true });

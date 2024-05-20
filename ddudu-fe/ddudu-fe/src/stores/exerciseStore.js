@@ -30,4 +30,6 @@ export const useExerciseStore = defineStore('exercise', () => {
   }
 
   return { exercisePlan, exerciseList, getExerciseList }
-})
+},
+
+{ persist: true })
