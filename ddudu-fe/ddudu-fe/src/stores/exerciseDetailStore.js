@@ -67,4 +67,6 @@ export const useExerciseDetailStore = defineStore('exerciseDetailStore', () => {
   };
 
   return { exerciseDetail, exerciseDetailList, getExerciseDetailList, addPlanDetail, updatePlanDetail, deletePlanDetail, }
-})
+},
+
+{ persist: true })

@@ -6,6 +6,7 @@
     </div>
     <div>
       <!-- <ExerciseList /> -->
+      <Navigation />
     </div>
 
     
@@ -17,6 +18,7 @@
 <script setup>
 import Calender from '@/components/plan/Calendar.vue'
 import ExerciseList from '@/components/plan/ExerciseList.vue'
+import Navigation from '@/components/common/Navigation.vue'
 
 
 </script>

@@ -6,7 +6,7 @@ const REST_DIARY_API = "http://localhost:8080/diary"
 
 export const useDiaryStore = defineStore('diaryStore', () => {
 
-  const diary = ref({ 
+  const diary = ref({
     userId: '',
     diaryContent: '',
     todayWeight: '',
@@ -14,20 +14,23 @@ export const useDiaryStore = defineStore('diaryStore', () => {
     exerciseDate: '',
   })
 
-  const diaryCreate = function(diary){
+  const diaryCreate = function (diary) {
     axios({
-      url : `${REST_DIARY_API}/${userId}/${exerciseDate}`,
+      url: `${REST_DIARY_API}/${userId}/${exerciseDate}`,
       method: 'POST',
       data: diary
     })
-    .then(()=>{
-      console.log('diary 생성 완료')
-    })
-    .catch((e)=>{
-      console.log(e)
-    })
+      .then(() => {
+        console.log('diary 생성 완료')
+      })
+      .catch((e) => {
+        console.log(e)
+      })
   }
 
 
   return { useDiaryStore, diary, diaryCreate }
-})
+},
+
+  { persist: true }
+)
