@@ -110,6 +110,7 @@ export const useExerciseStore = defineStore(
       getExerciseById,
     };
   },
-
-  { persist: true }
+  {
+    persist: true,
+  }
 );
