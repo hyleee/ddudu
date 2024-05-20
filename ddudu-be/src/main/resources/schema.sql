@@ -15,7 +15,9 @@ INSERT INTO USER ( user_id, user_password, user_name, user_email, user_age, user
 
 -- insert into daily_plan (exercise_date,user_id, body_part, exercise_name) VALUES ('2024-05-19', 'a', '하체', '스쿼트');
 -- select * from daily_plan;
+
 -- select * from daily_plan_detail;
+
 
 -- 사용자 테이블
 CREATE TABLE User (
