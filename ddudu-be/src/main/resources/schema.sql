@@ -5,7 +5,7 @@ use ssafydb;
 
 -- DROP DATABASE ssafydb;
 
--- INSERT INTO USER ( user_id, user_password, user_name, user_email, user_age, user_height, user_weight, user_area)VALUES ( 'a', 'a', 'a', 'a@a.com', 1, 1, 1, 'area');
+INSERT INTO USER ( user_id, user_password, user_name, user_email, user_age, user_height, user_weight, user_area)VALUES ( 'a', 'a', 'a', 'a@a.com', 1, 1, 1, 'area');
 -- INSERT INTO comment (comment_content, user_id, article_id) VALUES ("내용", "a", 1);
 -- select * from user;
 -- select * FROM article;
@@ -15,6 +15,7 @@ use ssafydb;
 
 -- insert into daily_plan (exercise_date,user_id, body_part, exercise_name) VALUES ('2024-05-19', 'a', '하체', '스쿼트');
 -- select * from daily_plan;
+-- select * from daily_plan_detail;
 
 -- 사용자 테이블
 CREATE TABLE User (
@@ -26,7 +27,7 @@ CREATE TABLE User (
     user_height INT,
     user_weight INT,
     user_area VARCHAR(100),
-    user_profile LONGBLOB,
+    user_profile VARCHAR(100),
     PRIMARY KEY (user_id)
 );
 
@@ -131,14 +132,14 @@ CREATE TABLE daily_plan (
 );
 
 CREATE TABLE daily_plan_detail (
-	detail_id INT AUTO_INCREMENT,
-	exercise_kg INT,
+    detail_id INT AUTO_INCREMENT,
+    exercise_kg INT,
     exercise_count INT,
     plan_id INT,
-    
     PRIMARY KEY (detail_id),
-    FOREIGN KEY(plan_id) REFERENCES daily_plan(plan_id)
+    FOREIGN KEY (plan_id) REFERENCES daily_plan(plan_id) ON DELETE CASCADE
 );
+
 
 
 -- 부위별 운동량 테이블

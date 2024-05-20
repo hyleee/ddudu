@@ -5,8 +5,9 @@ import SignUp from "@/components/user/SignUp.vue";
 import PlanView from "@/views/PlanView.vue";
 import DiaryDetailView from "@/views/DiaryDetailView.vue";
 import { useLoginStore } from "@/stores/loginStore";
-import ExerciseDetailView from '@/views/ExerciseDetailView.vue'
-import MyProfileView from '@/views/MyProfileView.vue'
+import ExerciseDetailView from "@/views/ExerciseDetailView.vue";
+import MyProfileView from "@/views/MyProfileView.vue";
+import BodyInfoView from "@/views/BodyInfoView.vue";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -44,7 +45,11 @@ const router = createRouter({
       name: "userProfile",
       component: MyProfileView,
     },
-    
+    {
+      path: "/bodyinfo",
+      name: "bodyinfo",
+      component: BodyInfoView,
+    },
   ],
 });
 
