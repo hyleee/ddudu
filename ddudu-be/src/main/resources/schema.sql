@@ -15,6 +15,7 @@ use ssafydb;
 
 -- insert into daily_plan (exercise_date,user_id, body_part, exercise_name) VALUES ('2024-05-19', 'a', '하체', '스쿼트');
 -- select * from daily_plan;
+select * from daily_plan_detail;
 
 -- 사용자 테이블
 CREATE TABLE User (
@@ -26,7 +27,7 @@ CREATE TABLE User (
     user_height INT,
     user_weight INT,
     user_area VARCHAR(100),
-    user_profile LONGBLOB,
+    user_profile VARCHAR(100),
     PRIMARY KEY (user_id)
 );
 
