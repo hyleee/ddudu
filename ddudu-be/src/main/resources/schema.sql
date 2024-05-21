@@ -1,5 +1,5 @@
--- drop database ssafydb;
--- create database ssafydb;
+drop database ssafydb;
+create database ssafydb;
 use ssafydb;
 
 
@@ -15,6 +15,10 @@ INSERT INTO USER ( user_id, user_password, user_name, user_email, user_age, user
 
 -- insert into daily_plan (exercise_date,user_id, body_part, exercise_name) VALUES ('2024-05-19', 'a', '하체', '스쿼트');
 -- select * from daily_plan;
+
+
+-- select * from daily_plan_detail;
+
 
 -- select * from daily_plan_detail;
 
@@ -65,6 +69,7 @@ CREATE TABLE article (
     PRIMARY KEY (article_id, user_id),
     FOREIGN KEY (user_id) REFERENCES User(user_id)
 );
+
 
 -- 게시글 좋아요 테이블
 CREATE TABLE article_like (

@@ -1,7 +1,7 @@
 import { ref } from 'vue';
 import { defineStore } from 'pinia';
 import axios from 'axios';
-import router from '@/router'; // Assuming router is properly configured
+import router from '@/router';
 
 const REST_USER_API = "http://localhost:8080/user";
 
@@ -24,6 +24,7 @@ export const useUserStore = defineStore('user', () => {
     try {
       const response = await axios.get(`${REST_USER_API}/${userId}`);
       user.value = response.data; // 사용자 데이터를 user 상태에 설정
+      console.log(response.data)
     } catch (e) {
       console.error("Error fetching user data:", e.response ? e.response.data : e.message);
     }
@@ -49,10 +50,7 @@ export const useUserStore = defineStore('user', () => {
       user.value = response.data;
       const userId = newUser.userId;
       if(userId) {
-        router.push({
-          name: "login",
-          
-        });
+        router.push({ name: "login" });
       } else {
         console.log("userId is missing in the response data.");
       }
@@ -62,6 +60,4 @@ export const useUserStore = defineStore('user', () => {
   };
 
   return { user, fetchUser, userCreate };
-},
-
-  { persist: true });
+}, { persist: true });

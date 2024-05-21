@@ -24,6 +24,12 @@
 		DELETE FROM comment WHERE comment_id = #{commentId} AND article_id =
 		#{articleId}
 	</delete>
+	
+	<select id="countCommentsByUserId" parameterType="String" resultType="int">
+	    SELECT COUNT(*)
+	    FROM comment
+	    WHERE user_id = #{userId}
+    </select>
 
 
 </mapper>

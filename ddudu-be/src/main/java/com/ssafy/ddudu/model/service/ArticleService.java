@@ -8,5 +8,6 @@ public interface ArticleService {
     Article getArticleById(int articleId);
     void updateArticle(Article article);
     void deleteArticle(int articleId);
+	int countArticlesByUserId(String userId);
 
 }

@@ -5,8 +5,10 @@
 <mapper namespace="com.ssafy.ddudu.model.dao.ArticleDao">
 
 	<insert id="createArticle" parameterType="Article">
-		INSERT INTO article (user_id, article_title, article_content, category)
-		VALUES (#{userId}, #{articleTitle}, #{articleContent}, #{category})
+		INSERT INTO article
+		(user_id, article_title, article_content, category)
+		VALUES (#{userId},
+		#{articleTitle}, #{articleContent}, #{category})
 	</insert>
 
 	<select id="getArticleById" parameterType="int"
@@ -23,13 +25,12 @@
 	</update>
 
 	<delete id="deleteArticle" parameterType="int">
-		DELETE FROM article WHERE article_id = #{articleId}
+		DELETE FROM article
+		WHERE article_id = #{articleId}
 	</delete>
+	
+	<select id="countArticlesByUserId" resultType="int" parameterType="string">
+        SELECT COUNT(*) FROM article WHERE user_id = #{userId}
+    </select>
 
-</mapper>
-
-
-
-
-
-
+	</mapper>

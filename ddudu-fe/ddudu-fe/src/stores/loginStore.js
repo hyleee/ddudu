@@ -3,7 +3,6 @@ import { defineStore } from "pinia";
 import axios from "axios";
 import router from "../router";
 
-// 현재 날짜를 YYYY-MM-DD 형식으로 반환하는 함수
 const getCurrentDate = () => {
   const date = new Date();
   const year = date.getFullYear();
@@ -21,7 +20,6 @@ export const useLoginStore = defineStore("login", () => {
       .post("http://localhost:8080/auth/login", userInfo)
       .then((res) => {
         console.log(res);
-        // axios가 res의 data 속성에 응답 본문을 넣어줌.
         accessToken.value = res.data.accessToken;
         loginUser.value = { ...userInfo, name: res.data.name };
         console.log("accessToken: " + accessToken.value);
