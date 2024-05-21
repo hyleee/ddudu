@@ -3,6 +3,7 @@ package com.ssafy.ddudu.controller;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import java.util.TimeZone;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -24,6 +25,8 @@ import com.ssafy.ddudu.model.service.PlanService;
 import io.swagger.v3.oas.annotations.Operation;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+
 import org.springframework.format.annotation.DateTimeFormat;
 @RestController
 @RequestMapping("/plan")
@@ -51,21 +54,25 @@ public class PlanController {
 	@Operation(summary = "해당 날짜 운동 계획 작성", description = "해당 날짜 운동 계획을 작성합니다.")
 	@PostMapping("{exerciseDate}")
 	public ResponseEntity<?> createPlan(
-			@PathVariable("exerciseDate") @DateTimeFormat(pattern = "yyyy-MM-dd") Date exerciseDate,
-			@RequestBody Plan plan) {
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-		Date dateWithoutTime;
-		try {
-			dateWithoutTime = sdf.parse(sdf.format(exerciseDate));
-		} catch (Exception e) {
-			return ResponseEntity.badRequest().body("Invalid date format");
-		}
+	        @PathVariable("exerciseDate") @DateTimeFormat(pattern = "yyyy-MM-dd") String exerciseDate,
+	        @RequestBody Plan plan) {
+	    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+	    LocalDate dateWithoutTime;
+	    try {
+	        dateWithoutTime = LocalDate.parse(exerciseDate, formatter);
+	        System.out.println("dateWithoutTime: " + dateWithoutTime);
+	    } catch (Exception e) {
+	        return ResponseEntity.badRequest().body("Invalid date format");
+	    }
 
-		plan.setExerciseDate(dateWithoutTime);
-		
-		int result = planService.createPlan(plan);
-		return new ResponseEntity<>(result, result == 1 ? HttpStatus.OK : HttpStatus.BAD_REQUEST);
+	    plan.setExerciseDate(dateWithoutTime);
+	    System.out.println("plan.getExerciseDate: " + plan.getExerciseDate());
+	    
+	    int result = planService.createPlan(plan);
+	    return new ResponseEntity<>(result, result == 1 ? HttpStatus.OK : HttpStatus.BAD_REQUEST);
 	}
+
+
 
 	@Operation(summary = "해당 날짜 운동 계획 삭제", description = "해당 날짜 운동 계획을 삭제합니다.")
 	@DeleteMapping("{planId}")
