@@ -13,9 +13,48 @@ INSERT INTO USER ( user_id, user_password, user_name, user_email, user_age, user
 
 -- select * from exercise_diary;
 
+-- drop table daily_plan;
+-- drop table daily_plan_detail;
 -- insert into daily_plan (exercise_date,user_id, body_part, exercise_name) VALUES ('2024-05-19', 'a', '하체', '스쿼트');
--- select * from daily_plan;
--- select * from daily_plan_detail;
+select * from daily_plan;
+select * from daily_plan_detail;
+
+-- 하체 운동 계획 및 디테일 데이터 삽입
+INSERT INTO daily_plan (exercise_date, user_id, body_part, exercise_name)
+VALUES ('2024-05-16', 'a', '하체', '스쿼트');
+
+INSERT INTO daily_plan_detail (exercise_kg, exercise_count, plan_id)
+VALUES (50, 10, 1), (60, 8, 1);
+
+-- 팔 운동 계획 및 디테일 데이터 삽입
+INSERT INTO daily_plan (exercise_date, user_id, body_part, exercise_name)
+VALUES ('2024-05-17', 'a', '팔', '덤벨 컬');
+
+INSERT INTO daily_plan_detail (exercise_kg, exercise_count, plan_id)
+VALUES (15, 12, 2), (20, 10, 2);
+
+-- 가슴 운동 계획 및 디테일 데이터 삽입
+INSERT INTO daily_plan (exercise_date, user_id, body_part, exercise_name)
+VALUES ('2024-05-18', 'a', '가슴', '벤치 프레스');
+
+INSERT INTO daily_plan_detail (exercise_kg, exercise_count, plan_id)
+VALUES (40, 10, 3), (50, 8, 3);
+
+-- 등 운동 계획 및 디테일 데이터 삽입
+INSERT INTO daily_plan (exercise_date, user_id, body_part, exercise_name)
+VALUES ('2024-05-19', 'a', '등', '바벨 로우');
+
+INSERT INTO daily_plan_detail (exercise_kg, exercise_count, plan_id)
+VALUES (30, 10, 4), (35, 8, 4);
+
+-- 하체 운동 계획 및 디테일 데이터 삽입 (추가 데이터)
+INSERT INTO daily_plan (exercise_date, user_id, body_part, exercise_name)
+VALUES ('2024-05-20', 'a', '하체', '레그 프레스');
+
+INSERT INTO daily_plan_detail (exercise_kg, exercise_count, plan_id)
+VALUES (100, 12, 5), (120, 10, 5);
+
+
 
 -- 사용자 테이블
 CREATE TABLE User (

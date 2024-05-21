@@ -1,9 +1,12 @@
 <template>
   <div>
-    <h2>BodyInfoView</h2>
+    <h1>BodyInfoView</h1>
+    <BodyInfo />
   </div>
 </template>
 
-<script setup></script>
+<script setup>
+import BodyInfo from "@/components/analysis/BodyInfo.vue";
+</script>
 
 <style scoped></style>
