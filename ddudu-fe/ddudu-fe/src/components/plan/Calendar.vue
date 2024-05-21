@@ -32,6 +32,7 @@ import { useRouter } from 'vue-router';
 import ScheduleModal from './ScheduleModal.vue';
 import Diary from '@/components/plan/Diary.vue';
 import { useScheduleManager } from '../composables/useScheduleManager';
+import { useExerciseStore } from '@/stores/exerciseStore';
 
 // props로 전달받습니다
 const props = defineProps({
@@ -50,6 +51,8 @@ const showModal = ref(false);
 const calendarRef = ref(null);
 
 const router = useRouter(); // useRouter 훅을 사용합니다
+
+const store = useExerciseStore();
 
 const getFirstDay = (y, m) => {
   const date = new Date(`${y}-${m}-01`);
@@ -92,6 +95,7 @@ const showDates = (y, m) => {
       const formattedMonth = String(month.value).padStart(2, '0');
       const date = `${year.value}-${formattedMonth}-${formattedDay}`;
       router.push({ name: 'plan', params: { userId: props.userId, exerciseDate: date } });
+      store.setSelectedDate(date); // 선택된 날짜를 Pinia 스토어에 설정
     };
     calendarRef.value.appendChild(dateElement);
   }

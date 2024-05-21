@@ -19,6 +19,7 @@ public class PlanServiceImpl implements PlanService{
 
 	@Override
 	public int createPlan(Plan plan) {
+		System.out.println("planServiceImpl: "+ plan.toString());
 		return planDao.create(plan);
 	}
 

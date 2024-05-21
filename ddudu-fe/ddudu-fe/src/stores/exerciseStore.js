@@ -1,4 +1,5 @@
-import { ref, computed } from "vue";
+import { ref, watch, onMounted } from "vue";
+import { useRoute } from "vue-router";
 import { defineStore } from "pinia";
 import axios from "axios";
 
@@ -15,8 +16,10 @@ export const useExerciseStore = defineStore(
       bodyPart: "",
       exerciseName: "",
     });
+    const selectedDate = ref(new Date().toISOString().split('T')[0]); // Default to current date
     const errorMessage = ref(null);
     const selectedForDeletion = ref(new Set());
+    const route = useRoute(); // Vue Router의 route 객체 사용
 
     const getExerciseList = async (userId, exerciseDate) => {
       try {
@@ -37,6 +40,9 @@ export const useExerciseStore = defineStore(
 
     const createExercise = async (newExercise) => {
       try {
+        console.log("createExercise 진입")
+        newExercise.exerciseDate = selectedDate.value; // Ensure selectedDate is used
+        console.log("selectedDate.value: " + selectedDate.value);
         const res = await axios.post(
           `${REST_EXERCISE_API}/${newExercise.exerciseDate}`,
           newExercise
@@ -96,11 +102,27 @@ export const useExerciseStore = defineStore(
       selectedForDeletion.value.clear();
     };
 
+    const setSelectedDate = (date) => {
+      selectedDate.value = date;
+    };
+
+    onMounted(() => {
+      getExerciseList(route.params.userId, route.params.exerciseDate);
+    });
+
+    watch(
+      () => route.params,
+      (newParams) => {
+        getExerciseList(newParams.userId, newParams.exerciseDate);
+      }
+    );
+
     return {
       exerciseList,
       exercise,
       errorMessage,
       selectedForDeletion,
+      selectedDate,
       getExerciseList,
       createExercise,
       deleteExercise,
@@ -108,6 +130,7 @@ export const useExerciseStore = defineStore(
       toggleSelection,
       clearSelection,
       getExerciseById,
+      setSelectedDate,
     };
   },
   {

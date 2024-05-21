@@ -70,7 +70,7 @@ const addNewExercise = () => {
 
 // 새로운 운동 계획 저장 함수
 const saveNewExercise = async () => {
-  newExercise.value.exerciseDate = route.params.exerciseDate;
+  newExercise.value.exerciseDate = store.selectedDate; // 라우트 파라미터 대신 store에서 선택된 날짜 사용
   newExercise.value.userId = route.params.userId;
   await store.createExercise(newExercise.value);
   isAddingNewExercise.value = false;

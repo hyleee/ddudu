@@ -1,31 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<!-- name space는 UserRepo의 fully qualified name으로 설정한다. -->
 <mapper namespace="com.ssafy.ddudu.model.dao.PlanDao">
-	
-	<!-- <select id="findByDate" resultType="Plan">
-		SELECT * FROM daily_plan
-		WHERE DATE_FORMAT(exercise_date, '%Y-%m-%d') = #{dateWithoutTime} AND user_id = #{userId}
-	</select> -->
-	
-	<select id="findByDateAndUserId" parameterType="java.util.Map" resultType="Plan">
-		SELECT * FROM daily_plan
-		WHERE DATE_FORMAT(exercise_date, '%Y-%m-%d') = #{exerciseDate} AND user_id = #{userId}
-	</select>
 
-	<insert id="create">
-		INSERT INTO daily_plan (user_id, body_part, exercise_name)
-		VALUES (#{userId}, #{bodyPart}, #{exerciseName})
-	</insert>
+    <select id="findByDateAndUserId" parameterType="java.util.Map" resultType="Plan">
+        SELECT * FROM daily_plan
+        WHERE DATE_FORMAT(exercise_date, '%Y-%m-%d') = #{exerciseDate} AND user_id = #{userId}
+    </select>
 
-	<delete id="delete">
-		DELETE FROM daily_plan
-		WHERE plan_id = #{planId}
-	</delete>
+    <insert id="create">
+        INSERT INTO daily_plan (exercise_date, user_id, body_part, exercise_name)
+        VALUES (#{exerciseDate}, #{userId}, #{bodyPart}, #{exerciseName})
+    </insert>
 
-
-
-
+    <delete id="delete">
+        DELETE FROM daily_plan
+        WHERE plan_id = #{planId}
+    </delete>
 
 </mapper>
