@@ -8,6 +8,7 @@ import java.nio.file.Paths;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.ResourceLoader;
 import org.springframework.core.io.Resource;
 import org.springframework.stereotype.Service;
@@ -21,6 +22,9 @@ public class UserServiceImpl implements UserService {
 
 	@Autowired
 	private UserDao userDao;
+	
+	@Value("${upload.folder.path}")
+    private String uploadFolderPath;
 	
 	@Autowired
 	private ResourceLoader resLoader;
@@ -61,8 +65,8 @@ public class UserServiceImpl implements UserService {
 	
 	 private int fileHandling(User user, MultipartFile file) throws IOException {
 	        // 절대 경로 사용
-	        String staticFolderPath = "/Users/jaesunglee/db_images";
-	        Path staticFolder = Paths.get(staticFolderPath);
+//	        String staticFolderPath = "/Users/jaesunglee/db_images";
+	        Path staticFolder = Paths.get(uploadFolderPath);
 
 	        // 폴더가 존재하지 않으면 생성
 	        if (!Files.exists(staticFolder)) {
