@@ -95,5 +95,15 @@ public class User {
 		this.userProfile = userProfile;
 	}
 
+	@Override
+	public String toString() {
+		return "User [userId=" + userId + ", userPassword=" + userPassword + ", userName=" + userName + ", userEmail="
+				+ userEmail + ", userAge=" + userAge + ", userHeight=" + userHeight + ", userWeight=" + userWeight
+				+ ", userArea=" + userArea + ", userProfile=" + userProfile + ", userPermission=" + userPermission
+				+ "]";
+	}
+	
+	
+
 
 }

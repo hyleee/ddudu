@@ -21,7 +21,13 @@
 </template>
 
 <script setup>
-import { RouterLink } from "vue-router";
+import { RouterLink } from 'vue-router';
+import { ref } from 'vue';
+
+const userId = ref('');
+const exerciseDate = ref('');
+
+
 </script>
 
 <style scoped>

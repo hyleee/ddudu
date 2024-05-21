@@ -25,6 +25,8 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.ssafy.ddudu.model.dto.User;
+import com.ssafy.ddudu.model.service.ArticleService;
+import com.ssafy.ddudu.model.service.CommentService;
 import com.ssafy.ddudu.model.service.UserService;
 
 import io.swagger.v3.oas.annotations.Operation;
@@ -38,6 +40,12 @@ public class UserController {
 
 	@Autowired
 	private UserService userService;
+	
+	@Autowired
+	private CommentService commentService;
+	
+	@Autowired
+    private ArticleService articleService;
 
 	@Autowired
 	ResourceLoader resLoader;
@@ -46,33 +54,48 @@ public class UserController {
 	@GetMapping("/{id}")
 	public ResponseEntity<?> userDetail(@PathVariable("id") String id) {
 		User user = userService.getUserById(id);
+		System.out.println(user.toString());
 		return new ResponseEntity<>(user, user == null ? HttpStatus.NOT_FOUND : HttpStatus.OK);
 	}
 
 	@PostMapping(value = "/regist", consumes = { MediaType.MULTIPART_FORM_DATA_VALUE })
 	public ResponseEntity<?> userRegist(@RequestPart("user") User user,
-			@RequestPart(value = "file", required = false) MultipartFile file, HttpSession session)
-			throws IllegalStateException, IOException {
-		System.out.println(user);
-		if (file != null && !file.isEmpty()) {
-			String userHome = System.getProperty("user.home");
-			String uploadDirPath = userHome + "/Desktop/test";
-			Path uploadPath = Paths.get(uploadDirPath);
-			if (!Files.exists(uploadPath)) {
-				Files.createDirectories(uploadPath);
-			}
-			String filename = System.currentTimeMillis() + "_" + file.getOriginalFilename();
-			file.transferTo(new File(uploadDirPath, filename));
-			user.setUserProfile(filename); // 파일 이름을 img 필드에 설정
-		}
-
-		int result = userService.insert(user);
-		if (result == 1) {
-			return ResponseEntity.ok("User registered successfully with image.");
-		} else {
-			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Failed to register user.");
-		}
+	        @RequestPart(value = "file", required = false) MultipartFile file, HttpSession session)
+	        throws IllegalStateException, IOException {
+	    int result = userService.insert(user, file);
+	    if (result == 1) {
+	        return ResponseEntity.ok("User registered successfully with image.");
+	    } else {
+	        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Failed to register user.");
+	    }
 	}
+
+	
+	
+//	@PostMapping(value = "/regist", consumes = { MediaType.MULTIPART_FORM_DATA_VALUE })
+//	public ResponseEntity<?> userRegist(@RequestPart("user") User user,
+//			@RequestPart(value = "file", required = false) MultipartFile file, HttpSession session)
+//			throws IllegalStateException, IOException {
+//		System.out.println(user);
+//		if (file != null && !file.isEmpty()) {
+//			String userHome = System.getProperty("user.home");
+//			String uploadDirPath = userHome + "/Desktop/test";
+//			Path uploadPath = Paths.get(uploadDirPath);
+//			if (!Files.exists(uploadPath)) {
+//				Files.createDirectories(uploadPath);
+//			}
+//			String filename = System.currentTimeMillis() + "_" + file.getOriginalFilename();
+//			file.transferTo(new File(uploadDirPath, filename));
+//			user.setUserProfile(filename); // 파일 이름을 img 필드에 설정
+//		}
+//
+//		int result = userService.insert(user, file);
+//		if (result == 1) {
+//			return ResponseEntity.ok("User registered successfully with image.");
+//		} else {
+//			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Failed to register user.");
+//		}
+//	}
 
 	@Operation(summary = "로그인", description = "사용자 로그인")
 	@PostMapping("/login")
@@ -109,5 +132,59 @@ public class UserController {
 		int result = userService.delete(userId);
 		return new ResponseEntity<>(result, result == 1 ? HttpStatus.OK : HttpStatus.BAD_REQUEST);
 	}
+	
+	// 유저의 댓글 수를 가져오는 엔드포인트
+    @GetMapping("/{userId}/commentCount")
+    public int getUserCommentCount(@PathVariable("userId") String userId) {
+    	System.out.println("여기");
+        return commentService.countCommentsByUserId(userId);
+    }
+    
+    // 유저의 게시물 수를 가져오는 엔드포인트
+    @GetMapping("/{userId}/articleCount")
+    public int getUserArticleCount(@PathVariable("userId") String userId) {
+        return articleService.countArticlesByUserId(userId);
+    }
+    
+ // 프로필 이미지 업로드 엔드포인트
+    @PostMapping("/uploadProfilePicture")
+    public ResponseEntity<String> uploadProfilePicture(@RequestParam("file") MultipartFile file, @RequestParam("userId") String userId) throws IOException {
+        String uploadDirPath = System.getProperty("user.home") + "/Desktop/test";
+        Path uploadPath = Paths.get(uploadDirPath);
+        if (!Files.exists(uploadPath)) {
+            Files.createDirectories(uploadPath);
+        }
+
+        String filename = System.currentTimeMillis() + "_" + file.getOriginalFilename();
+        File dest = new File(uploadDirPath, filename);
+        try {
+            file.transferTo(dest);
+            String fileUrl = "http://localhost:8080/files/" + filename;
+            return ResponseEntity.ok(fileUrl);
+        } catch (IOException e) {
+            e.printStackTrace();
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("File upload failed");
+        }
+    }
+
+    // 프로필 이미지를 제공하는 엔드포인트
+    @GetMapping("/files/{filename:.+}")
+    public ResponseEntity<?> getFile(@PathVariable String filename) {
+        String userHome = System.getProperty("user.home");
+        Path filePath = Paths.get(userHome + "/Desktop/test/" + filename);
+        if (Files.exists(filePath)) {
+            try {
+                String contentType = Files.probeContentType(filePath);
+                return ResponseEntity.ok()
+                        .contentType(MediaType.parseMediaType(contentType))
+                        .body(Files.readAllBytes(filePath));
+            } catch (IOException e) {
+                return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error reading file");
+            }
+        } else {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("File not found");
+        }
+    }
+
 
 }

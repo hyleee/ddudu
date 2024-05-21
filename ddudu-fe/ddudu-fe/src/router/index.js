@@ -26,9 +26,6 @@ const router = createRouter({
       path: "/plan/:userId/:exerciseDate",
       name: "plan",
       component: PlanView,
-      beforeEnter(to, from) {
-        // to.name === 'private'
-      },
     },
     {
       path: "/diary",

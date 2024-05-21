@@ -37,4 +37,10 @@ public class ArticleServiceImpl implements ArticleService {
 	public void deleteArticle(int articleId) {
 		articleDao.deleteArticle(articleId);
 	}
+	
+	@Override
+	@Transactional
+	public int countArticlesByUserId(String userId) {
+        return articleDao.countArticlesByUserId(userId);
+    }
 }

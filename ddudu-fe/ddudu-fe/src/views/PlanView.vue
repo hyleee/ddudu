@@ -9,9 +9,9 @@
 </template>
 
 <script setup>
-import { useRoute } from "vue-router";
-import Calendar from "@/components/plan/Calendar.vue";
-import Navigation from "@/components/common/Navigation.vue";
+import { useRoute } from 'vue-router';
+import Calendar from '@/components/plan/Calendar.vue';
+import Navigation from '@/components/common/Navigation.vue';
 
 const route = useRoute();
 const userId = route.params.userId;
