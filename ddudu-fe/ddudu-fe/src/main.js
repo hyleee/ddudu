@@ -7,11 +7,10 @@ import router from './router'
 
 import piniaPluginPersistedstate from 'pinia-plugin-persistedstate'
 
-const app = createApp(App)
 const pinia = createPinia()
 pinia.use(piniaPluginPersistedstate)
 
-app.use(createPinia())
+const app = createApp(App)
+app.use(pinia)
 app.use(router)
-
 app.mount('#app')

@@ -57,6 +57,14 @@ export const useLoginStore = defineStore("login", () => {
   };
 
   return { accessToken, loginUser, login, logout, getMyPage };
-},
-
-{ persist: true });
+}, {
+  persist: {
+    enabled: true,
+    strategies: [
+      {
+        key: "login",
+        storage: localStorage,
+      },
+    ],
+  },
+});
