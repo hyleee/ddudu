@@ -1,11 +1,12 @@
 package com.ssafy.ddudu.model.dto;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 public class Plan {
 
 	private int planId;
-	private Date exerciseDate;
+	private LocalDate  exerciseDate;
 	private String userId;
 	private String bodyPart;
 	private String exerciseName;
@@ -14,7 +15,7 @@ public class Plan {
 		super();
 	}
 
-	public Plan(int planId, Date exerciseDate, String userId, String bodyPart, String exerciseName) {
+	public Plan(int planId, LocalDate  exerciseDate, String userId, String bodyPart, String exerciseName) {
 		super();
 		this.planId = planId;
 		this.exerciseDate = exerciseDate;
@@ -31,11 +32,11 @@ public class Plan {
 		this.planId = planId;
 	}
 
-	public Date getExerciseDate() {
+	public LocalDate  getExerciseDate() {
 		return exerciseDate;
 	}
 
-	public void setExerciseDate(Date exerciseDate) {
+	public void setExerciseDate(LocalDate  exerciseDate) {
 		this.exerciseDate = exerciseDate;
 	}
 

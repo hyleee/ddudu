@@ -5,7 +5,7 @@ use ssafydb;
 
 -- DROP DATABASE ssafydb;
 
-INSERT INTO USER ( user_id, user_password, user_name, user_email, user_age, user_height, user_weight, user_area)VALUES ( 'a', 'a', 'a', 'a@a.com', 1, 1, 1, 'area');
+-- INSERT INTO USER ( user_id, user_password, user_name, user_email, user_age, user_height, user_weight, user_area)VALUES ( 'a', 'a', 'a', 'a@a.com', 1, 1, 1, 'area');
 -- INSERT INTO comment (comment_content, user_id, article_id) VALUES ("내용", "a", 1);
 -- select * from user;
 -- select * FROM article;
@@ -13,14 +13,11 @@ INSERT INTO USER ( user_id, user_password, user_name, user_email, user_age, user
 
 -- select * from exercise_diary;
 
+-- drop table daily_plan;
+-- drop table daily_plan_detail;
 -- insert into daily_plan (exercise_date,user_id, body_part, exercise_name) VALUES ('2024-05-19', 'a', '하체', '스쿼트');
--- select * from daily_plan;
 
 
--- select * from daily_plan_detail;
-
-
--- select * from daily_plan_detail;
 
 
 -- 사용자 테이블
@@ -128,7 +125,7 @@ CREATE TABLE reply_like (
 -- 운동계획 테이블
 CREATE TABLE daily_plan (
 	plan_id INT AUTO_INCREMENT,
-    exercise_date DATETIME DEFAULT CURRENT_TIMESTAMP,
+    exercise_date DATE,
     user_id VARCHAR(100),
     body_part VARCHAR(100),
     exercise_name VARCHAR(100),
