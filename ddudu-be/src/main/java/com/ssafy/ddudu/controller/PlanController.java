@@ -45,11 +45,14 @@ public class PlanController {
 	        @PathVariable("userId") String userId) {
 
 	    List<Plan> planList = planService.getPlanByDateAndUserId(exerciseDate, userId);
-	    if(planList == null) {
+	    if (planList == null) {
 	        return ResponseEntity.status(HttpStatus.NOT_FOUND).body("No plan found for the given date and user");
+	    } else if (planList.isEmpty()) {
+	        return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
 	    }
 	    return new ResponseEntity<>(planList, HttpStatus.OK);
 	}
+
 
 	@Operation(summary = "해당 날짜 운동 계획 작성", description = "해당 날짜 운동 계획을 작성합니다.")
 	@PostMapping("{exerciseDate}")
