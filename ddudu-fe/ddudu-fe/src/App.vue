@@ -3,6 +3,7 @@
     <UpperNavigation />
     <div class="navi-blank"></div>
     <RouterView />
+    <div class="navi-blank"></div>
     <Navigation />
   </div>
 </template>

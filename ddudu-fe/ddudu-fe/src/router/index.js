@@ -59,6 +59,13 @@ const router = createRouter({
       path: "/rank",
       name: "rank",
       component: RankView,
+      children: [
+        {
+          path: ":bodyPart",
+          name: "BodyPartRank",
+          component: RankView,
+        }
+      ]
     },
     {
       path: "/usersearch",
