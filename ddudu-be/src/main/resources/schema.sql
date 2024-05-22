@@ -140,7 +140,7 @@ CREATE TABLE exercise_diary (
     user_id VARCHAR(100),
     diary_content VARCHAR(100),
     today_weight INT,
-    diary_photo BLOB,
+    diary_photo VARCHAR(100),
     exercise_date DATETIME DEFAULT CURRENT_TIMESTAMP,
     PRIMARY KEY (user_id),
     FOREIGN KEY (user_id) REFERENCES User(user_id)

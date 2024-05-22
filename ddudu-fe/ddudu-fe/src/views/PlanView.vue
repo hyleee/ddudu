@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <h1>PlanView입니다.</h1>
+    <h1>DDUDU</h1>
     <div class="content">
       <Calendar :userId="userId" :exerciseDate="exerciseDate" />
     </div>

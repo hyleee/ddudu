@@ -1,11 +1,11 @@
 <template>
-  <div>
-    <h3>ExerciseDetail입니다.</h3>
+  <div class="exercise-detail">
+    <!-- <h3>ExerciseDetail입니다.</h3> -->
     <div class="exercise-img">
-      <img src="@/assets/squat.png" alt="squat.png" width="200px" />
+      <img src="@/assets/squat.png" alt="squat.png" width="200px"/>
     </div>
-    <div>
-      <ul>
+    <div class="exercise-list-container">
+      <ul class="exercise-list">
         <li
           v-for="(exerciseDetail, index) in store.exerciseDetailList"
           :key="exerciseDetail.detailId"
@@ -16,14 +16,14 @@
             :isEditing="editingSet"
           />
         </li>
-        <li v-if="addingSet">
+        <li v-if="addingSet" class="new-set">
           <input v-model="newSet.exerciseKg" placeholder="무게 (kg)" />
           <input v-model="newSet.exerciseCount" placeholder="횟수" />
           <button @click="completeAddingSet">세트 추가 완료</button>
         </li>
       </ul>
     </div>
-    <div>
+    <div class="buttons">
       <button @click="toggleEditingSet">
         {{ editingSet ? "세트 수정 완료" : "세트 수정" }}
       </button>
@@ -104,9 +104,78 @@ const deleteSelectedSets = async () => {
 </script>
 
 <style scoped>
+.exercise-detail {
+  padding: 20px;
+  background-color: #f5f5f5;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
 .exercise-img {
   display: flex;
   justify-content: center;
-  margin: 100px;
+  margin: 20px 0;
+}
+
+.exercise-img img {
+  border-radius: 10px;
+}
+
+.exercise-list-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.exercise-list {
+  list-style-type: none;
+  padding: 0;
+  width: 100%;
+}
+
+.new-set {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+}
+
+.new-set input {
+  margin: 5px;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #ddd;
+  flex: 1;
+}
+
+.new-set button {
+  margin-left: 10px;
+  padding: 10px 20px;
+  border-radius: 5px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+.buttons {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 20px;
+}
+
+.buttons button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  background-color: #007bff;
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  flex: 1;
+  margin: 0 5px;
+}
+
+.buttons button:hover {
+  background-color: #0056b3;
 }
 </style>

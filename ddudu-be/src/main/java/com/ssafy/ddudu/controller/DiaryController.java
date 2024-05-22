@@ -37,13 +37,17 @@ public class DiaryController {
 
 	@GetMapping("/{userId}/{exerciseDate}")
 	public ResponseEntity<Diary> getDiary(@PathVariable String userId,
-			@PathVariable @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate exerciseDate) {
-		Diary diary = diaryService.getDiary(userId, exerciseDate);
-		if (diary == null) {
-			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-		}
-		return new ResponseEntity<>(diary, HttpStatus.OK);
+	        @PathVariable @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate exerciseDate) {
+	    Diary diary = diaryService.getDiary(userId, exerciseDate);
+	    if (diary == null) {
+	        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+	    }
+	    if (diary.getDiaryContent() == null || diary.getDiaryContent().isEmpty()) {
+	        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+	    }
+	    return new ResponseEntity<>(diary, HttpStatus.OK);
 	}
+
 
 	@PostMapping(value = "/{userId}/{exerciseDate}", consumes = { MediaType.MULTIPART_FORM_DATA_VALUE })
 	public ResponseEntity<Void> addDiary(@PathVariable String userId,

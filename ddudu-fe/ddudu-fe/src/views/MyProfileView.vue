@@ -1,7 +1,6 @@
 <template>
   <div>
     <h1>MyProfileView</h1>
-    <!-- <ProfilePicture /> -->
     <BasicProfile />
   </div>
 </template>

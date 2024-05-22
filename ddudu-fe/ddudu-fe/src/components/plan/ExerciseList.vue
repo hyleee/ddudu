@@ -12,12 +12,12 @@
         />
       </div>
     </div>
-    <ul>
+    <ul class="exercise-list-items">
       <li v-for="exercise in exerciseList" :key="exercise.planId">
         <ExerciseListItem :planId="exercise.planId" :isDeleting="isDeleting" />
       </li>
     </ul>
-    <div v-if="isAddingNewExercise">
+    <div v-if="isAddingNewExercise" class="new-exercise">
       <h4>새 운동 계획 추가</h4>
       <select v-model="newExercise.bodyPart">
         <option disabled value="">운동 부위 선택</option>
@@ -105,23 +105,42 @@ const toggleDeleteMode = async () => {
 </script>
 
 <style scoped>
-.exercise-list img {
-  margin: 20px;
+.exercise-list {
+  padding: 20px;
+  background-color: #f5f5f5;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .exercise-title-container {
   display: flex;
   justify-content: space-between;
-  border: 1px solid black;
+  align-items: center;
+  padding: 10px;
+  border-bottom: 1px solid #ddd;
+  margin-bottom: 20px;
 }
 
 .image img {
   width: 50px;
   height: 50px;
+  cursor: pointer;
 }
 
-input, select {
+.exercise-list-items {
+  list-style-type: none;
+  padding: 0;
+}
+
+.new-exercise {
+  margin-top: 20px;
+}
+
+.new-exercise input, .new-exercise select {
   margin: 5px;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #ddd;
 }
 
 .error-message {
