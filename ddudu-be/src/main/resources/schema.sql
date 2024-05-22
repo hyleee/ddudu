@@ -5,7 +5,14 @@ use ssafydb;
 
 -- DROP DATABASE ssafydb;
 
+
+INSERT INTO USER ( user_id, user_password, user_name, user_email, user_age, user_height, user_weight, user_area)VALUES ( 'ab', 'ab', 'ab', 'ab@ab.com', 1, 1, 1, 'area');
+INSERT INTO USER ( user_id, user_password, user_name, user_email, user_age, user_height, user_weight, user_area)VALUES ( 'bc', 'bc', 'bc', 'bc@bc.com', 1, 1, 1, 'area');
+INSERT INTO USER ( user_id, user_password, user_name, user_email, user_age, user_height, user_weight, user_area)VALUES ( 'cd', 'cd', 'cd', 'cd@cd.com', 1, 1, 1, 'area');
+INSERT INTO USER ( user_id, user_password, user_name, user_email, user_age, user_height, user_weight, user_area)VALUES ( 'de', 'de', 'de', 'de@de.com', 1, 1, 1, 'area');
+INSERT INTO USER ( user_id, user_password, user_name, user_email, user_age, user_height, user_weight, user_area)VALUES ( 'ef', 'ef', 'ef', 'ef@ef.com', 1, 1, 1, 'area');
 INSERT INTO USER ( user_id, user_password, user_name, user_email, user_age, user_height, user_weight, user_area)VALUES ( 'a', 'a', 'a', 'a@a.com', 1, 1, 1, 'area');
+
 -- INSERT INTO comment (comment_content, user_id, article_id) VALUES ("내용", "a", 1);
 select * from user;
 -- select * FROM article;
@@ -30,7 +37,7 @@ INSERT INTO daily_plan (exercise_date, user_id, body_part, exercise_name) VALUES
 ('2024-05-21', 'a', '가슴', '딥스');
 select * from daily_plan;
 
-<<<<<<< Updated upstream
+
 -- daily_plan_detail 테이블에 대한 INSERT 문
 INSERT INTO daily_plan_detail (exercise_kg, exercise_count, plan_id) VALUES 
 (20, 10, 1),
@@ -43,12 +50,10 @@ INSERT INTO daily_plan_detail (exercise_kg, exercise_count, plan_id) VALUES
 (25, 10, 8),
 (100, 5, 9),
 (30, 8, 10);
-=======
+
 -- select * from daily_plan_detail;
 
 
--- select * from daily_plan_detail;
->>>>>>> Stashed changes
 
 
 -- 사용자 테이블
