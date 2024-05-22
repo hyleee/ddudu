@@ -1,20 +1,20 @@
 <template>
   <div class="rank-view">
-    <h1>RankView입니다.</h1>
+    <h1>주간 랭킹</h1>
     <div class="buttons">
-      <button @click="updateRank('chest')">Chest Rank</button>
-      <button @click="updateRank('back')">Back Rank</button>
-      <button @click="updateRank('shoulders')">Shoulders Rank</button>
-      <button @click="updateRank('legs')">Legs Rank</button>
-      <button @click="updateRank('arms')">Arms Rank</button>
-      <button @click="updateRank('core')">Core Rank</button>
+      <button @click="updateRank('chest')">Chest</button>
+      <button @click="updateRank('back')">Back</button>
+      <button @click="updateRank('shoulders')">Shoulders</button>
+      <button @click="updateRank('legs')">Legs</button>
+      <button @click="updateRank('arms')">Arms</button>
+      <button @click="updateRank('core')">Core</button>
     </div>
     <div v-if="errorMessage" class="error">{{ errorMessage }}</div>
     <ul v-if="rankList && rankList.length" class="rank-list">
       <li v-for="(rank, index) in rankList" :key="index" class="rank-item">
         <div class="profile-img"></div>
         <div class="rank-details">
-          <strong>{{ index + 1 }}. {{ rank.userName }} ({{ rank.userId }})</strong>
+          <strong>{{ index + 1 }}등 {{ rank.userName }} ({{ rank.userId }})</strong>
           <span>{{ rank.totalWeight }}kg ({{ rank.bodyPart }})</span>
         </div>
         <button class="follow-button">Follow</button>
@@ -62,6 +62,16 @@ watch(
 <style scoped>
 .rank-view {
   padding: 20px;
+  background-color: #f5f5f5;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+  text-align: center;
+  margin-bottom: 30px;
+  margin-top: 30px;
+  color: #333;
 }
 
 .buttons {
@@ -71,17 +81,18 @@ watch(
 }
 
 button {
-  background-color: #444;
+  background-color: #007bff;
   color: white;
   border: none;
-  padding: 10px;
+  padding: 10px 20px;
   margin: 5px;
-  border-radius: 5px;
+  border-radius: 10px;
   cursor: pointer;
+  transition: background-color 0.3s;
 }
 
 button:hover {
-  background-color: #555;
+  background-color: #0056b3;
 }
 
 .rank-list {
@@ -94,7 +105,10 @@ button:hover {
   align-items: center;
   justify-content: space-between;
   padding: 10px;
-  border-bottom: 1px solid #ccc;
+  border-radius: 10px;
+  background-color: #fff;
+  margin-bottom: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .profile-img {
@@ -107,22 +121,27 @@ button:hover {
 
 .rank-details {
   flex: 1;
+  display: flex;
+  flex-direction: column;
 }
 
 .follow-button {
-  background-color: blue;
+  background-color: #3CCF42;
   color: white;
   border: none;
-  padding: 5px 10px;
-  border-radius: 5px;
+  padding: 10px 20px;
+  border-radius: 10px;
   cursor: pointer;
+  transition: background-color 0.3s;
 }
 
 .follow-button:hover {
-  background-color: darkblue;
+  background-color: #2aaf34;
 }
 
 .error {
   color: red;
+  text-align: center;
+  margin-top: 10px;
 }
 </style>

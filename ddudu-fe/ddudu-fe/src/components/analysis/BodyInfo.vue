@@ -4,7 +4,7 @@
     <div v-if="weeklyStats && store.weeklyStats.length">
       <h3>Weekly Stats</h3>
       <BarChart />
-      <ul>
+      <ul class="stat-list">
         <li v-for="stat in weeklyStats" :key="stat.bodyPart">
           {{ stat.bodyPart }}: {{ stat.totalWeight }} kg
         </li>
@@ -44,16 +44,17 @@ h2 {
   text-align: center;
 }
 
-div {
-  margin: 20px;
-}
-
-ul {
+.stat-list {
   list-style-type: none;
   padding: 0;
+  margin-top: 0; /* 리스트 상단 마진 제거 */
 }
 
-li {
+.stat-list li {
   margin: 5px 0;
+  padding: 10px;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 </style>

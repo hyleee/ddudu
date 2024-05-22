@@ -48,6 +48,26 @@ const chartOptions = computed(() => {
       },
     };
   }
+  // 안전하게 접근하여 옵션 정의
+  options.layout = {
+    padding: {
+      top: 5,
+      bottom: 5,
+      left: 10,
+      right: 10,
+    },
+  };
+  if (!options.plugins) {
+    options.plugins = {};
+  }
+  options.plugins.legend = {
+    display: true,
+    position: 'top',
+    labels: {
+      boxWidth: 10,
+      padding: 10,
+    }
+  };
   return options;
 });
 

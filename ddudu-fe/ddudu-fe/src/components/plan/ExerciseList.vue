@@ -4,7 +4,7 @@
     <div class="exercise-title-container">
       <h3>오늘 운동계획</h3>
       <div class="image">
-        <img :src="plusImage" @click="addNewExercise" alt="세트 추가 버튼" />
+        <img :src="plusImage" @click="addNewExercise" alt="세트 추가 버튼"/>
         <img
           :src="isDeleting ? checkImage : deleteImage"
           @click="toggleDeleteMode"
@@ -122,8 +122,10 @@ const toggleDeleteMode = async () => {
 }
 
 .image img {
-  width: 50px;
-  height: 50px;
+  width: 30px;
+  height: 30px;
+  margin-right: 5px;
+  margin-left: 10px;
   cursor: pointer;
 }
 
