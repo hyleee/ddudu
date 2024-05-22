@@ -51,6 +51,7 @@ body {
 .wrap {
   width: 100%;
   height: 100%;
+  flex: 1;
 }
 
 button {
@@ -72,24 +73,16 @@ button {
   max-width: 600px;
   margin: 0 auto;
   display: grid;
-  grid-template-columns: repeat(7, 1fr);
+  grid-template-columns: repeat(7, 1fr); /* 7개의 열을 동일한 비율로 나눔 */
   gap: 10px;
   padding: 20px;
   filter: drop-shadow(0 0 15px rgba(0, 0, 0, .04));
 }
 
+
 .calendar>div {
   border-bottom: 1px solid #555;
   border-radius: 10px;
-}
-
-.calendar-top {
-  padding: 10px 0;
-  font-weight: 900;
-  color: white;
-  background: #444;
-  text-align: center;
-  margin-bottom: 15px;
 }
 
 .calendar-top:first-of-type {
@@ -109,15 +102,26 @@ button {
 
 .date {
   background: #f4f4f4;
-  padding: 10px;
-  padding-bottom: 40px;
+  padding: 5px 10px; /* 위아래 패딩을 줄임 */
   cursor: pointer;
   text-align: center;
+  padding-bottom: 20px; /* 필요한 경우 추가 */
+  border-radius: 5px;
+}
+
+.calendar-top {
+  padding: 5px 0; /* 위아래 패딩을 줄임 */
+  font-weight: 900;
+  color: white;
+  background: #444;
+  text-align: center;
+  margin-bottom: 15px;
 }
 
 .today {
   border: 3px solid yellowgreen !important;
 }
+
 
 /* Modal */
 

@@ -19,7 +19,15 @@
     </ul>
     <div v-if="isAddingNewExercise">
       <h4>새 운동 계획 추가</h4>
-      <input v-model="newExercise.bodyPart" placeholder="운동 부위" />
+      <select v-model="newExercise.bodyPart">
+        <option disabled value="">운동 부위 선택</option>
+        <option value="shoulders">Shoulders</option>
+        <option value="arms">Arms</option>
+        <option value="legs">Legs</option>
+        <option value="chest">Chest</option>
+        <option value="back">Back</option>
+        <option value="core">Core</option>
+      </select>
       <input v-model="newExercise.exerciseName" placeholder="운동 이름" />
       <button @click="saveNewExercise">저장</button>
       <button @click="cancelNewExercise">취소</button>
@@ -112,7 +120,7 @@ const toggleDeleteMode = async () => {
   height: 50px;
 }
 
-input {
+input, select {
   margin: 5px;
 }
 
@@ -121,4 +129,3 @@ input {
   margin-top: 10px;
 }
 </style>
-

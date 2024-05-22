@@ -9,6 +9,7 @@ import ExerciseDetailView from "@/views/ExerciseDetailView.vue";
 import MyProfileView from "@/views/MyProfileView.vue";
 import BodyInfoView from "@/views/BodyInfoView.vue";
 import BoardView from "@/views/BoardView.vue"
+import UserSearchView from "@/views/UserSearchView.vue"
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -52,6 +53,11 @@ const router = createRouter({
       path: "/board",
       name: "board",
       component: BoardView,
+    },
+    {
+      path: "/usersearch",
+      name: "usersearch",
+      component: UserSearchView,
     },
   ],
 });
