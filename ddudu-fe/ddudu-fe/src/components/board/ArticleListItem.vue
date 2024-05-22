@@ -1,10 +1,10 @@
 <template>
   <div class="article-list-item">
-    <img :src="article.image" alt="Article Image" class="article-image">
+    <img src="@/assets/js_duck.png" alt="Article Image" class="article-image">
     <div class="article-content">
-      <p class="article-author">{{ article.userId }} / {{ article.region }}</p>
+      <p class="article-author">{{ article.userId }} / {{ article.userArea }}</p>
       <h3>{{ article.articleTitle }}</h3>
-      <p class="article-preview">{{ article.preview }}</p>
+      <p class="article-preview">{{ article.articleContent }}</p>
       <p class="article-created">{{ article.articleCreated }}</p>
     </div>
   </div>

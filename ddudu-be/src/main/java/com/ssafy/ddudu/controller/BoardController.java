@@ -46,7 +46,7 @@ public class BoardController {
 			if (board.isEmpty()) {
 				// 게시글이 없는 경우, NOT FOUND 상태와 함께 메시지 반환
 				return new ResponseEntity<>("해당 지역 및 카테고리에 게시글이 없습니다: " + userArea + ", " + category,
-						HttpStatus.NOT_FOUND);
+						HttpStatus.NO_CONTENT);
 			}
 			// 게시글이 있는 경우, OK 상태와 함께 게시글 목록 반환
 			return new ResponseEntity<>(board, HttpStatus.OK);

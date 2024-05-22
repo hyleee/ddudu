@@ -9,42 +9,52 @@
         {{ category }}
       </button>
     </div>
-    <ArticleList :articleList="filteredArticleList" />
+    <div class="article-list-container">
+      <ArticleList :articleList="filteredArticleList" />
+      <p v-if="boardStore.noContentMessage" class="no-content-message">
+        {{ boardStore.noContentMessage }}
+      </p>
+    </div>
   </div>
 </template>
 
 <script setup>
 import { ref, computed, onMounted } from 'vue';
-import axios from 'axios';
+import { useBoardStore } from '@/stores/boardStore';
 import ArticleList from '@/components/board/ArticleList.vue';
 
 const searchQuery = ref('');
 const selectedCategory = ref('');
 const categoryList = ref(['가슴', '등', '어깨', '하체', '팔', '코어']);
-const articleList = ref([]);
+const categoryMap = {
+  '가슴': 'chest',
+  '등': 'back',
+  '어깨': 'shoulders',
+  '하체': 'legs',
+  '팔': 'arms',
+  '코어': 'core'
+};
+const boardStore = useBoardStore();
 
 const filteredArticleList = computed(() => {
-  let result = articleList.value;
+  let result = boardStore.articleList;
   if (selectedCategory.value) {
     result = result.filter(article => article.category === selectedCategory.value);
   }
   if (searchQuery.value) {
-    result = result.filter(article => article.title.includes(searchQuery.value));
+    result = result.filter(article => article.articleTitle.includes(searchQuery.value));
   }
   return result;
 });
 
 const selectCategory = (category) => {
-  selectedCategory.value = category;
+  const englishCategory = categoryMap[category];
+  selectedCategory.value = englishCategory;
+  boardStore.fetchArticlesByUserAreaAndCategory(englishCategory);
 };
 
 const fetchArticleList = async () => {
-  try {
-    const response = await axios.get('http://localhost:8080/board');
-    articleList.value = response.data;
-  } catch (error) {
-    console.error('Error fetching articleList:', error);
-  }
+  await boardStore.fetchArticlesByUserArea();
 };
 
 onMounted(() => {
@@ -55,9 +65,16 @@ onMounted(() => {
 <style scoped>
 .board-view {
   padding: 20px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
 }
 
 .search-bar {
+  margin-bottom: 20px;
+}
+
+.category-list {
   margin-bottom: 20px;
 }
 
@@ -71,5 +88,17 @@ onMounted(() => {
 
 .category-list button:hover {
   background: #b2d7ef;
+}
+
+.article-list-container {
+  flex: 1;
+  overflow-y: auto;
+  max-height: calc(100vh - 108px); /* 54px for UpperNavigation and 54px for Navigation */
+}
+
+.no-content-message {
+  text-align: center;
+  color: #888;
+  margin-top: 20px;
 }
 </style>

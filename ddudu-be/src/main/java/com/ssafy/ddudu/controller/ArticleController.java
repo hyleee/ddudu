@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("/article")
 @Tag(name = "ArticleController", description = "게시글 관리")
+@CrossOrigin(origins = "*")
 public class ArticleController {
 
     @Autowired

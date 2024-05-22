@@ -10,6 +10,7 @@ import MyProfileView from "@/views/MyProfileView.vue";
 import BodyInfoView from "@/views/BodyInfoView.vue";
 import BoardView from "@/views/BoardView.vue"
 import UserSearchView from "@/views/UserSearchView.vue"
+import ArticleView from "@/views/ArticleView.vue"
 import RankView from "@/views/RankView.vue"
 
 const router = createRouter({
@@ -71,7 +72,12 @@ const router = createRouter({
       path: "/usersearch",
       name: "usersearch",
       component: UserSearchView,
-    }
+    },
+    {
+      path: "/article/:articleId",
+      name: "article",
+      component: ArticleView,
+    },
   ],
 });
 
