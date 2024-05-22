@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.ssafy.ddudu.model.dao.RankDao">
+
+    <select id="findChestRank" resultType="com.ssafy.ddudu.model.dto.Rank">
+    <![CDATA[
+        SELECT
+            d.user_id AS userId,
+            'chest' AS bodyPart,
+            SUM(dd.exercise_kg * dd.exercise_count) AS totalWeight
+        FROM
+            daily_plan_detail dd
+            JOIN daily_plan d ON dd.plan_id = d.plan_id
+        WHERE
+            d.body_part = 'chest'
+            AND d.exercise_date >= CURDATE() - INTERVAL (DAYOFWEEK(CURDATE()) - 1) DAY
+            AND d.exercise_date < CURDATE() + INTERVAL (7 - DAYOFWEEK(CURDATE())) DAY + INTERVAL 1 DAY
+        GROUP BY
+            d.user_id, d.body_part
+        ORDER BY
+            totalWeight DESC
+    ]]>
+    </select>
+
+    <select id="findBackRank" resultType="com.ssafy.ddudu.model.dto.Rank">
+    <![CDATA[
+        SELECT
+            d.user_id AS userId,
+            'back' AS bodyPart,
+            SUM(dd.exercise_kg * dd.exercise_count) AS totalWeight
+        FROM
+            daily_plan_detail dd
+            JOIN daily_plan d ON dd.plan_id = d.plan_id
+        WHERE
+            d.body_part = 'back'
+            AND d.exercise_date >= CURDATE() - INTERVAL (DAYOFWEEK(CURDATE()) - 1) DAY
+            AND d.exercise_date < CURDATE() + INTERVAL (7 - DAYOFWEEK(CURDATE())) DAY + INTERVAL 1 DAY
+        GROUP BY
+            d.user_id, d.body_part
+        ORDER BY
+            totalWeight DESC
+    ]]>
+    </select>
+
+    <select id="findShouldersRank" resultType="com.ssafy.ddudu.model.dto.Rank">
+    <![CDATA[
+        SELECT
+            d.user_id AS userId,
+            'shoulders' AS bodyPart,
+            SUM(dd.exercise_kg * dd.exercise_count) AS totalWeight
+        FROM
+            daily_plan_detail dd
+            JOIN daily_plan d ON dd.plan_id = d.plan_id
+        WHERE
+            d.body_part = 'shoulders'
+            AND d.exercise_date >= CURDATE() - INTERVAL (DAYOFWEEK(CURDATE()) - 1) DAY
+            AND d.exercise_date < CURDATE() + INTERVAL (7 - DAYOFWEEK(CURDATE())) DAY + INTERVAL 1 DAY
+        GROUP BY
+            d.user_id, d.body_part
+        ORDER BY
+            totalWeight DESC
+    ]]>
+    </select>
+
+    <select id="findLegsRank" resultType="com.ssafy.ddudu.model.dto.Rank">
+    <![CDATA[
+        SELECT
+            d.user_id AS userId,
+            'legs' AS bodyPart,
+            SUM(dd.exercise_kg * dd.exercise_count) AS totalWeight
+        FROM
+            daily_plan_detail dd
+            JOIN daily_plan d ON dd.plan_id = d.plan_id
+        WHERE
+            d.body_part = 'legs'
+            AND d.exercise_date >= CURDATE() - INTERVAL (DAYOFWEEK(CURDATE()) - 1) DAY
+            AND d.exercise_date < CURDATE() + INTERVAL (7 - DAYOFWEEK(CURDATE())) DAY + INTERVAL 1 DAY
+        GROUP BY
+            d.user_id, d.body_part
+        ORDER BY
+            totalWeight DESC
+    ]]>
+    </select>
+
+    <select id="findArmsRank" resultType="com.ssafy.ddudu.model.dto.Rank">
+    <![CDATA[
+        SELECT
+            d.user_id AS userId,
+            'arms' AS bodyPart,
+            SUM(dd.exercise_kg * dd.exercise_count) AS totalWeight
+        FROM
+            daily_plan_detail dd
+            JOIN daily_plan d ON dd.plan_id = d.plan_id
+        WHERE
+            d.body_part = 'arms'
+            AND d.exercise_date >= CURDATE() - INTERVAL (DAYOFWEEK(CURDATE()) - 1) DAY
+            AND d.exercise_date < CURDATE() + INTERVAL (7 - DAYOFWEEK(CURDATE())) DAY + INTERVAL 1 DAY
+        GROUP BY
+            d.user_id, d.body_part
+        ORDER BY
+            totalWeight DESC
+    ]]>
+    </select>
+
+    <select id="findCoreRank" resultType="com.ssafy.ddudu.model.dto.Rank">
+    <![CDATA[
+        SELECT
+            d.user_id AS userId,
+            'core' AS bodyPart,
+            SUM(dd.exercise_kg * dd.exercise_count) AS totalWeight
+        FROM
+            daily_plan_detail dd
+            JOIN daily_plan d ON dd.plan_id = d.plan_id
+        WHERE
+            d.body_part = 'core'
+            AND d.exercise_date >= CURDATE() - INTERVAL (DAYOFWEEK(CURDATE()) - 1) DAY
+            AND d.exercise_date < CURDATE() + INTERVAL (7 - DAYOFWEEK(CURDATE())) DAY + INTERVAL 1 DAY
+        GROUP BY
+            d.user_id, d.body_part
+        ORDER BY
+            totalWeight DESC
+    ]]>
+    </select>
+    
+</mapper>

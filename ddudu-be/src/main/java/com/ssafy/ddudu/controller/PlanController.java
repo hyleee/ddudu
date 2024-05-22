@@ -30,8 +30,8 @@ import java.time.format.DateTimeFormatter;
 import org.springframework.format.annotation.DateTimeFormat;
 @RestController
 @RequestMapping("/plan")
-@CrossOrigin(origins = "*", methods = { RequestMethod.GET, RequestMethod.POST, RequestMethod.PUT,
-        RequestMethod.DELETE, RequestMethod.OPTIONS })
+//@CrossOrigin(origins = "*", methods = { RequestMethod.GET, RequestMethod.POST, RequestMethod.PUT,
+//        RequestMethod.DELETE, RequestMethod.OPTIONS })
 public class PlanController {
 
 	@Autowired

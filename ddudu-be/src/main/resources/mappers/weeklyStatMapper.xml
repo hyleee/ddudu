@@ -18,6 +18,5 @@
         GROUP BY
             d.body_part
     ]]>
-        
     </select>
 </mapper>

@@ -10,6 +10,7 @@ import MyProfileView from "@/views/MyProfileView.vue";
 import BodyInfoView from "@/views/BodyInfoView.vue";
 import BoardView from "@/views/BoardView.vue"
 import UserSearchView from "@/views/UserSearchView.vue"
+import RankView from "@/views/RankView.vue"
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -55,10 +56,15 @@ const router = createRouter({
       component: BoardView,
     },
     {
+      path: "/rank",
+      name: "rank",
+      component: RankView,
+    },
+    {
       path: "/usersearch",
       name: "usersearch",
       component: UserSearchView,
-    },
+    }
   ],
 });
 
