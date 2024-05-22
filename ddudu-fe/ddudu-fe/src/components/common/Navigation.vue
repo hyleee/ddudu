@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="navi-button">
-      <RouterLink to="/plan/:userId/:exerciseDate"
+      <RouterLink :to="`/plan/${userIdParam}/${exerciseDateParam}`"
         ><img src="@/assets/calendar.png" alt="calendar_img" width="30px"
 
       /></RouterLink>

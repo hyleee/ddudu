@@ -44,7 +44,8 @@ body {
   width: 100vw;
   height: 100vh;
   overflow: hidden;
-  background: #dfdfdf;
+  background: #f0f2f5;
+  /* background: #dfdfdf; */
   /* Custom setting */
 }
 
@@ -78,7 +79,6 @@ button {
   padding: 20px;
   filter: drop-shadow(0 0 15px rgba(0, 0, 0, .04));
 }
-
 
 .calendar>div {
   border-bottom: 1px solid #555;
@@ -122,6 +122,9 @@ button {
   border: 3px solid yellowgreen !important;
 }
 
+.date.selected {
+  border: 4.5px solid yellowgreen !important; /* 테두리 두께를 1.5배로 증가 */
+}
 
 /* Modal */
 
