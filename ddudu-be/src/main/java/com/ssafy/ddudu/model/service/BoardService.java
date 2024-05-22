@@ -9,4 +9,6 @@ public interface BoardService {
 
 	List<Article> makeBoardByUserAreaAndCategory(String userArea, String category);
 
+	List<Article> getAllArticles();
+
 }

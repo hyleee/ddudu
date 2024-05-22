@@ -24,4 +24,9 @@ public class BoardServiceImpl implements BoardService {
 		return boardDao.findArticlesByUserAreaAndCategory(userArea, category);
 	}
 
+	@Override
+	public List<Article> getAllArticles() {
+		return boardDao.findAllArticles();
+	}
+
 }
