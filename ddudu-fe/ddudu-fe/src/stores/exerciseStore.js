@@ -107,15 +107,32 @@ export const useExerciseStore = defineStore(
     };
 
     onMounted(() => {
-      getExerciseList(route.params.userId, route.params.exerciseDate);
+      if (route.name === 'plan') { // 특정 경로에서만 함수 호출
+        console.log("onMounted:", route.params.userId, route.params.exerciseDate);
+        getExerciseList(route.params.userId, route.params.exerciseDate);
+      }
     });
 
     watch(
       () => route.params,
       (newParams) => {
-        getExerciseList(newParams.userId, newParams.exerciseDate);
+        if (route.name === 'plan') { // 특정 경로에서만 함수 호출
+          console.log("watch route.params:", newParams.userId, newParams.exerciseDate);
+          getExerciseList(newParams.userId, newParams.exerciseDate);
+        }
       }
     );
+
+    // onMounted(() => {
+    //   getExerciseList(route.params.userId, route.params.exerciseDate);
+    // });
+
+    // watch(
+    //   () => route.params,
+    //   (newParams) => {
+    //     getExerciseList(newParams.userId, newParams.exerciseDate);
+    //   }
+    // );
 
     return {
       exerciseList,

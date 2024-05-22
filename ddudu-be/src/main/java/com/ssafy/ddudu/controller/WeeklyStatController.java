@@ -9,7 +9,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/stats")
-@CrossOrigin(origins = "*")
+//@CrossOrigin(origins = "*")
 public class WeeklyStatController {
 
     @Autowired

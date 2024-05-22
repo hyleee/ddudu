@@ -10,7 +10,7 @@
       <RouterLink to="/board"
         ><img src="@/assets/board_img.png" alt="board_img" width="30px"
       /></RouterLink>
-      <RouterLink to=""
+      <RouterLink to="/rank"
         ><img src="@/assets/rank_img.png" alt="rank_img" width="30px"
       /></RouterLink>
       <RouterLink to="/profile"
@@ -23,7 +23,6 @@
 <script setup>
 import { RouterLink } from 'vue-router';
 import { ref } from 'vue';
-
 
 </script>
 
