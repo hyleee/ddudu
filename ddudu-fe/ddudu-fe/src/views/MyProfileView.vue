@@ -7,8 +7,8 @@
 </template>
 
 <script setup>
-import BasicProfile from '@/mypage/BasicProfile.vue';
-import ProfilePicture from '@/mypage/ProfilePicture.vue';
+import BasicProfile from '@/components/mypage/BasicProfile.vue';
+import ProfilePicture from '@/components/mypage/ProfilePicture.vue';
 import { useUserStore } from '@/stores/userStore';
 const store = useUserStore();
 
