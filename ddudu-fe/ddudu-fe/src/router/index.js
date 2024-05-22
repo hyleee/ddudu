@@ -8,10 +8,10 @@ import { useLoginStore } from "@/stores/loginStore";
 import ExerciseDetailView from "@/views/ExerciseDetailView.vue";
 import MyProfileView from "@/views/MyProfileView.vue";
 import BodyInfoView from "@/views/BodyInfoView.vue";
-import BoardView from "@/views/BoardView.vue"
-import UserSearchView from "@/views/UserSearchView.vue"
-import ArticleView from "@/views/ArticleView.vue"
-import RankView from "@/views/RankView.vue"
+import BoardView from "@/views/BoardView.vue";
+import UserSearchView from "@/views/UserSearchView.vue";
+import ArticleView from "@/views/ArticleView.vue";
+import RankView from "@/views/RankView.vue";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -65,8 +65,8 @@ const router = createRouter({
           path: ":bodyPart",
           name: "BodyPartRank",
           component: RankView,
-        }
-      ]
+        },
+      ],
     },
     {
       path: "/usersearch",

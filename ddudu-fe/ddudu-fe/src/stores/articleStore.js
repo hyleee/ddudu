@@ -11,21 +11,22 @@ export const useArticleStore = defineStore("articleStore", () => {
     articleTitle: "",
     articleContent: "",
     articleCreated: "",
-    category: ""
+    category: "",
   });
-  const errorMessage = ref('');
+  const errorMessage = ref("");
 
   const fetchArticleById = async (articleId) => {
+    console.log("articleId: " + articleId);
     try {
       const response = await axios.get(`${REST_ARTICLE_API}/${articleId}`);
       article.value = response.data;
-      console.log(response.data);
-      errorMessage.value = '';
+      console.log("article.value: " + response.data);
+      errorMessage.value = "";
     } catch (error) {
       if (error.response && error.response.status === 404) {
-        errorMessage.value = '게시글을 찾을 수 없습니다.';
+        errorMessage.value = "게시글을 찾을 수 없습니다.";
       } else {
-        errorMessage.value = '게시글을 불러오는 중 오류가 발생했습니다.';
+        errorMessage.value = "게시글을 불러오는 중 오류가 발생했습니다.";
       }
       article.value = null;
       console.error("Error fetching article:", error);
