@@ -1,6 +1,6 @@
 <template>
   <div class="wrap col-flex jcc aic">
-    <div class="flex aic" style="gap: 40px;">
+    <div class="flex aic" style="gap: 40px; margin-bottom: 20px;"> <!-- margin-bottom 추가 -->
       <button @click="addMonth(-1)">◀</button>
       <h1 class="cur-date">{{ year }}. {{ month }}.</h1>
       <button @click="addMonth(1)">▶</button>
@@ -34,13 +34,11 @@ import Diary from '@/components/plan/Diary.vue';
 import { useScheduleManager } from '../composables/useScheduleManager';
 import { useExerciseStore } from '@/stores/exerciseStore';
 
-// props로 전달받습니다
 const props = defineProps({
   userId: String,
   exerciseDate: String
 });
 
-// ScheduleManager의 함수와 데이터를 가져옵니다
 const { schedules, loadSchedule, refreshScheduleList } = useScheduleManager();
 
 const today = new Date();
@@ -50,7 +48,7 @@ const day = ref(null);
 const showModal = ref(false);
 const calendarRef = ref(null);
 
-const router = useRouter(); // useRouter 훅을 사용합니다
+const router = useRouter();
 
 const store = useExerciseStore();
 
@@ -90,12 +88,11 @@ const showDates = (y, m) => {
     dateElement.innerHTML = `<p>${i}</p>`;
     dateElement.onclick = () => {
       day.value = i;
-      // URL 라우팅을 처리합니다
       const formattedDay = String(i).padStart(2, '0');
       const formattedMonth = String(month.value).padStart(2, '0');
       const date = `${year.value}-${formattedMonth}-${formattedDay}`;
       router.push({ name: 'plan', params: { userId: props.userId, exerciseDate: date } });
-      store.setSelectedDate(date); // 선택된 날짜를 Pinia 스토어에 설정
+      store.setSelectedDate(date);
     };
     calendarRef.value.appendChild(dateElement);
   }
@@ -106,7 +103,6 @@ onMounted(() => {
   showDates(year.value, month.value);
 });
 
-// watch를 사용해 props가 변경될 때 showDates 함수를 다시 호출합니다.
 watch(() => props.exerciseDate, (newDate) => {
   const [newYear, newMonth] = newDate.split('-').map(Number);
   year.value = newYear;
