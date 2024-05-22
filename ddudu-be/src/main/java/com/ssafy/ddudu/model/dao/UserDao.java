@@ -15,5 +15,6 @@ public interface UserDao {
 	int updateUser(User user);
 
 	int deleteUser(String userId);
-
+	
+	List<User> findByUserName(String userName);
 }

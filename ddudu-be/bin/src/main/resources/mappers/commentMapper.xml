@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- name space는 UserRepo의 fully qualified name으로 설정한다. -->
+<mapper namespace="com.ssafy.ddudu.model.dao.CommentDao">
+	<insert id="insertComment"
+		parameterType="Comment">
+		INSERT INTO comment (user_id, article_id, comment_content)
+		VALUES (#{userId}, #{articleId}, #{commentContent})
+	</insert>
+
+	<select id="selectCommentsByArticleId" parameterType="int"
+		resultType="Comment">
+		SELECT * FROM comment WHERE article_id = #{articleId}
+	</select>
+
+	<update id="updateComment"
+		parameterType="Comment">
+		UPDATE comment SET comment_content = #{commentContent}
+		WHERE comment_id = #{commentId} AND article_id = #{articleId}
+	</update>
+
+	<delete id="deleteComment" parameterType="java.util.Map">
+		DELETE FROM comment WHERE comment_id = #{commentId} AND article_id =
+		#{articleId}
+	</delete>
+	
+	<select id="countCommentsByUserId" parameterType="String" resultType="int">
+	    SELECT COUNT(*)
+	    FROM comment
+	    WHERE user_id = #{userId}
+    </select>
+
+
+</mapper>

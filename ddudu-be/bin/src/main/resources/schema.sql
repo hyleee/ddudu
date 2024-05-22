@@ -2,24 +2,45 @@ drop database ssafydb;
 create database ssafydb;
 use ssafydb;
 
--- DROP DATABASE ssafydb;
--- SELECT * FROM User;
 
-USE ssafydb;
+-- DROP DATABASE ssafydb;
+
+-- INSERT INTO USER ( user_id, user_password, user_name, user_email, user_age, user_height, user_weight, user_area)VALUES ( 'a', 'a', 'a', 'a@a.com', 1, 1, 1, 'area');
+-- INSERT INTO comment (comment_content, user_id, article_id) VALUES ("내용", "a", 1);
+-- select * from user;
+-- select * FROM article;
+-- select * from comment;
+
+-- select * from exercise_diary;
+
+-- drop table daily_plan;
+-- drop table daily_plan_detail;
+-- insert into daily_plan (exercise_date,user_id, body_part, exercise_name) VALUES ('2024-05-19', 'a', '하체', '스쿼트');
+
+
+
 
 -- 사용자 테이블
 CREATE TABLE User (
     user_id VARCHAR(100) NOT NULL,
-    password VARCHAR(100) NOT NULL,
+    user_password VARCHAR(100) NOT NULL,
     user_name VARCHAR(100) NOT NULL,
-    email VARCHAR(100),
+    user_email VARCHAR(100),
     user_age INT,
     user_height INT,
     user_weight INT,
     user_area VARCHAR(100),
-    profile LONGBLOB,
+    user_profile VARCHAR(100),
     PRIMARY KEY (user_id)
 );
+
+CREATE TABLE auth (
+    user_id VARCHAR(100) NOT NULL PRIMARY KEY,
+    refresh_token TEXT NOT NULL,
+    FOREIGN KEY (user_id) REFERENCES User(user_id)
+);
+select * from auth;
+
 
 
 -- 운동 일지 테이블
@@ -45,6 +66,7 @@ CREATE TABLE article (
     PRIMARY KEY (article_id, user_id),
     FOREIGN KEY (user_id) REFERENCES User(user_id)
 );
+
 
 -- 게시글 좋아요 테이블
 CREATE TABLE article_like (
@@ -103,7 +125,7 @@ CREATE TABLE reply_like (
 -- 운동계획 테이블
 CREATE TABLE daily_plan (
 	plan_id INT AUTO_INCREMENT,
-    exercise_date DATETIME DEFAULT CURRENT_TIMESTAMP,
+    exercise_date DATE,
     user_id VARCHAR(100),
     body_part VARCHAR(100),
     exercise_name VARCHAR(100),
@@ -114,14 +136,15 @@ CREATE TABLE daily_plan (
 );
 
 CREATE TABLE daily_plan_detail (
-	detail_id INT AUTO_INCREMENT,
-	exercise_kg INT,
+    detail_id INT AUTO_INCREMENT,
+    exercise_kg INT,
     exercise_count INT,
     plan_id INT,
-    
     PRIMARY KEY (detail_id),
-    FOREIGN KEY(plan_id) REFERENCES USER(daily_plan)
+    FOREIGN KEY (plan_id) REFERENCES daily_plan(plan_id) ON DELETE CASCADE
 );
+
+
 
 -- 부위별 운동량 테이블
 CREATE TABLE exercise_per_part_sum (

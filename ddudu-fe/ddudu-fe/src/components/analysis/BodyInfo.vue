@@ -1,8 +1,9 @@
 <template>
-  <div>
+  <div class="container">
     <h2>Body Info</h2>
-    <div v-if="weeklyStats && weeklyStats.length">
+    <div v-if="weeklyStats && store.weeklyStats.length">
       <h3>Weekly Stats</h3>
+      <BarChart />
       <ul>
         <li v-for="stat in weeklyStats" :key="stat.bodyPart">
           {{ stat.bodyPart }}: {{ stat.totalWeight }} kg
@@ -16,19 +17,29 @@
 </template>
 
 <script setup>
-import { onMounted } from "vue";
+import { onMounted, computed } from "vue";
 import { useBodyInfoStore } from "@/stores/bodyInfoStore";
+import BarChart from "@/components/analysis/BarChart.vue";
 
 const store = useBodyInfoStore();
 
-onMounted(() => {
-  store.fetchWeeklyStats();
-});
+const weeklyStats = computed(() => store.weeklyStats);
 
-const weeklyStats = store.weeklyStats;
+console.log(store.chartData);
+console.log(store.chartOptions);
+
+onMounted(async () => {
+  console.log("Fetching weekly stats...");
+  await store.fetchWeeklyStats();
+  console.log("onMounted:", store.weeklyStats.value);
+});
 </script>
 
 <style scoped>
+.container {
+  margin: 0;
+}
+
 h2 {
   text-align: center;
 }

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- name space는 UserRepo의 fully qualified name으로 설정한다. -->
+<mapper namespace="com.ssafy.ddudu.model.dao.ArticleDao">
+
+	<insert id="createArticle" parameterType="Article">
+		INSERT INTO article
+		(user_id, article_title, article_content, category)
+		VALUES (#{userId},
+		#{articleTitle}, #{articleContent}, #{category})
+	</insert>
+
+	<select id="getArticleById" parameterType="int"
+		resultType="Article">
+		SELECT * FROM article WHERE article_id = #{articleId}
+	</select>
+
+	<update id="updateArticle" parameterType="Article">
+		UPDATE article SET
+		article_title = #{articleTitle},
+		article_content = #{articleContent},
+		category = #{category}
+		WHERE article_id = #{articleId}
+	</update>
+
+	<delete id="deleteArticle" parameterType="int">
+		DELETE FROM article
+		WHERE article_id = #{articleId}
+	</delete>
+	
+	<select id="countArticlesByUserId" resultType="int" parameterType="string">
+        SELECT COUNT(*) FROM article WHERE user_id = #{userId}
+    </select>
+
+	</mapper>

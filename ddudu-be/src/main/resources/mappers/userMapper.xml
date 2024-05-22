@@ -37,5 +37,10 @@
 		DELETE FROM user
 		WHERE user_id=#{userId}
 	</delete>
+	
+	<select id="findByUserName" resultType="User">
+        SELECT * FROM user
+        WHERE user_name LIKE CONCAT('%', #{userName}, '%')
+    </select>
 
 </mapper>
