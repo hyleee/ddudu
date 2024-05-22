@@ -1,14 +1,26 @@
 package com.ssafy.ddudu.model.dto;
 
 public class Rank {
+    private String userId;
+    private String userName; // 추가
     private String bodyPart;
     private int totalWeight;
 
-    public Rank() {}
+    // getters and setters
+    public String getUserId() {
+        return userId;
+    }
 
-    public Rank(String bodyPart, int totalWeight) {
-        this.bodyPart = bodyPart;
-        this.totalWeight = totalWeight;
+    public void setUserId(String userId) {
+        this.userId = userId;
+    }
+
+    public String getUserName() { // 추가
+        return userName;
+    }
+
+    public void setUserName(String userName) { // 추가
+        this.userName = userName;
     }
 
     public String getBodyPart() {
@@ -25,10 +37,5 @@ public class Rank {
 
     public void setTotalWeight(int totalWeight) {
         this.totalWeight = totalWeight;
-    }
-
-    @Override
-    public String toString() {
-        return "Rank [bodyPart=" + bodyPart + ", totalWeight=" + totalWeight + "]";
     }
 }

@@ -7,120 +7,139 @@
     <select id="findChestRank" resultType="com.ssafy.ddudu.model.dto.Rank">
     <![CDATA[
         SELECT
-            d.user_id AS userId,
+            u.user_id AS userId,
+            u.user_name AS userName,
             'chest' AS bodyPart,
             SUM(dd.exercise_kg * dd.exercise_count) AS totalWeight
         FROM
             daily_plan_detail dd
             JOIN daily_plan d ON dd.plan_id = d.plan_id
+            JOIN User u ON d.user_id = u.user_id
         WHERE
             d.body_part = 'chest'
-            AND d.exercise_date >= CURDATE() - INTERVAL (DAYOFWEEK(CURDATE()) - 1) DAY
-            AND d.exercise_date < CURDATE() + INTERVAL (7 - DAYOFWEEK(CURDATE())) DAY + INTERVAL 1 DAY
+            AND d.exercise_date >= DATE_SUB(CURDATE(), INTERVAL (DAYOFWEEK(CURDATE()) - 1) DAY)
+            AND d.exercise_date < DATE_ADD(CURDATE(), INTERVAL (7 - DAYOFWEEK(CURDATE())) DAY)
         GROUP BY
-            d.user_id, d.body_part
+            u.user_id, u.user_name, d.body_part
         ORDER BY
             totalWeight DESC
+        LIMIT 10
     ]]>
     </select>
 
+    <!-- 동일한 방식으로 다른 쿼리들도 수정 -->
     <select id="findBackRank" resultType="com.ssafy.ddudu.model.dto.Rank">
     <![CDATA[
         SELECT
-            d.user_id AS userId,
+            u.user_id AS userId,
+            u.user_name AS userName,
             'back' AS bodyPart,
             SUM(dd.exercise_kg * dd.exercise_count) AS totalWeight
         FROM
             daily_plan_detail dd
             JOIN daily_plan d ON dd.plan_id = d.plan_id
+            JOIN User u ON d.user_id = u.user_id
         WHERE
             d.body_part = 'back'
-            AND d.exercise_date >= CURDATE() - INTERVAL (DAYOFWEEK(CURDATE()) - 1) DAY
-            AND d.exercise_date < CURDATE() + INTERVAL (7 - DAYOFWEEK(CURDATE())) DAY + INTERVAL 1 DAY
+            AND d.exercise_date >= DATE_SUB(CURDATE(), INTERVAL (DAYOFWEEK(CURDATE()) - 1) DAY)
+            AND d.exercise_date < DATE_ADD(CURDATE(), INTERVAL (7 - DAYOFWEEK(CURDATE())) DAY)
         GROUP BY
-            d.user_id, d.body_part
+            u.user_id, u.user_name, d.body_part
         ORDER BY
             totalWeight DESC
+        LIMIT 10
     ]]>
     </select>
 
     <select id="findShouldersRank" resultType="com.ssafy.ddudu.model.dto.Rank">
     <![CDATA[
         SELECT
-            d.user_id AS userId,
+            u.user_id AS userId,
+            u.user_name AS userName,
             'shoulders' AS bodyPart,
             SUM(dd.exercise_kg * dd.exercise_count) AS totalWeight
         FROM
             daily_plan_detail dd
             JOIN daily_plan d ON dd.plan_id = d.plan_id
+            JOIN User u ON d.user_id = u.user_id
         WHERE
             d.body_part = 'shoulders'
-            AND d.exercise_date >= CURDATE() - INTERVAL (DAYOFWEEK(CURDATE()) - 1) DAY
-            AND d.exercise_date < CURDATE() + INTERVAL (7 - DAYOFWEEK(CURDATE())) DAY + INTERVAL 1 DAY
+            AND d.exercise_date >= DATE_SUB(CURDATE(), INTERVAL (DAYOFWEEK(CURDATE()) - 1) DAY)
+            AND d.exercise_date < DATE_ADD(CURDATE(), INTERVAL (7 - DAYOFWEEK(CURDATE())) DAY)
         GROUP BY
-            d.user_id, d.body_part
+            u.user_id, u.user_name, d.body_part
         ORDER BY
             totalWeight DESC
+        LIMIT 10
     ]]>
     </select>
 
     <select id="findLegsRank" resultType="com.ssafy.ddudu.model.dto.Rank">
     <![CDATA[
         SELECT
-            d.user_id AS userId,
+            u.user_id AS userId,
+            u.user_name AS userName,
             'legs' AS bodyPart,
             SUM(dd.exercise_kg * dd.exercise_count) AS totalWeight
         FROM
             daily_plan_detail dd
             JOIN daily_plan d ON dd.plan_id = d.plan_id
+            JOIN User u ON d.user_id = u.user_id
         WHERE
             d.body_part = 'legs'
-            AND d.exercise_date >= CURDATE() - INTERVAL (DAYOFWEEK(CURDATE()) - 1) DAY
-            AND d.exercise_date < CURDATE() + INTERVAL (7 - DAYOFWEEK(CURDATE())) DAY + INTERVAL 1 DAY
+            AND d.exercise_date >= DATE_SUB(CURDATE(), INTERVAL (DAYOFWEEK(CURDATE()) - 1) DAY)
+            AND d.exercise_date < DATE_ADD(CURDATE(), INTERVAL (7 - DAYOFWEEK(CURDATE())) DAY)
         GROUP BY
-            d.user_id, d.body_part
+            u.user_id, u.user_name, d.body_part
         ORDER BY
             totalWeight DESC
+        LIMIT 10
     ]]>
     </select>
 
     <select id="findArmsRank" resultType="com.ssafy.ddudu.model.dto.Rank">
     <![CDATA[
         SELECT
-            d.user_id AS userId,
+            u.user_id AS userId,
+            u.user_name AS userName,
             'arms' AS bodyPart,
             SUM(dd.exercise_kg * dd.exercise_count) AS totalWeight
         FROM
             daily_plan_detail dd
             JOIN daily_plan d ON dd.plan_id = d.plan_id
+            JOIN User u ON d.user_id = u.user_id
         WHERE
             d.body_part = 'arms'
-            AND d.exercise_date >= CURDATE() - INTERVAL (DAYOFWEEK(CURDATE()) - 1) DAY
-            AND d.exercise_date < CURDATE() + INTERVAL (7 - DAYOFWEEK(CURDATE())) DAY + INTERVAL 1 DAY
+            AND d.exercise_date >= DATE_SUB(CURDATE(), INTERVAL (DAYOFWEEK(CURDATE()) - 1) DAY)
+            AND d.exercise_date < DATE_ADD(CURDATE(), INTERVAL (7 - DAYOFWEEK(CURDATE())) DAY)
         GROUP BY
-            d.user_id, d.body_part
+            u.user_id, u.user_name, d.body_part
         ORDER BY
             totalWeight DESC
+        LIMIT 10
     ]]>
     </select>
 
     <select id="findCoreRank" resultType="com.ssafy.ddudu.model.dto.Rank">
     <![CDATA[
         SELECT
-            d.user_id AS userId,
+            u.user_id AS userId,
+            u.user_name AS userName,
             'core' AS bodyPart,
             SUM(dd.exercise_kg * dd.exercise_count) AS totalWeight
         FROM
             daily_plan_detail dd
             JOIN daily_plan d ON dd.plan_id = d.plan_id
+            JOIN User u ON d.user_id = u.user_id
         WHERE
             d.body_part = 'core'
-            AND d.exercise_date >= CURDATE() - INTERVAL (DAYOFWEEK(CURDATE()) - 1) DAY
-            AND d.exercise_date < CURDATE() + INTERVAL (7 - DAYOFWEEK(CURDATE())) DAY + INTERVAL 1 DAY
+            AND d.exercise_date >= DATE_SUB(CURDATE(), INTERVAL (DAYOFWEEK(CURDATE()) - 1) DAY)
+            AND d.exercise_date < DATE_ADD(CURDATE(), INTERVAL (7 - DAYOFWEEK(CURDATE())) DAY)
         GROUP BY
-            d.user_id, d.body_part
+            u.user_id, u.user_name, d.body_part
         ORDER BY
             totalWeight DESC
+        LIMIT 10
     ]]>
     </select>
     
