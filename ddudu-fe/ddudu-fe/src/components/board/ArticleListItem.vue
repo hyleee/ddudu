@@ -1,20 +1,26 @@
 <template>
-  <div class="article-list-item">
-    <img src="@/assets/js_duck.png" alt="Article Image" class="article-image">
+  <RouterLink
+    :to="{ name: 'article', params: { articleId: article.articleId } }"
+    class="article-list-item"
+  >
+    <img src="@/assets/js_duck.png" alt="Article Image" class="article-image" />
     <div class="article-content">
-      <p class="article-author">{{ article.userId }} / {{ article.userArea }}</p>
+      <p class="article-author">
+        {{ article.userId }} / {{ article.userArea }}
+      </p>
       <h3>{{ article.articleTitle }}</h3>
       <p class="article-preview">{{ article.articleContent }}</p>
       <p class="article-created">{{ article.articleCreated }}</p>
     </div>
-  </div>
+  </RouterLink>
 </template>
 
 <script setup>
-import { defineProps } from 'vue';
+import { defineProps } from "vue";
+import { RouterLink } from "vue-router";
 
 const props = defineProps({
-  article: Object
+  article: Object,
 });
 </script>
 
@@ -22,6 +28,12 @@ const props = defineProps({
 .article-list-item {
   display: flex;
   align-items: center;
+  text-decoration: none;
+  color: inherit;
+}
+
+.article-list-item:hover {
+  background-color: #f0f0f0;
 }
 
 .article-image {

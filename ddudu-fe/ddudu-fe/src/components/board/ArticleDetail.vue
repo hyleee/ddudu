@@ -2,9 +2,11 @@
   <div class="article-detail" v-if="store.article">
     <header class="article-header">
       <h1 class="headline">{{ store.article.articleTitle }}</h1>
-      <p class="meta">{{ store.article.articleCreated }} / {{ store.article.category }}</p>
+      <p class="meta">
+        {{ store.article.articleCreated }} / {{ store.article.category }}
+      </p>
     </header>
-    <img src="@/assets/js_duck.png" alt="Article Image"class="article-image">
+    <img src="@/assets/js_duck.png" alt="Article Image" class="article-image" />
     <div class="article-content">
       <p>{{ store.article.articleContent }}</p>
     </div>
@@ -16,9 +18,9 @@
 </template>
 
 <script setup>
-import { onMounted } from 'vue';
-import { useRoute } from 'vue-router';
-import { useArticleStore } from '@/stores/articleStore';
+import { onMounted } from "vue";
+import { useRoute } from "vue-router";
+import { useArticleStore } from "@/stores/articleStore";
 
 const route = useRoute();
 const store = useArticleStore();
