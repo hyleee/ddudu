@@ -60,6 +60,9 @@ const newExercise = ref({ bodyPart: "", exerciseName: "" });
 onMounted(async () => {
   const userId = route.params.userId; // 라우트 파라미터에서 userId를 가져옴
   const exerciseDate = route.params.exerciseDate; // 라우트 파라미터에서 exerciseDate를 가져옴
+  console.log("userId: ", userId);
+  console.log("exerciseDate: ", exerciseDate);
+
   await store.getExerciseList(userId, exerciseDate); // 운동 목록을 불러오는 함수 호출
 });
 

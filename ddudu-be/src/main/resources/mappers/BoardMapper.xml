@@ -16,5 +16,9 @@
 		JOIN user ON article.user_id = user.user_id
 		WHERE user.user_area = #{userArea} AND article.category = #{category}
 	</select>
+	
+	 <select id="findAllArticles" resultType="Article">
+        SELECT * FROM article
+    </select>
 
 </mapper>

@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,6 +16,7 @@ import com.ssafy.ddudu.model.service.BoardService;
 
 @RestController
 @RequestMapping("/board")
+@CrossOrigin(origins = "http://localhost:5173", allowCredentials = "true")
 public class BoardController {
 	@Autowired
 	private BoardService boardService;
@@ -55,5 +57,21 @@ public class BoardController {
 					HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
+	
+	@GetMapping
+	public ResponseEntity<?> getAllArticles() {
+	    try {
+	        List<Article> board = boardService.getAllArticles();
+	        if (board.isEmpty()) {
+	            return new ResponseEntity<>("게시글이 없습니다", HttpStatus.NOT_FOUND);
+	        }
+	        return new ResponseEntity<>(board, HttpStatus.OK);
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	        return new ResponseEntity<>("게시글을 가져오는 중 오류가 발생했습니다", HttpStatus.INTERNAL_SERVER_ERROR);
+	    }
+	}
+
+	
 
 }

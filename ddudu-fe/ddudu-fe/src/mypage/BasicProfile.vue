@@ -4,6 +4,7 @@
     <div class="profile-card">
       <h2 class="profile-title">Basic Profile</h2>
       <h3 class="profile-username">{{ userStore.user.userName }}</h3>
+      <h3 class="profile-area">{{  userStore.user.userArea }}</h3>
       <div class="profile-stats">
         <p class="stat-item">게시물 수: <span>{{ articleCount }}</span></p>
         <p class="stat-item">댓글 수: <span>{{ commentCount }}</span></p>
@@ -80,6 +81,12 @@ onMounted(async () => {
 }
 
 .profile-username {
+  font-size: 20px;
+  font-weight: 500;
+  margin-bottom: 20px;
+  color: #555;
+}
+.profile-area {
   font-size: 20px;
   font-weight: 500;
   margin-bottom: 20px;

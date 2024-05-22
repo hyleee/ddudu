@@ -55,7 +55,7 @@ public class PlanController {
 
 
 	@Operation(summary = "해당 날짜 운동 계획 작성", description = "해당 날짜 운동 계획을 작성합니다.")
-	@PostMapping("{exerciseDate}")
+	@PostMapping("/{exerciseDate}")
 	public ResponseEntity<?> createPlan(
 	        @PathVariable("exerciseDate") @DateTimeFormat(pattern = "yyyy-MM-dd") String exerciseDate,
 	        @RequestBody Plan plan) {
@@ -78,7 +78,7 @@ public class PlanController {
 
 
 	@Operation(summary = "해당 날짜 운동 계획 삭제", description = "해당 날짜 운동 계획을 삭제합니다.")
-	@DeleteMapping("{planId}")
+	@DeleteMapping("/{planId}")
 	public ResponseEntity<?> deletePlan(@PathVariable("planId") int planId) {
 		int result = planService.deletePlan(planId);
 		return new ResponseEntity<>(result, result == 1 ? HttpStatus.OK : HttpStatus.BAD_REQUEST);

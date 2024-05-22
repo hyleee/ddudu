@@ -10,4 +10,6 @@ public interface BoardDao {
 
 	List<Article> findArticlesByUserAreaAndCategory(String userArea, String category);
 
+	List<Article> findAllArticles();
+
 }
