@@ -31,8 +31,6 @@ public class JwtUtil {
 	private Long refreshTokenExpireTime;
 
 	public String createAccessToken(String userId) throws UnsupportedEncodingException {
-		System.out.println("jwt: ");
-		System.out.println(jwtKey);
 
 		long currentTime = System.currentTimeMillis(); // 현재시간
 

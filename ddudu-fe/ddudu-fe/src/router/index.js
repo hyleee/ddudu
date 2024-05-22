@@ -11,6 +11,7 @@ import BodyInfoView from "@/views/BodyInfoView.vue";
 import BoardView from "@/views/BoardView.vue"
 import UserSearchView from "@/views/UserSearchView.vue"
 import ArticleView from "@/views/ArticleView.vue"
+import RankView from "@/views/RankView.vue"
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -54,6 +55,18 @@ const router = createRouter({
       path: "/board",
       name: "board",
       component: BoardView,
+    },
+    {
+      path: "/rank",
+      name: "rank",
+      component: RankView,
+      children: [
+        {
+          path: ":bodyPart",
+          name: "BodyPartRank",
+          component: RankView,
+        }
+      ]
     },
     {
       path: "/usersearch",

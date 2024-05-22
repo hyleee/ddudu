@@ -4,6 +4,7 @@ use ssafydb;
 
 -- ______________________________________INSERT ______________________________________
 
+
 -- daily_plan 테이블에 대한 INSERT 문
 INSERT INTO daily_plan (exercise_date, user_id, body_part, exercise_name) VALUES 
 ('2024-05-17', 'a', '어깨', '숄더 프레스'),
@@ -18,6 +19,7 @@ INSERT INTO daily_plan (exercise_date, user_id, body_part, exercise_name) VALUES
 ('2024-05-21', 'a', '가슴', '딥스');
 select * from daily_plan;
 
+
 -- daily_plan_detail 테이블에 대한 INSERT 문
 INSERT INTO daily_plan_detail (exercise_kg, exercise_count, plan_id) VALUES 
 (20, 10, 1),
@@ -30,6 +32,10 @@ INSERT INTO daily_plan_detail (exercise_kg, exercise_count, plan_id) VALUES
 (25, 10, 8),
 (100, 5, 9),
 (30, 8, 10);
+
+-- select * from daily_plan_detail;
+
+
 
 
 -- User 테이블에 대한 INSERT 문 10개
@@ -69,6 +75,39 @@ INSERT INTO article (article_id, user_id, article_title, article_content, catego
 (20, 'u10', 'Article 10-2', 'Content 10-2', 'legs');
 
 
+-- daily_plan 테이블에 대한 INSERT 문
+INSERT INTO daily_plan (exercise_date, user_id, body_part, exercise_name) VALUES 
+('2024-05-19', 'a', '어깨', '숄더 프레스'),
+('2024-05-19', 'a', '팔', '바이셉 컬'),
+('2024-05-19', 'a', '등', '랫 풀 다운'),
+('2024-05-19', 'a', '가슴', '벤치 프레스'),
+('2024-05-19', 'z', '복근', '크런치'),
+('2024-05-19', 'z', '하체', '스쿼트'),
+('2024-05-19', 'z', '어깨', '사이드 레터럴 레이즈'),
+('2024-05-19', 'z', '팔', '트라이셉 익스텐션'),
+('2024-05-21', 'z', '등', '데드리프트'),
+('2024-05-21', 'z', '가슴', '딥스'),
+('2024-05-19', 'n', '어깨', '사이드 레터럴 레이즈'),
+('2024-05-19', 'n', '팔', '트라이셉 익스텐션'),
+('2024-05-21', 'n', '등', '데드리프트'),
+('2024-05-21', 'n', '가슴', '딥스');
+
+select * from daily_plan;
+
+-- daily_plan_detail 테이블에 대한 INSERT 문
+INSERT INTO daily_plan_detail (exercise_kg, exercise_count, plan_id) VALUES 
+(20, 10, 2),
+(15, 12, 2),
+(40, 8, 3),
+(60, 6, 4),
+(0, 20, 5),
+(80, 5, 6),
+(10, 15, 7),
+(25, 10, 8),
+(100, 5, 9),
+(30, 8, 10);
+
+
 -- ______________________________________CREATE ______________________________________
 
 -- 사용자 테이블
@@ -84,6 +123,8 @@ CREATE TABLE User (
     user_profile VARCHAR(100),
     PRIMARY KEY (user_id)
 );
+show databases;
+select * from user;
 
 CREATE TABLE auth (
     user_id VARCHAR(100) NOT NULL PRIMARY KEY,
@@ -118,7 +159,9 @@ CREATE TABLE article (
     FOREIGN KEY (user_id) REFERENCES User(user_id)
 );
 
-
+INSERT INTO article (user_id, article_title, article_content, category)
+VALUES ("z", "z 운동했어요", "zzzz 운동했어요", "등");
+select * from article;
 -- 게시글 좋아요 테이블
 CREATE TABLE article_like (
     article_id INT,
@@ -176,7 +219,7 @@ CREATE TABLE reply_like (
 -- 운동계획 테이블
 CREATE TABLE daily_plan (
 	plan_id INT AUTO_INCREMENT,
-    exercise_date DATE,
+    exercise_date DATETIME DEFAULT CURRENT_TIMESTAMP,
     user_id VARCHAR(100),
     body_part VARCHAR(100),
     exercise_name VARCHAR(100),
@@ -230,4 +273,8 @@ CREATE TABLE Follow (
     -- 같은 사용자에 대한 중복된 팔로우를 방지하기 위해 follower_id 및 following_id 열의 조합이 고유해야 한다.
     CONSTRAINT unique_follow UNIQUE (follower_id, following_id)
 );
+
 select * from follow;
+
+
+

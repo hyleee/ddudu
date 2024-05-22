@@ -16,7 +16,7 @@ import com.ssafy.ddudu.model.service.BoardService;
 
 @RestController
 @RequestMapping("/board")
-@CrossOrigin(origins = "http://localhost:5173", allowCredentials = "true")
+//@CrossOrigin(origins = "*")
 public class BoardController {
 	@Autowired
 	private BoardService boardService;
