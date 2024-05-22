@@ -1,5 +1,5 @@
-drop database ssafydb;
-create database ssafydb;
+-- drop database ssafydb;
+-- create database ssafydb;
 use ssafydb;
 
 
@@ -17,7 +17,32 @@ use ssafydb;
 -- drop table daily_plan_detail;
 -- insert into daily_plan (exercise_date,user_id, body_part, exercise_name) VALUES ('2024-05-19', 'a', '하체', '스쿼트');
 
+-- daily_plan 테이블에 대한 INSERT 문
+INSERT INTO daily_plan (exercise_date, user_id, body_part, exercise_name) VALUES 
+('2024-05-17', 'a', '어깨', '숄더 프레스'),
+('2024-05-17', 'a', '팔', '바이셉 컬'),
+('2024-05-18', 'a', '등', '랫 풀 다운'),
+('2024-05-18', 'a', '가슴', '벤치 프레스'),
+('2024-05-19', 'a', '복근', '크런치'),
+('2024-05-19', 'a', '하체', '스쿼트'),
+('2024-05-20', 'a', '어깨', '사이드 레터럴 레이즈'),
+('2024-05-20', 'a', '팔', '트라이셉 익스텐션'),
+('2024-05-21', 'a', '등', '데드리프트'),
+('2024-05-21', 'a', '가슴', '딥스');
+select * from daily_plan;
 
+-- daily_plan_detail 테이블에 대한 INSERT 문
+INSERT INTO daily_plan_detail (exercise_kg, exercise_count, plan_id) VALUES 
+(20, 10, 1),
+(15, 12, 2),
+(40, 8, 3),
+(60, 6, 4),
+(0, 20, 5),
+(80, 5, 6),
+(10, 15, 7),
+(25, 10, 8),
+(100, 5, 9),
+(30, 8, 10);
 
 
 -- 사용자 테이블

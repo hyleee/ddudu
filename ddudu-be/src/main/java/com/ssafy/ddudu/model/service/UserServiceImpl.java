@@ -63,6 +63,11 @@ public class UserServiceImpl implements UserService {
 		return userDao.deleteUser(userId);
 	}
 	
+	@Override
+    public List<User> findByUserName(String userName) {
+        return userDao.findByUserName(userName);
+    }
+	
 	 private int fileHandling(User user, MultipartFile file) throws IOException {
 	        // 절대 경로 사용
 //	        String staticFolderPath = "/Users/jaesunglee/db_images";

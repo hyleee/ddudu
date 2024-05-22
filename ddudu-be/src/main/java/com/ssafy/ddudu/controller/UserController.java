@@ -44,7 +44,7 @@ public class UserController {
 	@Autowired
 	private CommentService commentService;
 	
-	@Autowired
+	@Autowired 
     private ArticleService articleService;
 
 	@Autowired
@@ -57,6 +57,12 @@ public class UserController {
 		System.out.println(user.toString());
 		return new ResponseEntity<>(user, user == null ? HttpStatus.NOT_FOUND : HttpStatus.OK);
 	}
+	
+	@Operation(summary = "사용자 이름으로 검색", description = "이름이 일치하는 사용자 목록을 조회합니다.")
+	@GetMapping("/search/{userName}")
+    public List<User> searchUsersByName(@PathVariable String userName) {
+        return userService.findByUserName(userName);
+    }
 
 	@PostMapping(value = "/regist", consumes = { MediaType.MULTIPART_FORM_DATA_VALUE })
 	public ResponseEntity<?> userRegist(@RequestPart("user") User user,
