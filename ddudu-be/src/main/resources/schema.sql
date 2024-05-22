@@ -5,21 +5,23 @@ use ssafydb;
 
 -- DROP DATABASE ssafydb;
 
+
 INSERT INTO USER ( user_id, user_password, user_name, user_email, user_age, user_height, user_weight, user_area)VALUES ( 'ab', 'ab', 'ab', 'ab@ab.com', 1, 1, 1, 'area');
 INSERT INTO USER ( user_id, user_password, user_name, user_email, user_age, user_height, user_weight, user_area)VALUES ( 'bc', 'bc', 'bc', 'bc@bc.com', 1, 1, 1, 'area');
 INSERT INTO USER ( user_id, user_password, user_name, user_email, user_age, user_height, user_weight, user_area)VALUES ( 'cd', 'cd', 'cd', 'cd@cd.com', 1, 1, 1, 'area');
 INSERT INTO USER ( user_id, user_password, user_name, user_email, user_age, user_height, user_weight, user_area)VALUES ( 'de', 'de', 'de', 'de@de.com', 1, 1, 1, 'area');
 INSERT INTO USER ( user_id, user_password, user_name, user_email, user_age, user_height, user_weight, user_area)VALUES ( 'ef', 'ef', 'ef', 'ef@ef.com', 1, 1, 1, 'area');
+INSERT INTO USER ( user_id, user_password, user_name, user_email, user_age, user_height, user_weight, user_area)VALUES ( 'a', 'a', 'a', 'a@a.com', 1, 1, 1, 'area');
+
 -- INSERT INTO comment (comment_content, user_id, article_id) VALUES ("내용", "a", 1);
--- select * from user;
+select * from user;
 -- select * FROM article;
 -- select * from comment;
 
 -- select * from exercise_diary;
 
--- drop table daily_plan;
--- drop table daily_plan_detail;
 -- insert into daily_plan (exercise_date,user_id, body_part, exercise_name) VALUES ('2024-05-19', 'a', '하체', '스쿼트');
+-- select * from daily_plan;
 
 -- daily_plan 테이블에 대한 INSERT 문
 INSERT INTO daily_plan (exercise_date, user_id, body_part, exercise_name) VALUES 
@@ -35,6 +37,7 @@ INSERT INTO daily_plan (exercise_date, user_id, body_part, exercise_name) VALUES
 ('2024-05-21', 'a', '가슴', '딥스');
 select * from daily_plan;
 
+
 -- daily_plan_detail 테이블에 대한 INSERT 문
 INSERT INTO daily_plan_detail (exercise_kg, exercise_count, plan_id) VALUES 
 (20, 10, 1),
@@ -47,6 +50,10 @@ INSERT INTO daily_plan_detail (exercise_kg, exercise_count, plan_id) VALUES
 (25, 10, 8),
 (100, 5, 9),
 (30, 8, 10);
+
+-- select * from daily_plan_detail;
+
+
 
 
 -- 사용자 테이블
@@ -62,6 +69,8 @@ CREATE TABLE User (
     user_profile VARCHAR(100),
     PRIMARY KEY (user_id)
 );
+show databases;
+select * from user;
 
 CREATE TABLE auth (
     user_id VARCHAR(100) NOT NULL PRIMARY KEY,
@@ -96,7 +105,9 @@ CREATE TABLE article (
     FOREIGN KEY (user_id) REFERENCES User(user_id)
 );
 
-
+INSERT INTO article (user_id, article_title, article_content, category)
+VALUES ("z", "z 운동했어요", "zzzz 운동했어요", "등");
+select * from article;
 -- 게시글 좋아요 테이블
 CREATE TABLE article_like (
     article_id INT,
@@ -154,7 +165,7 @@ CREATE TABLE reply_like (
 -- 운동계획 테이블
 CREATE TABLE daily_plan (
 	plan_id INT AUTO_INCREMENT,
-    exercise_date DATE,
+    exercise_date DATETIME DEFAULT CURRENT_TIMESTAMP,
     user_id VARCHAR(100),
     body_part VARCHAR(100),
     exercise_name VARCHAR(100),
@@ -207,3 +218,72 @@ CREATE TABLE Follow (
     -- 같은 사용자에 대한 중복된 팔로우를 방지하기 위해 follower_id 및 following_id 열의 조합이 고유해야 한다.
     CONSTRAINT unique_follow UNIQUE (follower_id, following_id)
 );
+
+-- daily_plan 테이블에 대한 INSERT 문
+INSERT INTO daily_plan (exercise_date, user_id, body_part, exercise_name) VALUES 
+('2024-05-19', 'a', '어깨', '숄더 프레스'),
+('2024-05-19', 'a', '팔', '바이셉 컬'),
+('2024-05-19', 'a', '등', '랫 풀 다운'),
+('2024-05-19', 'a', '가슴', '벤치 프레스'),
+('2024-05-19', 'z', '복근', '크런치'),
+('2024-05-19', 'z', '하체', '스쿼트'),
+('2024-05-19', 'z', '어깨', '사이드 레터럴 레이즈'),
+('2024-05-19', 'z', '팔', '트라이셉 익스텐션'),
+('2024-05-21', 'z', '등', '데드리프트'),
+('2024-05-21', 'z', '가슴', '딥스'),
+('2024-05-19', 'n', '어깨', '사이드 레터럴 레이즈'),
+('2024-05-19', 'n', '팔', '트라이셉 익스텐션'),
+('2024-05-21', 'n', '등', '데드리프트'),
+('2024-05-21', 'n', '가슴', '딥스');
+
+select * from daily_plan;
+
+-- daily_plan_detail 테이블에 대한 INSERT 문
+INSERT INTO daily_plan_detail (exercise_kg, exercise_count, plan_id) VALUES 
+(20, 10, 2),
+(15, 12, 2),
+(40, 8, 3),
+(60, 6, 4),
+(0, 20, 5),
+(80, 5, 6),
+(10, 15, 7),
+(25, 10, 8),
+(100, 5, 9),
+(30, 8, 10);
+
+SELECT
+            d.user_id AS userId,
+            '팔' AS bodyPart,
+            SUM(dd.exercise_kg * dd.exercise_count) AS totalWeight
+        FROM
+            daily_plan_detail dd
+            JOIN daily_plan d ON dd.plan_id = d.plan_id
+        WHERE
+            d.body_part = '팔'
+            AND d.exercise_date >= CURDATE() - INTERVAL (DAYOFWEEK(CURDATE()) - 1) DAY
+            AND d.exercise_date < CURDATE() + INTERVAL (7 - DAYOFWEEK(CURDATE())) DAY + INTERVAL 1 DAY
+        GROUP BY
+            d.user_id, d.body_part
+        ORDER BY
+            totalWeight DESC;
+            
+	-- 현재 날짜가 2024-05-21이라 가정
+SELECT
+    d.user_id AS userId,
+    '팔' AS bodyPart,
+    SUM(dd.exercise_kg * dd.exercise_count) AS totalWeight
+FROM
+    daily_plan_detail dd
+    JOIN daily_plan d ON dd.plan_id = d.plan_id
+WHERE
+    d.body_part = '팔'
+    AND d.exercise_date >= '2024-05-19'
+    AND d.exercise_date < '2024-05-26'
+GROUP BY
+    d.user_id, d.body_part
+ORDER BY
+    totalWeight DESC;
+
+            
+            
+            

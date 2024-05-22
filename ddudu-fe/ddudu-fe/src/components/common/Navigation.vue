@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="navi-button">
-      <RouterLink to="/plan/:userId/:exerciseDate"
+      <RouterLink :to="`/plan/${userIdParam}/${exerciseDateParam}`"
         ><img src="@/assets/calendar_img.png" alt="calendar_img" width="30px"
       /></RouterLink>
       <RouterLink to="/bodyinfo"
@@ -10,7 +10,7 @@
       <RouterLink to="/board"
         ><img src="@/assets/board_img.png" alt="board_img" width="30px"
       /></RouterLink>
-      <RouterLink to=""
+      <RouterLink to="/rank"
         ><img src="@/assets/rank_img.png" alt="rank_img" width="30px"
       /></RouterLink>
       <RouterLink to="/profile"
@@ -22,9 +22,16 @@
 
 <script setup>
 import { RouterLink } from 'vue-router';
-import { ref } from 'vue';
+import { ref, computed } from 'vue';
+import { useExerciseStore } from '@/stores/exerciseStore';
 
+const store = useExerciseStore();
 
+const userIdParam = computed(() => store.userIdParam);
+const exerciseDateParam = computed(() => store.exerciseDateParam);
+
+console.log("store.userId: " + userIdParam.value);
+console.log("store.exerciseDate: " + exerciseDateParam.value);
 </script>
 
 <style scoped>
