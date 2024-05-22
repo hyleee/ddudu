@@ -1,4 +1,4 @@
-import { ref, watch, onMounted } from "vue";
+import { ref, watch, onMounted, computed } from "vue";
 import { useRoute } from "vue-router";
 import { defineStore } from "pinia";
 import axios from "axios";
@@ -16,6 +16,10 @@ export const useExerciseStore = defineStore(
       bodyPart: "",
       exerciseName: "",
     });
+
+    const exerciseDateParam = ref();
+    const userIdParam = ref();
+
     const selectedDate = ref(new Date().toISOString().split('T')[0]); // Default to current date
     const errorMessage = ref(null);
     const selectedForDeletion = ref(new Set());
@@ -23,9 +27,13 @@ export const useExerciseStore = defineStore(
 
     const getExerciseList = async (userId, exerciseDate) => {
       try {
+        console.log(userId)
+        console.log(exerciseDate)
         const res = await axios.get(
           `${REST_EXERCISE_API}/${userId}/${exerciseDate}`
         );
+        exerciseDateParam.value = exerciseDate;
+        userIdParam.value = userId;
         exerciseList.value = res.data;
         errorMessage.value = null;
       } catch (error) {
@@ -106,6 +114,7 @@ export const useExerciseStore = defineStore(
       selectedDate.value = date;
     };
 
+    // 초기 마운트 시 라우트 파라미터를 이용하여 운동 계획을 불러옴
     onMounted(() => {
       if (route.name === 'plan') { // 특정 경로에서만 함수 호출
         console.log("onMounted:", route.params.userId, route.params.exerciseDate);
@@ -113,6 +122,7 @@ export const useExerciseStore = defineStore(
       }
     });
 
+    // 라우트 파라미터가 변경될 때마다 운동 계획을 다시 불러옴
     watch(
       () => route.params,
       (newParams) => {
@@ -122,17 +132,6 @@ export const useExerciseStore = defineStore(
         }
       }
     );
-
-    // onMounted(() => {
-    //   getExerciseList(route.params.userId, route.params.exerciseDate);
-    // });
-
-    // watch(
-    //   () => route.params,
-    //   (newParams) => {
-    //     getExerciseList(newParams.userId, newParams.exerciseDate);
-    //   }
-    // );
 
     return {
       exerciseList,
@@ -148,6 +147,8 @@ export const useExerciseStore = defineStore(
       clearSelection,
       getExerciseById,
       setSelectedDate,
+      exerciseDateParam,
+      userIdParam,
     };
   },
   {

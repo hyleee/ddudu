@@ -1,6 +1,7 @@
 <template>
   <div>
     <UpperNavigation />
+    <div class="navi-blank"></div>
     <RouterView />
     <Navigation />
   </div>
@@ -12,4 +13,9 @@ import Navigation from "@/components/common/Navigation.vue";
 import { RouterView } from "vue-router";
 </script>
 
-<style scoped></style>
+<style scoped>
+.navi-blank{
+  margin-top: 54px;
+}
+
+</style>
