@@ -5,7 +5,11 @@ use ssafydb;
 
 -- DROP DATABASE ssafydb;
 
--- INSERT INTO USER ( user_id, user_password, user_name, user_email, user_age, user_height, user_weight, user_area)VALUES ( 'a', 'a', 'a', 'a@a.com', 1, 1, 1, 'area');
+INSERT INTO USER ( user_id, user_password, user_name, user_email, user_age, user_height, user_weight, user_area)VALUES ( 'ab', 'ab', 'ab', 'ab@ab.com', 1, 1, 1, 'area');
+INSERT INTO USER ( user_id, user_password, user_name, user_email, user_age, user_height, user_weight, user_area)VALUES ( 'bc', 'bc', 'bc', 'bc@bc.com', 1, 1, 1, 'area');
+INSERT INTO USER ( user_id, user_password, user_name, user_email, user_age, user_height, user_weight, user_area)VALUES ( 'cd', 'cd', 'cd', 'cd@cd.com', 1, 1, 1, 'area');
+INSERT INTO USER ( user_id, user_password, user_name, user_email, user_age, user_height, user_weight, user_area)VALUES ( 'de', 'de', 'de', 'de@de.com', 1, 1, 1, 'area');
+INSERT INTO USER ( user_id, user_password, user_name, user_email, user_age, user_height, user_weight, user_area)VALUES ( 'ef', 'ef', 'ef', 'ef@ef.com', 1, 1, 1, 'area');
 -- INSERT INTO comment (comment_content, user_id, article_id) VALUES ("내용", "a", 1);
 -- select * from user;
 -- select * FROM article;
