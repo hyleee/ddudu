@@ -1,9 +1,9 @@
 <template>
-  <div>
+  <div class="app-container">
     <UpperNavigation />
-    <div class="navi-blank"></div>
-    <RouterView />
-    <div class="navi-blank"></div>
+    <div class="content-container">
+      <RouterView />
+    </div>
     <Navigation />
   </div>
 </template>
@@ -15,8 +15,17 @@ import { RouterView } from "vue-router";
 </script>
 
 <style scoped>
-.navi-blank{
-  margin-top: 54px;
+.app-container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
 }
 
+.content-container {
+  flex: 1;
+  overflow-y: auto;
+  padding-top: 54px; /* UpperNavigation 높이만큼 위 패딩 추가 */
+  padding-bottom: 54px; /* Navigation 높이만큼 아래 패딩 추가 */
+  box-sizing: border-box;
+}
 </style>

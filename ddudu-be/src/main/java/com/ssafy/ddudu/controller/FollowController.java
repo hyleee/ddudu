@@ -17,7 +17,7 @@ import com.ssafy.ddudu.model.service.FollowService;
 
 @RestController
 @RequestMapping("/follow")
-@CrossOrigin(origins = "*")
+//@CrossOrigin(origins = "*")
 public class FollowController {
     @Autowired
     private FollowService followService;

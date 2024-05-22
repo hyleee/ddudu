@@ -24,8 +24,8 @@ import io.swagger.v3.oas.annotations.Parameter;
 
 @RestController
 @RequestMapping("/plan/detail/{planId}")
-@CrossOrigin(origins = "*", methods = { RequestMethod.GET, RequestMethod.POST, RequestMethod.PUT,
-        RequestMethod.DELETE, RequestMethod.OPTIONS })
+//@CrossOrigin(origins = "*", methods = { RequestMethod.GET, RequestMethod.POST, RequestMethod.PUT,
+//        RequestMethod.DELETE, RequestMethod.OPTIONS })
 public class PlanDetailController {
 
 	@Autowired

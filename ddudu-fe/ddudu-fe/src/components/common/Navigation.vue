@@ -2,7 +2,7 @@
   <div>
     <div class="navi-button">
       <RouterLink to="/plan/:userId/:exerciseDate"
-        ><img src="@/assets/calendar_img.png" alt="calendar_img" width="30px"
+        ><img src="@/assets/calendar.png" alt="calendar_img" width="30px"
       /></RouterLink>
       <RouterLink to="/bodyinfo"
         ><img src="@/assets/chart_img.png" alt="chart_img" width="30px"
@@ -14,7 +14,7 @@
         ><img src="@/assets/rank_img.png" alt="rank_img" width="30px"
       /></RouterLink>
       <RouterLink to="/profile"
-        ><img src="@/assets/user_img.png" alt="user_img" width="30px"
+        ><img src="@/assets/user.png" alt="user_img" width="30px"
       /></RouterLink>
     </div>
   </div>
