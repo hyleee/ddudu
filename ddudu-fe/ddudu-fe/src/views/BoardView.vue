@@ -1,9 +1,9 @@
 <template>
   <div class="board-view">
     <h1>우리 동네 운동 게시판</h1>
-    <div class="search-bar">
+    <!-- <div class="search-bar">
       <input type="text" placeholder="Search" v-model="searchQuery" />
-    </div>
+    </div> -->
     <div class="category-list">
       <button
         v-for="category in categoryList"
@@ -102,6 +102,10 @@ onMounted(() => {
 </script>
 
 <style scoped>
+h1 {
+  margin-bottom: 20px; 
+}
+
 .board-view {
   padding: 20px;
   height: 100%;

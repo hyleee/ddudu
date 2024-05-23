@@ -16,5 +16,7 @@ import UserSearch from "@/components/user/UserSearch.vue";
   flex-direction: column;
   align-items: center;
   margin-top: 100px;
+  justify-content: space-between;
+  height: 80px;
 }
 </style>
