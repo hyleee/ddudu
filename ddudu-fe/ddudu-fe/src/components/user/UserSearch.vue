@@ -6,10 +6,10 @@
       <button @click="searchUsers">Search</button>
     </div>
     <div v-if="filteredUserList.length" class="results">
-      <h2>Search Results:</h2>
+      <h2>검색 결과</h2>
       <ul>
         <li v-for="user in filteredUserList" :key="user.userId" class="user-item">
-          <span>{{ user.userName }} - {{ user.userEmail }}</span>
+          <span>{{ user.userName }}  /  {{ user.userId }}</span>
           <button v-if="isFollowing(loginStore.loginUser.userId, user.userId)" @click="unfollow(user.userId)">Unfollow</button>
           <button v-else @click="follow(user.userId)">Follow</button>
         </li>
@@ -134,12 +134,14 @@ ul {
 
 li.user-item {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   align-items: center;
   background-color: #fff;
   border-radius: 5px;
   padding: 10px;
   margin-bottom: 10px;
+  padding-left: 15px;
+  padding-right: 15px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 

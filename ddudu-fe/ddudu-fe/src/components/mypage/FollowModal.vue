@@ -2,13 +2,15 @@
     <div class="modal" v-if="show">
       <div class="modal-content">
         <span class="close" @click="closeModal">&times;</span>
-        <h2>{{ title }}</h2>
+        <div class="title">
+            <h2>{{ title }}</h2>
+        </div>
         <ul v-if="userList && userList.length">
           <li v-for="user in userList" :key="user.userId" class="user-item">
             <img :src="getUserProfileImage(user.userId)" class="profile-img" alt="user img" />
             <div>
               <strong>{{ user.userName }}</strong>
-              <span>@{{ user.userId }}</span>
+              <span> / {{ user.userId }}</span>
             </div>
             </li>
           </ul>
@@ -42,6 +44,12 @@
     </script>
   
     <style scoped>
+    .title {
+        margin-top: 10px;
+        margin-bottom: 35px;
+        margin-left: 10px;
+    }
+
     .modal {
       display: flex;
       justify-content: center;

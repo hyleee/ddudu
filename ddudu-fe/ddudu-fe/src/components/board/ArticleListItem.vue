@@ -6,7 +6,7 @@
     <img src="@/assets/js_duck.png" alt="Article Image" class="article-image" />
     <div class="article-content">
       <p class="article-author">
-        {{ article.userId }} / {{ article.userArea }}
+        <strong>{{ article.userId }}</strong>  {{ userStore.user.userArea }}
       </p>
       <h3>{{ article.articleTitle }}</h3>
       <p class="article-preview">{{ article.articleContent }}</p>
@@ -18,6 +18,9 @@
 <script setup>
 import { defineProps } from "vue";
 import { RouterLink } from "vue-router";
+import { useUserStore } from "@/stores/userStore";
+
+const userStore = useUserStore();
 
 const props = defineProps({
   article: Object,

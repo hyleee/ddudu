@@ -19,8 +19,10 @@
         <button class="message-btn" @click="showFollowings">팔로잉</button>
       </div>
     </div>
-    <BarChart />
-    <FollowModal @close="closeModal"/>
+    <div class="chart">
+      <BarChart style="justify-content: center;" />
+      <FollowModal @close="closeModal"/>
+    </div>
   </div>
 </template>
 
@@ -106,6 +108,10 @@ onMounted(async () => {
 </script>
 
 <style scoped>
+.chart {
+  margin-top: 30px;
+}
+
 .profile-container {
   display: flex;
   flex-direction: column;
