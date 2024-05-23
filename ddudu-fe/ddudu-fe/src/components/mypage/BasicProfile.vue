@@ -58,7 +58,7 @@ onMounted(async () => {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  min-height: 100vh;
+  min-height: 90vh;
   background-color: #f0f2f5;
   padding: 20px;
 }

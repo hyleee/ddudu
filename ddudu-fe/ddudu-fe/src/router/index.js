@@ -12,6 +12,7 @@ import BoardView from "@/views/BoardView.vue";
 import UserSearchView from "@/views/UserSearchView.vue";
 import ArticleView from "@/views/ArticleView.vue";
 import RankView from "@/views/RankView.vue";
+import ArticleCreateView from "@/views/ArticleCreateView.vue";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -77,6 +78,12 @@ const router = createRouter({
       path: "/article/:articleId",
       name: "article",
       component: ArticleView,
+    },
+
+    {
+      path: "/article",
+      name: "articleCreate",
+      component: ArticleCreateView,
     },
   ],
 });

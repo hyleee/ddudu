@@ -1,6 +1,7 @@
 <template>
     <div class="upper-navigation">
     <img src="@/assets/logo.png" alt="logo" width="30px">
+    <h1>DDUDU</h1>
     <RouterLink to="/usersearch">
         <img src="@/assets/search.png" alt="search" width="30px">
     </RouterLink>
@@ -15,6 +16,9 @@ import { ref } from 'vue';
 </script>
 
 <style scoped>
+h1 {
+  color: #e0983a;
+}
 .upper-navigation {
   display: flex;
   justify-content: space-between;
