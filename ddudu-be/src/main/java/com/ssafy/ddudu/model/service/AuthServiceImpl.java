@@ -34,4 +34,9 @@ public class AuthServiceImpl implements AuthService {
     public Auth findRefreshToken(String userId) {
         return authDao.findRefreshToken(userId);
     }
+    
+    @Override
+    public void deleteRefreshToken(String userId) {
+        authDao.deleteRefreshToken(userId); // 추가된 메서드 호출
+    }
 }

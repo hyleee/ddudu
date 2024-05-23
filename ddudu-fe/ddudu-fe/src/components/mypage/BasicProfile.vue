@@ -23,6 +23,7 @@
       <BarChart style="justify-content: center;" />
       <FollowModal @close="closeModal"/>
     </div>
+    <button class="logout-btn" @click="logout">로그아웃</button>
   </div>
 </template>
 
@@ -94,6 +95,10 @@ const closeModal = () => {
   followStore.showModal = false;
 };
 
+const logout = async () => {
+  await loginStore.logout();
+};
+
 onMounted(async () => {
   const userId = loginStore.loginUser.userId;
   if (loginStore.accessToken && userId) {
@@ -119,6 +124,7 @@ onMounted(async () => {
   background-color: #fafafa;
   min-height: 100vh;
   padding: 20px;
+  position: relative; /* 추가 */
 }
 
 .profile-header {
@@ -199,5 +205,23 @@ onMounted(async () => {
 
 .follow-btn:hover, .message-btn:hover {
   background-color: #00aaff;
+}
+
+.logout-btn {
+  background-color: #FF5C5C;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 50px; /* 버튼을 원형으로 만듦 */
+  cursor: pointer;
+  transition: background-color 0.3s;
+  position: fixed; /* 버튼을 고정된 위치에 설정 */
+  bottom: 80px; /* 하단 네비게이션 바 위에 위치하도록 설정 */
+  right: 20px; /* 오른쪽 끝에서 약간 떨어지도록 설정 */
+  z-index: 1000; /* 버튼이 다른 요소 위에 표시되도록 설정 */
+}
+
+.logout-btn:hover {
+  background-color: #D14646;
 }
 </style>
