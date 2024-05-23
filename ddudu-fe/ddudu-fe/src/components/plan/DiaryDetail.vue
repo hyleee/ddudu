@@ -37,17 +37,29 @@ const todayWeight = ref('')
 const imgUrl = ref('')
 const isEditing = ref(false)
 
-onMounted(() => {
+// 이미지 파일들을 가져오기 위해 import.meta.glob 사용
+const images = import.meta.glob('@/assets/*.png')
+
+onMounted(async () => {
+  await diaryStore.fetchDiary(loginStore.loginUser.userId, route.params.exerciseDate)
   const diary = diaryStore.diary;
   diaryContent.value = diary.diaryContent;
   todayWeight.value = diary.todayWeight;
-
-  const images = [
-    require('@/assets/today_weight.png'),
-    require('@/assets/today_weight_2.png'),
-    require('@/assets/today_weight_3.png')
-  ];
-  imgUrl.value = images[Math.floor(Math.random() * images.length)];
+  // imgUrl을 초기 diaryPhoto 값으로 설정
+  if (diary.diaryPhoto) {
+    const matchedImage = images[`/src/assets/${diary.diaryPhoto}`];
+    if (matchedImage) {
+      matchedImage().then((mod) => {
+        imgUrl.value = mod.default;
+      });
+    } else {
+      imgUrl.value = new URL('@/assets/logo.png', import.meta.url).href;
+    }
+  } else {
+    imgUrl.value = new URL('@/assets/logo.png', import.meta.url).href;
+  }
+  console.log('diary.diaryPhoto:', diary.diaryPhoto);
+  console.log('imgUrl:', imgUrl.value);
 });
 
 const toggleEdit = () => {
