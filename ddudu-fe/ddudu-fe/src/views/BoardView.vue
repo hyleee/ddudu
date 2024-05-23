@@ -9,6 +9,7 @@
         v-for="category in categoryList"
         :key="category"
         @click="selectCategory(category)"
+        class="category-button"
       >
         {{ category }}
       </button>
@@ -22,6 +23,7 @@
         {{ boardStore.noContentMessage }}
       </p>
     </div>
+    <button class="create-article-button" @click="createArticle">글쓰기</button>
   </div>
 </template>
 
@@ -84,6 +86,10 @@ const viewArticle = (articleId) => {
   router.push({ name: "article", params: { articleId } });
 };
 
+const createArticle = () => {
+  router.push({ name: "articleCreate" });
+};
+
 watch(
   () => [loginStore.loginUser.userArea, selectedCategory.value],
   fetchArticlesByUserAreaAndCategory
@@ -108,18 +114,21 @@ onMounted(() => {
 
 .category-list {
   margin-bottom: 20px;
+  display: flex;
 }
 
-.category-list button {
+.category-button {
   margin-right: 10px;
   padding: 5px 10px;
   border: 1px solid #ccc;
-  background: #515151;
+  background: #59d5e0;
+  color: white;
   cursor: pointer;
+  transition: background-color 0.3s;
 }
 
-.category-list button:hover {
-  background: #b2d7ef;
+.category-button:hover {
+  background: #45b4c1;
 }
 
 .article-list-container {
@@ -131,5 +140,24 @@ onMounted(() => {
   text-align: center;
   color: #888;
   margin-top: 20px;
+}
+
+.create-article-button {
+  position: fixed;
+  bottom: 80px; /* 하단 네비게이션 바 위로 위치 */
+  right: 20px;
+  z-index: 1000;
+  padding: 10px 20px;
+  background-color: #faa300;
+  color: white;
+  border: none;
+  border-radius: 50px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.create-article-button:hover {
+  background-color: #d68800;
 }
 </style>

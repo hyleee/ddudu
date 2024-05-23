@@ -1,6 +1,6 @@
 <template>
   <div class="exercise-list">
-    <h2>ExerciseList</h2>
+    <!-- <h2>ExerciseList</h2> -->
     <div class="exercise-title-container">
       <h3>오늘 운동계획</h3>
       <div class="image">

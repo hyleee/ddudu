@@ -1,44 +1,19 @@
--- drop database ssafydb;
--- create database ssafydb;
-use ssafydb;
-
--- ______________________________________INSERT ______________________________________
+-- select * from daily_plan;
 
 
--- daily_plan 테이블에 대한 INSERT 문
-INSERT INTO daily_plan (exercise_date, user_id, body_part, exercise_name) VALUES 
-('2024-05-17', 'a', '어깨', '숄더 프레스'),
-('2024-05-17', 'a', '팔', '바이셉 컬'),
-('2024-05-18', 'a', '등', '랫 풀 다운'),
-('2024-05-18', 'a', '가슴', '벤치 프레스'),
-('2024-05-19', 'a', '복근', '크런치'),
-('2024-05-19', 'a', '하체', '스쿼트'),
-('2024-05-20', 'a', '어깨', '사이드 레터럴 레이즈'),
-('2024-05-20', 'a', '팔', '트라이셉 익스텐션'),
-('2024-05-21', 'a', '등', '데드리프트'),
-('2024-05-21', 'a', '가슴', '딥스');
-select * from daily_plan;
+-- INSERT INTO daily_plan_detail (exercise_kg, exercise_count, plan_id) VALUES 
+-- (20, 10, 1),
+-- (15, 12, 2),
+-- (40, 8, 3),
+-- (60, 6, 4),
+-- (0, 20, 5),
+-- (80, 5, 6),
+-- (10, 15, 7),
+-- (25, 10, 8),
+-- (100, 5, 9),
+-- (30, 8, 10);
 
 
--- daily_plan_detail 테이블에 대한 INSERT 문
-INSERT INTO daily_plan_detail (exercise_kg, exercise_count, plan_id) VALUES 
-(20, 10, 1),
-(15, 12, 2),
-(40, 8, 3),
-(60, 6, 4),
-(0, 20, 5),
-(80, 5, 6),
-(10, 15, 7),
-(25, 10, 8),
-(100, 5, 9),
-(30, 8, 10);
-
--- select * from daily_plan_detail;
-
-
-
-
--- User 테이블에 대한 INSERT 문 10개
 INSERT INTO User (user_id, user_password, user_name, user_email, user_age, user_height, user_weight, user_area, user_profile) VALUES
 ('u1', 'pass1', 'User One', 'user1@example.com', 25, 175, 70, 'area1', 'profile1.png'),
 ('u2', 'pass2', 'User Two', 'user2@example.com', 30, 180, 75, 'area2', 'profile2.png'),
@@ -51,7 +26,7 @@ INSERT INTO User (user_id, user_password, user_name, user_email, user_age, user_
 ('u9', 'pass9', 'User Nine', 'user9@example.com', 33, 178, 74, 'area3', 'profile9.png'),
 ('u10', 'pass10', 'User Ten', 'user10@example.com', 26, 182, 78, 'area1', 'profile10.png');
 
--- article 테이블에 대한 INSERT 문 20개
+
 INSERT INTO article (article_id, user_id, article_title, article_content, category) VALUES
 (1, 'u1', 'Article 1-1', 'Content 1-1', 'shoulders'),
 (2, 'u1', 'Article 1-2', 'Content 1-2', 'legs'),
@@ -75,37 +50,75 @@ INSERT INTO article (article_id, user_id, article_title, article_content, catego
 (20, 'u10', 'Article 10-2', 'Content 10-2', 'legs');
 
 
--- daily_plan 테이블에 대한 INSERT 문
-INSERT INTO daily_plan (exercise_date, user_id, body_part, exercise_name) VALUES 
-('2024-05-19', 'a', '어깨', '숄더 프레스'),
-('2024-05-19', 'a', '팔', '바이셉 컬'),
-('2024-05-19', 'a', '등', '랫 풀 다운'),
-('2024-05-19', 'a', '가슴', '벤치 프레스'),
-('2024-05-19', 'z', '복근', '크런치'),
-('2024-05-19', 'z', '하체', '스쿼트'),
-('2024-05-19', 'z', '어깨', '사이드 레터럴 레이즈'),
-('2024-05-19', 'z', '팔', '트라이셉 익스텐션'),
-('2024-05-21', 'z', '등', '데드리프트'),
-('2024-05-21', 'z', '가슴', '딥스'),
-('2024-05-19', 'n', '어깨', '사이드 레터럴 레이즈'),
-('2024-05-19', 'n', '팔', '트라이셉 익스텐션'),
-('2024-05-21', 'n', '등', '데드리프트'),
-('2024-05-21', 'n', '가슴', '딥스');
+-- INSERT INTO daily_plan (exercise_date, user_id, body_part, exercise_name) VALUES 
+-- ('2024-05-19', 'a', '어깨', '숄더 프레스'),
+-- ('2024-05-19', 'a', '팔', '바이셉 컬'),
+-- ('2024-05-19', 'a', '등', '랫 풀 다운'),
+-- ('2024-05-19', 'a', '가슴', '벤치 프레스'),
+-- ('2024-05-19', 'z', '복근', '크런치'),
+-- ('2024-05-19', 'z', '하체', '스쿼트'),
+-- ('2024-05-19', 'z', '어깨', '사이드 레터럴 레이즈'),
+-- ('2024-05-19', 'z', '팔', '트라이셉 익스텐션'),
+-- ('2024-05-21', 'z', '등', '데드리프트'),
+-- ('2024-05-21', 'z', '가슴', '딥스'),
+-- ('2024-05-19', 'n', '어깨', '사이드 레터럴 레이즈'),
+-- ('2024-05-19', 'n', '팔', '트라이셉 익스텐션'),
+-- ('2024-05-21', 'n', '등', '데드리프트'),
+-- ('2024-05-21', 'n', '가슴', '딥스');
 
-select * from daily_plan;
+-- INSERT INTO daily_plan_detail (exercise_kg, exercise_count, plan_id) VALUES 
+-- (20, 10, 2),
+-- (15, 12, 2),
+-- (40, 8, 3),
+-- (60, 6, 4),
+-- (0, 20, 5),
+-- (80, 5, 6),
+-- (10, 15, 7),
+-- (25, 10, 8),
+-- (100, 5, 9),
+-- (30, 8, 10);
 
--- daily_plan_detail 테이블에 대한 INSERT 문
-INSERT INTO daily_plan_detail (exercise_kg, exercise_count, plan_id) VALUES 
-(20, 10, 2),
-(15, 12, 2),
-(40, 8, 3),
-(60, 6, 4),
-(0, 20, 5),
-(80, 5, 6),
-(10, 15, 7),
-(25, 10, 8),
-(100, 5, 9),
-(30, 8, 10);
+INSERT INTO comment (comment_content, user_id, article_id) VALUES
+('Comment 1-1 by u1', 'u1', 1),
+('Comment 1-2 by u2', 'u2', 1),
+('Comment 2-1 by u1', 'u1', 2),
+('Comment 2-2 by u3', 'u3', 2),
+('Comment 3-1 by u2', 'u2', 3),
+('Comment 3-2 by u4', 'u4', 3),
+('Comment 4-1 by u2', 'u2', 4),
+('Comment 4-2 by u5', 'u5', 4),
+('Comment 5-1 by u3', 'u3', 5),
+('Comment 5-2 by u6', 'u6', 5),
+('Comment 6-1 by u3', 'u3', 6),
+('Comment 6-2 by u7', 'u7', 6),
+('Comment 7-1 by u4', 'u4', 7),
+('Comment 7-2 by u8', 'u8', 7),
+('Comment 8-1 by u4', 'u4', 8),
+('Comment 8-2 by u9', 'u9', 8),
+('Comment 9-1 by u5', 'u5', 9),
+('Comment 9-2 by u10', 'u10', 9),
+('Comment 10-1 by u5', 'u5', 10),
+('Comment 10-2 by u1', 'u1', 10),
+('Comment 11-1 by u6', 'u6', 11),
+('Comment 11-2 by u2', 'u2', 11),
+('Comment 12-1 by u6', 'u6', 12),
+('Comment 12-2 by u3', 'u3', 12),
+('Comment 13-1 by u7', 'u7', 13),
+('Comment 13-2 by u4', 'u4', 13),
+('Comment 14-1 by u7', 'u7', 14),
+('Comment 14-2 by u5', 'u5', 14),
+('Comment 15-1 by u8', 'u8', 15),
+('Comment 15-2 by u6', 'u6', 15),
+('Comment 16-1 by u8', 'u8', 16),
+('Comment 16-2 by u7', 'u7', 16),
+('Comment 17-1 by u9', 'u9', 17),
+('Comment 17-2 by u8', 'u8', 17),
+('Comment 18-1 by u9', 'u9', 18),
+('Comment 18-2 by u1', 'u1', 18),
+('Comment 19-1 by u10', 'u10', 19),
+('Comment 19-2 by u2', 'u2', 19),
+('Comment 20-1 by u10', 'u10', 20),
+('Comment 20-2 by u3', 'u3', 20);
 
 
 -- ______________________________________CREATE ______________________________________
@@ -159,9 +172,6 @@ CREATE TABLE article (
     FOREIGN KEY (user_id) REFERENCES User(user_id)
 );
 
-INSERT INTO article (user_id, article_title, article_content, category)
-VALUES ("z", "z 운동했어요", "zzzz 운동했어요", "등");
-select * from article;
 -- 게시글 좋아요 테이블
 CREATE TABLE article_like (
     article_id INT,
@@ -264,7 +274,7 @@ CREATE TABLE video(
     view_count INT
 );
 
-drop table follow;
+
 CREATE TABLE Follow (
     follower_id VARCHAR(100) NOT NULL, -- 팔로우 당하는 놈
     following_id VARCHAR(100) NOT NULL, -- 팔로우 신청한 놈
@@ -275,6 +285,3 @@ CREATE TABLE Follow (
 );
 
 select * from follow;
-
-
-

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1>MyProfileView</h1>
+    <!-- <h1>MyProfileView</h1> -->
     <BasicProfile />
   </div>
 </template>
