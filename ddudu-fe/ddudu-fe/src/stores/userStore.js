@@ -35,6 +35,18 @@ export const useUserStore = defineStore(
       }
     };
 
+    const fetchUserData = async (userId) => { // 추가된 부분
+      try {
+        const response = await axios.get(`${REST_USER_API}/${userId}`);
+        return response.data; // 사용자 데이터를 반환
+      } catch (e) {
+        console.error(
+          "Error fetching user data:",
+          e.response ? e.response.data : e.message
+        );
+      }
+    };
+
     const userCreate = async (newUser, userFile) => {
       const formData = new FormData();
       formData.append(
@@ -80,7 +92,7 @@ export const useUserStore = defineStore(
       }
     };
 
-    return { user, userList, fetchUser, userCreate, searchUsersByName };
+    return { user, userList, fetchUser, fetchUserData, userCreate, searchUsersByName };
   },
   { persist: true }
 );

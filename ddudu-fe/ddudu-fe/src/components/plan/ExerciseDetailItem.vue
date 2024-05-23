@@ -2,7 +2,7 @@
   <div class="exercise-item">
     <!-- <h4>ExerciseDetailItem입니다.</h4> -->
     <div v-if="exerciseDetail" class="exercise-detail-content">
-      <p class="set-title">{{ index + 1 }} 세 트</p>
+      <strong><p class="set-title">{{ index + 1 }} 세 트</p></strong>
       <div v-if="isEditing" class="edit-fields">
         <input v-model="exerciseDetail.exerciseKg" placeholder="무게 (kg)" />
         <input v-model="exerciseDetail.exerciseCount" placeholder="횟수" />

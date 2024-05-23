@@ -2,19 +2,15 @@
   <div class="diary">
     <div class="diary-title-container">
       <div>운동일지</div>
-
-      <RouterLink v-if="store.diary.diaryContent || store.diary.todayWeight || store.diary.diaryPhoto" to="/diary">
+      <RouterLink :to="diaryRoute">
         <img src="@/assets/arrow.png" height="30px">
       </RouterLink>
-      <div v-else>
-        <RouterLink to="/diary"><img src="@/assets/arrow.png" height="30px"></RouterLink>
-      </div>
     </div>
     <div v-if="store.diary.diaryContent || store.diary.todayWeight || store.diary.diaryPhoto" class="diary-container">
       <div class="picture-weight">
         <div class="picture-wrapper">
-          <img v-if="store.diary.diaryPhoto" :src="store.diary.diaryPhoto" alt="사진" />
-          <img v-else src="@/assets/js_duck.png" alt="Default 사진" />
+          <!-- <img v-if="store.diary.diaryPhoto" :src="store.diary.diaryPhoto" alt="사진" /> -->
+          <img src="@/assets/today_weight.png" alt="Default 사진" />
         </div>
         <div class="weight">
           <span>{{ store.diary.todayWeight }} kg</span>
@@ -29,13 +25,19 @@
 </template>
 
 <script setup>
-import { onMounted, watch } from 'vue';
+import { onMounted, watch, computed } from 'vue';
 import { RouterLink, useRoute } from 'vue-router';
 import ExerciseList from '@/components/plan/ExerciseList.vue';
 import { useDiaryStore } from '@/stores/diaryStore';
 
 const route = useRoute();
 const store = useDiaryStore();
+
+const diaryRoute = computed(() => {
+  return store.diary.diaryContent || store.diary.todayWeight || store.diary.diaryPhoto
+    ? { name: 'diarydetail', params: { userId: route.params.userId, exerciseDate: route.params.exerciseDate } }
+    : { name: 'diarycreate' };
+});
 
 onMounted(() => {
   store.fetchDiary(route.params.userId, route.params.exerciseDate);

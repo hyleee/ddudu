@@ -10,6 +10,7 @@
         :key="category"
         @click="selectCategory(category)"
         class="category-button"
+        :class="{'sun-button': category === '가슴', 'mon-button': category === '등', 'tue-button': category === '어깨', 'wed-button': category === '하체', 'thu-button': category === '팔', 'fri-button': category === '코어'}"
       >
         {{ category }}
       </button>
@@ -121,14 +122,48 @@ onMounted(() => {
   margin-right: 10px;
   padding: 5px 10px;
   border: 1px solid #ccc;
-  background: #59d5e0;
   color: white;
   cursor: pointer;
   transition: background-color 0.3s;
 }
 
-.category-button:hover {
-  background: #45b4c1;
+.sun-button {
+  background-color: #ff6f61;
+}
+
+.mon-button {
+  background-color: #ff6f61;
+}
+
+.tue-button {
+  background-color: #ff6f61;
+}
+
+.wed-button {
+  background-color: #00aaff;
+}
+
+.thu-button {
+  background-color: #00aaff;
+}
+
+.fri-button {
+  background-color: #00aaff;
+}
+
+.sun-button:hover {
+  background-color: #e66055;
+}
+
+.mon-button:hover,
+.tue-button:hover,
+.wed-button:hover,
+.thu-button:hover {
+  background-color: #555;
+}
+
+.fri-button:hover {
+  background-color: #0090dd;
 }
 
 .article-list-container {

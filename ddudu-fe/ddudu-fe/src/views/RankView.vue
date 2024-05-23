@@ -1,21 +1,21 @@
 <template>
   <div class="rank-view">
-    <h1>주간 랭킹</h1>
+    <h1><strong>주간 랭킹</strong></h1>
     <div class="buttons">
-      <button @click="updateRank('chest')">Chest</button>
-      <button @click="updateRank('back')">Back</button>
-      <button @click="updateRank('shoulders')">Shoulders</button>
-      <button @click="updateRank('legs')">Legs</button>
-      <button @click="updateRank('arms')">Arms</button>
-      <button @click="updateRank('core')">Core</button>
+      <button class="chest-button" @click="updateRank('chest')">가슴</button>
+      <button class="back-button" @click="updateRank('back')">등</button>
+      <button class="shoulders-button" @click="updateRank('shoulders')">어깨</button>
+      <button class="legs-button" @click="updateRank('legs')">하체</button>
+      <button class="arms-button" @click="updateRank('arms')">팔</button>
+      <button class="core-button" @click="updateRank('core')">복근</button>
     </div>
     <div v-if="errorMessage" class="error">{{ errorMessage }}</div>
     <ul v-if="rankList && rankList.length" class="rank-list">
       <li v-for="(rank, index) in rankList" :key="index" class="rank-item">
-        <div class="profile-img"></div>
+        <img :src="getUserProfileImage(rank.userId)" class="profile-img" alt="user img" />
         <div class="rank-details">
-          <strong>{{ index + 1 }}등 {{ rank.userName }} ({{ rank.userId }})</strong>
-          <span>{{ rank.totalWeight }}kg ({{ rank.bodyPart }})</span>
+          <strong>[{{ index + 1 }}등] {{ rank.userName }} ({{ rank.userId }})</strong>
+          <span>{{ rank.totalWeight }}kg </span>
         </div>
         <button class="follow-button">Follow</button>
       </li>
@@ -28,6 +28,9 @@
 import { ref, onMounted, watch } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
 import { useRankStore } from '@/stores/rankStore.js';
+
+// Import all images from assets folder
+const images = import.meta.glob('@/assets/*.png');
 
 const store = useRankStore();
 const route = useRoute();
@@ -44,6 +47,15 @@ const fetchRank = async (bodyPart) => {
 
 const updateRank = (bodyPart) => {
   router.push(`/rank/${bodyPart}`);
+};
+
+const getUserProfileImage = (userId) => {
+  const imagePath = images[`/src/assets/${userId}.png`];
+  if (imagePath) {
+    return new URL(`/src/assets/${userId}.png`, import.meta.url).href;
+  } else {
+    return new URL('@/assets/default.png', import.meta.url).href;
+  }
 };
 
 onMounted(() => {
@@ -76,12 +88,13 @@ h1 {
 
 .buttons {
   display: flex;
-  justify-content: space-around;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
   margin-bottom: 20px;
 }
 
 button {
-  background-color: #007bff;
   color: white;
   border: none;
   padding: 10px 20px;
@@ -89,10 +102,36 @@ button {
   border-radius: 10px;
   cursor: pointer;
   transition: background-color 0.3s;
+  flex: 1 1 100px; /* Adjusts the buttons to be flexible and fit the container */
+  max-width: 120px; /* Ensures buttons do not exceed a certain width */
+}
+
+.chest-button {
+  background-color: #00aaff;
+}
+
+.back-button {
+  background-color: #00aaff;
+}
+
+.shoulders-button {
+  background-color: #00aaff;
+}
+
+.legs-button {
+  background-color: #F4538A;
+}
+
+.arms-button {
+  background-color: #F4538A;
+}
+
+.core-button {
+  background-color: #F4538A;
 }
 
 button:hover {
-  background-color: #0056b3;
+  opacity: 0.8;
 }
 
 .rank-list {
@@ -114,7 +153,6 @@ button:hover {
 .profile-img {
   width: 50px;
   height: 50px;
-  background-color: #ccc;
   border-radius: 50%;
   margin-right: 10px;
 }
@@ -126,7 +164,7 @@ button:hover {
 }
 
 .follow-button {
-  background-color: #3CCF42;
+  background-color: #F5DD61;
   color: white;
   border: none;
   padding: 10px 20px;

@@ -32,7 +32,23 @@ const store = useBodyInfoStore();
 const chartData = computed(() => {
   const data = store.chartData;
   if (data && data.datasets && data.datasets.length > 0) {
-    data.datasets[0].backgroundColor = "rgba(255, 223, 0, 0.7)"; // 개나리 색깔
+    const gradient = (ctx) => {
+      const gradient = ctx.createLinearGradient(0, 0, 0, 400);
+      gradient.addColorStop(0, '#59D5E0'); // 시작 색깔
+      gradient.addColorStop(1, '#F5DD61'); // 끝 색깔
+      return gradient;
+    };
+
+    data.datasets[0].backgroundColor = (context) => {
+      const chart = context.chart;
+      const { ctx, chartArea } = chart;
+
+      if (!chartArea) {
+        return null;
+      }
+      return gradient(ctx);
+    };
+    data.datasets[0].borderColor = 'rgba(0, 0, 0, 0)'; // 테두리 색상 제거
   }
   return data;
 });
@@ -80,7 +96,7 @@ watchEffect(() => {
 <style scoped>
 .graph {
   position: relative;
-  height: 40vh;
+  height: 25vh;
   width: 80vw;
   margin-left: 0;
   display: flex;

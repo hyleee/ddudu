@@ -3,6 +3,7 @@ import HomeView from "../views/HomeView.vue";
 import Login from "@/components/user/Login.vue";
 import SignUp from "@/components/user/SignUp.vue";
 import PlanView from "@/views/PlanView.vue";
+import DiaryCreateView from "@/views/DiaryCreateView.vue";
 import DiaryDetailView from "@/views/DiaryDetailView.vue";
 import { useLoginStore } from "@/stores/loginStore";
 import ExerciseDetailView from "@/views/ExerciseDetailView.vue";
@@ -34,7 +35,12 @@ const router = createRouter({
     },
     {
       path: "/diary",
-      name: "diary",
+      name: "diarycreate",
+      component: DiaryCreateView,
+    },
+    {
+      path: "/diary/detail",
+      name: "diarydetail",
       component: DiaryDetailView,
     },
     {

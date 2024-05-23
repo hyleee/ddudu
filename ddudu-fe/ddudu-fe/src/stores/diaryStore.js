@@ -1,6 +1,7 @@
 import { ref } from 'vue'
 import { defineStore } from 'pinia'
 import axios from 'axios'
+import { useLoginStore } from './loginStore'
 
 const REST_DIARY_API = "http://localhost:8080/diary"
 
@@ -12,6 +13,8 @@ export const useDiaryStore = defineStore('diaryStore', () => {
     diaryPhoto: '',
     exerciseDate: '',
   })
+
+  const loginStore = useLoginStore()
 
   const diaryCreate = async (newDiary) => {
     try {
@@ -76,5 +79,20 @@ export const useDiaryStore = defineStore('diaryStore', () => {
     }
   }
 
-  return { diary, diaryCreate, fetchDiary }
+  const updateDiary = async (updatedDiary) => {
+    try {
+      updatedDiary.userId = loginStore.loginUser.userId
+      await axios.put(`${REST_DIARY_API}/${updatedDiary.userId}/${updatedDiary.exerciseDate}`, updatedDiary, {
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      })
+      console.log('Diary 수정 완료')
+      diary.value = updatedDiary
+    } catch (e) {
+      console.error('Diary 수정 오류:', e)
+    }
+  }
+
+  return { diary, diaryCreate, fetchDiary, updateDiary }
 }, { persist: true })

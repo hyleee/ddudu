@@ -17,21 +17,21 @@
           />
         </li>
         <li v-if="addingSet" class="new-set">
-          <input v-model="newSet.exerciseKg" placeholder="무게 (kg)" />
-          <input v-model="newSet.exerciseCount" placeholder="횟수" />
+          <input v-model="newSet.exerciseKg" class="weight-create" placeholder="무게 (kg)" />
+          <input v-model="newSet.exerciseCount" class="count-create"  placeholder="횟수" />
           <button @click="completeAddingSet">세트 추가 완료</button>
         </li>
       </ul>
     </div>
     <div class="buttons">
-      <button @click="toggleEditingSet">
-        {{ editingSet ? "세트 수정 완료" : "세트 수정" }}
+      <button id="set-update" @click="toggleEditingSet">
+        <strong>{{ editingSet ? "세트 수정 완료" : "세트 수정" }}</strong>
       </button>
-      <button @click="toggleAddingSet">
-        {{ addingSet ? "세트 추가 완료" : "세트 추가" }}
+      <button id="set-create" @click="toggleAddingSet">
+        <strong>{{ addingSet ? "세트 추가 완료" : "세트 추가" }}</strong>
       </button>
-      <button @click="toggleDeletingSet">
-        {{ isDeleting ? "세트 삭제 완료" : "세트 삭제" }}
+      <button id="set-delete" @click="toggleDeletingSet">
+        <strong>{{ isDeleting ? "세트 삭제 완료" : "세트 삭제" }}</strong>
       </button>
     </div>
   </div>
@@ -104,6 +104,7 @@ const deleteSelectedSets = async () => {
 </script>
 
 <style scoped>
+
 .exercise-detail {
   padding: 20px;
   background-color: #f5f5f5;
@@ -137,14 +138,17 @@ const deleteSelectedSets = async () => {
   display: flex;
   justify-content: space-between;
   margin-top: 10px;
+  height:80px;
 }
 
 .new-set input {
   margin: 5px;
+  margin-top: 20px;
   padding: 10px;
   border-radius: 5px;
   border: 1px solid #ddd;
   flex: 1;
+  height: 50px;
 }
 
 .new-set button {
@@ -157,6 +161,18 @@ const deleteSelectedSets = async () => {
   cursor: pointer;
 }
 
+#set-create{
+  background-color: #59de05;
+}
+
+#set-delete{
+  background-color: #F4538A;
+}
+
+#set-update{
+  background-color: #F5DD61;
+}
+
 .buttons {
   display: flex;
   justify-content: space-around;
@@ -167,7 +183,7 @@ const deleteSelectedSets = async () => {
   padding: 10px 20px;
   border: none;
   border-radius: 5px;
-  background-color: #007bff;
+  background-color: #59de05;
   color: white;
   cursor: pointer;
   transition: background-color 0.3s;
