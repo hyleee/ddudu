@@ -9,6 +9,9 @@ export const useFollowStore = defineStore(
   () => {
     const followers = ref([]);
     const followings = ref([]);
+    const showModal = ref(false);
+    const modalTitle = ref("");
+    const modalUserList = ref([]);
     const errorMessage = ref(null);
 
     const getFollowers = async (userId) => {
@@ -70,6 +73,6 @@ export const useFollowStore = defineStore(
       return false;
     };
 
-    return { followers, followings, errorMessage, getFollowers, getFollowings, followUser, unfollowUser, isFollowing };
+    return { followers, followings, showModal, modalTitle, modalUserList, errorMessage, getFollowers, getFollowings, followUser, unfollowUser, isFollowing };
   }
 );

@@ -3,22 +3,22 @@
     <h1>Create New Article</h1>
     <form @submit.prevent="submitArticle">
       <div class="form-group">
-        <label for="title">Title</label>
+        <label for="title">제목</label>
         <input type="text" v-model="articleTitle" id="title" required />
       </div>
       <div class="form-group">
-        <label for="content">Content</label>
+        <label for="content">내용</label>
         <textarea v-model="articleContent" id="content" required></textarea>
       </div>
       <div class="form-group">
-        <label for="category">Category</label>
+        <label for="category">카테고리</label>
         <select v-model="category" id="category" required>
-          <option value="chest">Chest</option>
-          <option value="back">Back</option>
-          <option value="shoulders">Shoulders</option>
-          <option value="legs">Legs</option>
-          <option value="arms">Arms</option>
-          <option value="abs">Abs</option>
+          <option value="chest">가슴</option>
+          <option value="back">등</option>
+          <option value="shoulders">어깨</option>
+          <option value="legs">하체</option>
+          <option value="arms">팔</option>
+          <option value="abs">복근</option>
         </select>
       </div>
       <button type="submit">Submit</button>
@@ -92,7 +92,7 @@ button {
   padding: 10px 20px;
   border: none;
   border-radius: 5px;
-  background-color: #007bff;
+  background-color: #FAA300;
   color: white;
   cursor: pointer;
   transition: background-color 0.3s;

@@ -1,6 +1,6 @@
 <template>
   <div class="diary-detail">
-    <h2>내 운동 일지</h2>
+    <h2>Share</h2>
     <div class="image-upload">
       <div class="image-preview" v-if="imgUrl">
         <img :src="imgUrl" alt="Image Preview" />
@@ -9,61 +9,39 @@
     </div>
     <div class="weight-input">
       <label for="weight">오늘의 체중 : </label>
-      <input type="number" id="weight" v-model="todayWeight" placeholder="오늘의 체중" :disabled="!isEditing">
+      <input type="number" id="weight" v-model="todayWeight" placeholder="오늘의 체중">
     </div>
     <div class="diary-content">
       <label for="content">내용 : </label>
-      <textarea name="content" cols="30" rows="10" v-model="diaryContent" :disabled="!isEditing"></textarea>
+      <textarea name="content" cols="30" rows="10" v-model="diaryContent"></textarea>
     </div>
     <div class="actions">
-      <button @click="toggleEdit" v-if="!isEditing">수정</button>
-      <button @click="updateDiary" v-if="isEditing">수정 완료</button>
+      <button @click="diaryCreate">등록</button>
     </div>
   </div>
 </template>
 
 <script setup>
-import { ref, onMounted } from 'vue'
+import { ref } from 'vue'
 import { useRoute } from 'vue-router'
 import { useDiaryStore } from '@/stores/diaryStore'
-import { useLoginStore } from '@/stores/loginStore'
 
 const route = useRoute()
-const diaryStore = useDiaryStore()
-const loginStore = useLoginStore()
+const store = useDiaryStore()
 
 const diaryContent = ref('')
 const todayWeight = ref('')
 const imgUrl = ref('')
-const isEditing = ref(false)
 
-onMounted(() => {
-  const diary = diaryStore.diary;
-  diaryContent.value = diary.diaryContent;
-  todayWeight.value = diary.todayWeight;
-
-  const images = [
-    require('@/assets/today_weight.png'),
-    require('@/assets/today_weight_2.png'),
-    require('@/assets/today_weight_3.png')
-  ];
-  imgUrl.value = images[Math.floor(Math.random() * images.length)];
-});
-
-const toggleEdit = () => {
-  isEditing.value = !isEditing.value;
-}
-
-const updateDiary = async () => {
+const diaryCreate = async () => {
   const diary = {
-    userId: loginStore.loginUser.userId,
+    userId: route.params.userId,
     exerciseDate: route.params.exerciseDate,
     diaryContent: diaryContent.value,
     todayWeight: todayWeight.value,
     diaryPhoto: imgUrl.value
   }
-  await diaryStore.updateDiary(diary)
-  toggleEdit();
+  await store.diaryCreate(diary)
 }
 
 const handleFileUpload = (event) => {
@@ -102,7 +80,7 @@ h2 {
 .image-preview {
   width: 200px;
   height: 200px;
-  border: 2px solid #59D5E0; /* 테두리 색상 */
+  border: 2px solid #007bff;
   border-radius: 10px;
   overflow: hidden;
   margin-bottom: 10px;
@@ -120,7 +98,7 @@ input[type="file"] {
 
 .image-upload label {
   cursor: pointer;
-  background-color: #59D5E0; /* 버튼 색상 */
+  background-color: #007bff;
   color: white;
   padding: 10px 20px;
   border-radius: 10px;
@@ -128,7 +106,7 @@ input[type="file"] {
 }
 
 .image-upload label:hover {
-  background-color: #45B5C1; /* 호버 색상 */
+  background-color: #0056b3;
 }
 
 .weight-input, .diary-content {
@@ -148,20 +126,19 @@ input[type="file"] {
   padding: 10px;
   border: 1px solid #ddd;
   border-radius: 10px;
-  background-color: white; /* 인풋 배경 색상 */
 }
 
 .actions {
   display: flex;
   justify-content: center;
   width: 100%;
-  max-width: 200px; /* 버튼 가로 길이 줄임 */
+  max-width: 400px;
 }
 
 .actions button {
   width: 100%;
   padding: 10px 20px;
-  background-color: #FAA300; /* 버튼 색상 */
+  background-color: #007bff;
   color: white;
   border: none;
   border-radius: 10px;
@@ -170,6 +147,6 @@ input[type="file"] {
 }
 
 .actions button:hover {
-  background-color: #D48600; /* 호버 색상 */
+  background-color: #0056b3;
 }
 </style>

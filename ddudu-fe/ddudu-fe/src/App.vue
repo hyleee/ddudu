@@ -15,6 +15,10 @@ import { RouterView } from "vue-router";
 </script>
 
 <style scoped>
+html, body {
+  font-family: 'NanumSquareRoundExtraBold', sans-serif;
+}
+
 .app-container {
   display: flex;
   flex-direction: column;
