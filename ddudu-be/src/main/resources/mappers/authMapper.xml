@@ -13,5 +13,10 @@
         VALUES (#{userId}, #{refreshToken})
         ON DUPLICATE KEY UPDATE refresh_token = #{refreshToken}
     </insert>
+    
+    <delete id="deleteRefreshToken">
+        DELETE FROM auth
+        WHERE user_id = #{userId}
+    </delete>
 
 </mapper>

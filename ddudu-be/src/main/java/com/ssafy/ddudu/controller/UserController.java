@@ -76,32 +76,6 @@ public class UserController {
 	    }
 	}
 
-	
-	
-//	@PostMapping(value = "/regist", consumes = { MediaType.MULTIPART_FORM_DATA_VALUE })
-//	public ResponseEntity<?> userRegist(@RequestPart("user") User user,
-//			@RequestPart(value = "file", required = false) MultipartFile file, HttpSession session)
-//			throws IllegalStateException, IOException {
-//		System.out.println(user);
-//		if (file != null && !file.isEmpty()) {
-//			String userHome = System.getProperty("user.home");
-//			String uploadDirPath = userHome + "/Desktop/test";
-//			Path uploadPath = Paths.get(uploadDirPath);
-//			if (!Files.exists(uploadPath)) {
-//				Files.createDirectories(uploadPath);
-//			}
-//			String filename = System.currentTimeMillis() + "_" + file.getOriginalFilename();
-//			file.transferTo(new File(uploadDirPath, filename));
-//			user.setUserProfile(filename); // 파일 이름을 img 필드에 설정
-//		}
-//
-//		int result = userService.insert(user, file);
-//		if (result == 1) {
-//			return ResponseEntity.ok("User registered successfully with image.");
-//		} else {
-//			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Failed to register user.");
-//		}
-//	}
 
 	@Operation(summary = "로그인", description = "사용자 로그인")
 	@PostMapping("/login")

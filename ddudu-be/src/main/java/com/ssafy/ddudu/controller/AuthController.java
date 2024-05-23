@@ -1,6 +1,5 @@
 package com.ssafy.ddudu.controller;
 
-
 import java.io.UnsupportedEncodingException;
 import java.util.HashMap;
 import java.util.Map;
@@ -105,4 +104,36 @@ public class AuthController {
             return new ResponseEntity<>("Invalid refresh token", HttpStatus.UNAUTHORIZED);
         }
     }
+
+    @PostMapping("/logout")
+    public ResponseEntity<?> logout(HttpServletRequest request, HttpServletResponse response) throws UnsupportedEncodingException {
+        Cookie[] cookies = request.getCookies();
+        if (cookies != null) {
+            for (Cookie cookie : cookies) {
+                if (cookie.getName().equals("refreshToken")) {
+                    // DB에서 refreshToken 삭제
+                    String refreshToken = cookie.getValue();
+                    try {
+                        String userId = jwtUtil.getUserId(refreshToken);
+                        authService.deleteRefreshToken(userId);
+                    } catch (ParseException e) {
+                        // 예외 처리: 로그를 남기거나 적절한 응답을 반환
+                        e.printStackTrace();
+                        return new ResponseEntity<>("Invalid refresh token", HttpStatus.UNAUTHORIZED);
+                    }
+
+                    // refreshToken 쿠키를 삭제
+                    cookie.setValue("");
+                    cookie.setPath("/");
+                    cookie.setMaxAge(0);
+                    response.addCookie(cookie);
+
+                    break;
+                }
+            }
+        }
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
 }
+

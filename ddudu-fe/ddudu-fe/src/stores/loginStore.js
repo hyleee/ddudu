@@ -39,14 +39,21 @@ export const useLoginStore = defineStore("login", () => {
       });
   };
 
-  const logout = () => {
-    accessToken.value = "";
-    loginUser.value = {};
+  const logout = async () => {
+    try {
+      await axios.post("http://localhost:8080/auth/logout");
+      accessToken.value = "";
+      loginUser.value = {};
+      router.push({ name: "login" });
+    } catch (e) {
+      console.log("로그아웃 실패");
+      console.log(e);
+    }
   };
 
   const getMyPage = () => {
     axios
-      .get("http://localhost:8080/user/mypage", {
+      .get("http://localhost:8080/auth/mypage", {
         headers: {
           Authorization: `Bearer ${accessToken.value}`,
         },
