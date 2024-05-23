@@ -42,6 +42,7 @@ export const useDiaryStore = defineStore('diaryStore', () => {
 
       if (response.status === 200) {
         // 데이터가 잘 들어오는 경우
+        console.log("response.data: " + response.data)
         diary.value = response.data
       } else if (response.status === 204) {
         // No Content인 경우

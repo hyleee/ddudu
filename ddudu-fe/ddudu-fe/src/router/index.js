@@ -39,7 +39,7 @@ const router = createRouter({
       component: DiaryCreateView,
     },
     {
-      path: "/diary/detail",
+      path: "/diary/detail/:userId/:exerciseDate",
       name: "diarydetail",
       component: DiaryDetailView,
     },
